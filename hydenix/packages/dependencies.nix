@@ -36,6 +36,8 @@ in
     fonts # hyde fonts
     upower # for battery status
     dbus
+    mesa # for gpu support
+    dconf # for dconf support
 
     # TODO: check these packages if they are even needed 
     xdg-utils # for xdg-open

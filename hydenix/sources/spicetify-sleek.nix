@@ -16,6 +16,4 @@ let
     '';
   };
 in
-{
-  inherit pkg;
-}
+pkg

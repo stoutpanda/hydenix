@@ -51,7 +51,7 @@ cat <<EOF >"$CONFIG_FILE"
     !REMEMBER TO USE passwd TO CHANGE THE PASSWORD!
     post install this will run passwd by default
   */
-  defaultPassword = "changeme";
+  defaultPassword = "hydenix";
   timezone = "$(echo "America/Vancouver")";
   locale = "$(echo "en_CA.UTF-8")";
   vm = {

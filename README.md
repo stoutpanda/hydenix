@@ -1,9 +1,7 @@
-# hyprdots-nix
+# hydenix
 
-hyprdots-nix is an experimental nixos configuration for 
+hydenix is a Nix & home-manager configuration for [HyDE](https://github.com/kRHYME7/HyDE), an Arch Linux based Hyprland desktop.
 [hyprdots](https://github.com/prasanthrangan/hyprdots), a hyprland-based dotfiles setup.
-
-`hyprdots-hyde.nix` - for those who want the default hyprdots experience
 
 `hyprdots.nix` (experimental) - for those who want the "nixos way" of hyprdots
 

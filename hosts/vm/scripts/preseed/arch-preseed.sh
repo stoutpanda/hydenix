@@ -36,10 +36,10 @@ locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Set hostname
-echo "arch-vm" > /etc/hostname
+echo "hydenix" > /etc/hostname
 
 # Set root password
-echo "root:packer" | chpasswd
+echo "root:hydenix" | chpasswd
 
 # Install and configure bootloader
 pacman -S --noconfirm grub
@@ -55,8 +55,8 @@ pacman -S --noconfirm openssh
 systemctl enable sshd
 
 # Create a non-root user
-useradd -m -G wheel -s /bin/bash packer
-echo "packer:packer" | chpasswd
+useradd -m -G wheel -s /bin/bash hydenix
+echo "hydenix:hydenix" | chpasswd
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Install additional useful packages

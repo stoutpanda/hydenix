@@ -12,5 +12,8 @@
     qt6.qtwayland # wayland support for qt6
     qtcreator # qt ide
     qt6.qmake # qt6 build system
+    wayland # for wayland support
+    egl-wayland # for wayland support
+    xwayland # for x11 support
   ];
 }

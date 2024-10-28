@@ -56,11 +56,30 @@ let
         # update kitty
         find . -type f -print0 | xargs -0 sed -i 's/killall kitty/killall .kitty-wrapped/g'
 
-        # remove continue 2 from Restore-Config
-        sed -i '/continue\ 2/d' ./Scripts/Restore-Config
+       # scripts need to use dconf instead of gsettings
+       find . -type f -not -name 'themepatcher.sh' -exec sed -i \
+         -e 's/gsettings set/dconf write/g' \
+         -e 's/gsettings get/dconf read/g' \
+         -e 's/org\.gnome\.desktop\.interface \([^ ]*\)/\/org\/gnome\/desktop\/interface\/\1/g' \
+         -e 's/org\.gnome\.desktop\.gtk \([^ ]*\)/\/org\/gnome\/desktop\/gtk\/\1/g' \
+         -e 's/\(dconf write.*font-name\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
+         -e 's/\(dconf write.*cursor-theme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
+         -e 's/\(dconf write.*color-scheme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
+         -e 's/\(dconf write.*gtk-theme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
+         -e 's/\(dconf write.*icon-theme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
+         -e 's/\(dconf write.*[^ ]*\) '"'"'\(\$[A-Za-z_][A-Za-z0-9_]*\)'"'"'/\1 "\2"/g' \
+         -e 's/\(dconf write.*[^ ]*\) \(\$[A-Za-z_][A-Za-z0-9_]*\)/\1 "\2"/g' \
+         {} +
+
+         # add home-manager case to scripts
+         find . -type f \( -name "*.sh" -o -executable \) -exec sed -i '/^if \[ -d \/run\/current-system\/sw\/share\/themes/,/else/c\if [ -d /run/current-system/sw/share/themes ] ; then\n    themeDir=/run/current-system/sw/share/themes\nelif [ -d ~/.local/state/nix/profiles/home-manager/home-path/share/themes ] ; then\n    themeDir=~/.local/state/nix/profiles/home-manager/home-path/share/themes\nelse' {} \;
 
         # delete line 169 from Patch-Theme
         sed -i '169d' ./Scripts/Patch-Theme
+
+         # find needs -L to follow symlinks
+        find . -type f -executable -print0 | xargs -0 sed -i 's/find "/find -L "/g'
+        find . -type f -name "*.sh" -print0 | xargs -0 sed -i 's/find "/find -L "/g'
         
       # ------------- end edits ------------ #;
 
@@ -83,7 +102,7 @@ let
         cp -r Configs/* $out/etc/hyde-cli/
         cp -r Extras/* $out/share/hyde-cli/
 
-        # TODO: nixos derivations do not retain .git folder, hyde meta file cannot be generated 
+        # TODO: generate hyde meta file manually
         # remove set_metadata lines from all scripts in hyde-cli
         sed -i '/set_metadata/d' $out/lib/hyde-cli/Manage-Config
         sed -i '/set_metadata/d' $out/bin/Hyde-install
@@ -105,7 +124,12 @@ let
 
     '';
 
-    installPhase = "true"; # Skip default installPhase
+    passthru = {
+      inherit buildInputs;
+      inherit src;
+    };
+
+    installPhase = "true";
 
     postInstall = ''
       mkdir -p $out/share/applications
@@ -113,8 +137,4 @@ let
     '';
   };
 in
-{
-  inherit pkg;
-  inherit src;
-  inherit buildInputs;
-}
+pkg

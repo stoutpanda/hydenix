@@ -8,7 +8,7 @@
     !REMEMBER TO USE passwd TO CHANGE THE PASSWORD!
     post install this will run passwd by default
   */
-  defaultPassword = "changeme";
+  defaultPassword = "hydenix";
   timezone = "America/Vancouver";
   locale = "en_CA.UTF-8";
   vm = {
@@ -16,7 +16,7 @@
     memorySize = 8192;
     # 2 cores minimum
     cores = 4;
-    # 20GB minimum
-    diskSize = 20480;
+    # 30GB minimum for one theme - 50GB for multiple themes - more for development and testing
+    diskSize = 30000;
   };
 }

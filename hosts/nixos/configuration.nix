@@ -31,6 +31,19 @@
   #   };
   # };
 
+  environment.pathsToLink = [
+    "/share/icons"
+    "/share/themes"
+    "/share/fonts"
+    "/share/xdg-desktop-portal"
+    "/share/applications"
+    "/share/mime"
+    "/share/wayland-sessions"
+    "/share/zsh"
+    "/share/bash-completion"
+    "/share/fish"
+  ];
+
   # ===== Hardware Configuration =====
   hardware = {
     graphics = {
@@ -46,10 +59,11 @@
   # ===== Filesystems =====
   # USER EDITABLE ADD FILESYSTEMS HERE
 
-  # ===== Security =====
-  security = {
-    polkit.enable = true;
-  };
+  # # # ===== Security =====
+  # security = {
+  #   polkit.enable = true;
+  #   pam.services.swaylock = { };
+  # };
 
   # ===== System Services =====
   services = {
@@ -65,10 +79,6 @@
       wireplumber.enable = true;
     };
     dbus.enable = true;
-    xserver = {
-      enable = false;
-      videoDrivers = [ "amdgpu" ];
-    };
     udisks2.enable = true;
     openssh.enable = true;
     displayManager = {
@@ -91,12 +101,8 @@
     allowedTCPPorts = [
       # SSH
       22
-      # Pipewire
-      4713
     ];
     allowedUDPPorts = [
-      # Pipewire
-      4713
       # DHCP
       68
       546
@@ -104,8 +110,8 @@
   };
 
   # ===== System Configuration =====
-  time.timeZone = "America/Vancouver";
-  i18n.defaultLocale = "en_CA.UTF-8";
+  time.timeZone = userConfig.timezone;
+  i18n.defaultLocale = userConfig.locale;
 
   # ===== User Configuration =====
   users.users.${userConfig.username} = {

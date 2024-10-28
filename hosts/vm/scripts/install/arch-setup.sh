@@ -44,12 +44,6 @@ read_config() {
     fi
 }
 
-# Test the function
-if ! read_config "username" >/dev/null; then
-    echo "Error: Unable to read from config file. Please check if the file exists and is valid." >&2
-    exit 1
-fi
-
 # Read configuration values
 USERNAME=$(read_config "username")
 TIMEZONE=$(read_config "timezone")
@@ -68,40 +62,40 @@ echo
 #     exit 1
 # fi
 
-# Update system
-sudo pacman -Syu --noconfirm
+# Enable parallel downloads in pacman
+echo "Enabling parallel downloads in pacman..."
+sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
-# Install necessary packages
-sudo pacman -S --noconfirm \
-    zsh \
-    polkit \
-    bluez \
-    pipewire \
-    pipewire-alsa \
-    pipewire-pulse \
-    wireplumber \
-    dbus \
-    udisks2 \
-    openssh \
+# Update mirrorlist
+echo "Updating mirrorlist..."
+sudo pacman -S --noconfirm --needed reflector
+sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+# Update package database
+sudo pacman -Sy --noconfirm
+
+# Install base packages
+echo "Installing base packages..."
+
+# TODO: review
+sudo pacman -S --needed --noconfirm \
+    zsh polkit udisks2 openssh \
+    pipewire pipewire-pulse \
     sddm \
     networkmanager \
-    upower
+    qemu-guest-agent spice-vdagent \
+    libvirt \
+    upower \
+    iptables \
+    libinput \
+    xf86-input-libinput
 
-# Enable and start services
-sudo systemctl enable --now \
-    bluetooth \
+# Enable services (without starting them yet)
+sudo systemctl enable \
     sshd \
     NetworkManager \
-    upower
-
-# Set up firewall
-sudo pacman -S --noconfirm iptables
-sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-sudo iptables -A INPUT -p tcp --dport 4713 -j ACCEPT
-sudo iptables -A INPUT -p udp --dport 4713 -j ACCEPT
-sudo iptables -A INPUT -p udp --dport 68 -j ACCEPT
-sudo iptables -A INPUT -p udp --dport 546 -j ACCEPT
-sudo iptables-save | sudo tee /etc/iptables/iptables.rules
+    upower \
+    libvirtd
 
 # Set timezone
 sudo timedatectl set-timezone "$TIMEZONE"
@@ -114,4 +108,23 @@ sudo usermod -aG wheel,video "$USERNAME"
 sudo chsh -s /bin/zsh "$USERNAME"
 echo "$USERNAME:$DEFAULT_PASSWORD" | sudo chpasswd
 
-echo "Arch Linux setup complete. Please reboot the system."
+# Set up Hyprland to run on boot
+echo "Setting up Hyprland to run on boot..."
+sudo mkdir -p /usr/share/wayland-sessions
+sudo tee /usr/share/wayland-sessions/hyprland.desktop >/dev/null <<EOL
+[Desktop Entry]
+Name=Hyprland
+Comment=An intelligent dynamic tiling Wayland compositor
+Exec=nixGL Hyprland
+Type=Application
+EOL
+
+# Configure SDDM to use Wayland
+sudo mkdir -p /etc/sddm.conf.d
+sudo tee /etc/sddm.conf.d/10-wayland.conf >/dev/null <<EOL
+[General]
+DisplayServer=wayland
+GreeterEnvironment=QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+EOL
+
+echo "Setup complete. Hyprland will now start on boot. Please reboot your system."

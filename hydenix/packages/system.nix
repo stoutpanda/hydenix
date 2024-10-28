@@ -20,6 +20,7 @@
     (python3.withPackages (ps: with ps; [ pygobject3 ]))
     trash-cli # cli to manage trash files
     libinput-gestures # actions touchpad gestures using libinput
+    libinput # libinput library
     gnomeExtensions.window-gestures # gui for libinput-gestures
     lm_sensors # system sensors
     pciutils # pci utils

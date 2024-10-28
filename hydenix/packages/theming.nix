@@ -15,10 +15,10 @@
     gtk4 # gtk4
     glib # gtk theme management
     gsettings-desktop-schemas # gsettings schemas
+    gnome-settings-daemon # for gnome settings
     desktop-file-utils # for updating desktop database
-    # (tela-circle-icon-theme.override {
-    #   colorVariants = [ "dracula" ];
-    # }) # icon theme with dracula dark variant
-    bibata-cursors # cursor theme
+    hicolor-icon-theme # fallback icon theme
+    dconf-editor # dconf editor
+    gnome-tweaks # gnome tweaks
   ];
 }

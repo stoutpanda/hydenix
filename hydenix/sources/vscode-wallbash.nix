@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
   buildVscodeExtension = pkgs.vscode-utils.buildVscodeExtension;
