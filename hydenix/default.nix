@@ -156,13 +156,16 @@ in
       };
     };
 
-    nix.settings = {
-      auto-optimise-store = true;
-      http-connections = 50;
-      use-sqlite-wal = true;
-      builders-use-substitutes = true;
-      min-free = "1G";
-      max-free = "10G";
+    nix = {
+      package = lib.mkForce pkgs.nix;
+      settings = {
+        auto-optimise-store = true;
+        http-connections = 50;
+        use-sqlite-wal = true;
+        builders-use-substitutes = true;
+        min-free = "1G";
+        max-free = "10G";
+      };
     };
   };
 }

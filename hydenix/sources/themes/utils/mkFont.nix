@@ -8,6 +8,7 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchzip {
     url = args.src.url;
     sha256 = args.src.sha256;
+    stripRoot = true;
   };
 
   dontConfigure = true;
@@ -22,7 +23,7 @@ pkgs.stdenv.mkDerivation {
     mkdir -p "$out/share/fonts/${args.fontName}"
 
     # Copy all font files directly to fonts directory
-    cp -r . "$out/share/fonts/${args.fontName}/"
+    cp -a * "$out/share/fonts/${args.fontName}"
 
     runHook postInstall
   '';

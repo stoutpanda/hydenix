@@ -8,6 +8,7 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchzip {
     url = args.src.url;
     sha256 = args.src.sha256;
+    stripRoot = true;
   };
 
   dontConfigure = true;
@@ -22,7 +23,7 @@ pkgs.stdenv.mkDerivation {
     mkdir -p "$out/share/themes/${args.gtkName}"
 
     # Copy theme contents directly to themes directory
-    cp -r * "$out/share/themes/${args.gtkName}/"
+    cp -a * "$out/share/themes/${args.gtkName}"
 
     runHook postInstall
   '';

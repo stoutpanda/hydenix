@@ -27,91 +27,91 @@ let
     "Bad-Blood" = mkGtk {
       src = {
         url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Bad-Blood/Source/Gtk_Bad-Blood.tar.gz";
-        sha256 = "sha256-CWYOZVQjA9cavf8iptjot3EVrgEoyuXmL8T+boFpHAc=";
+        sha256 = "sha256-asVpbNkPJG9YEWI/8qnOUHLI1C3NRzgczA15fmvhxCo=";
       };
       gtkName = "Bad-Blood";
     };
     "Catppuccin-Latte" = mkGtk {
       src = {
         url = "https://github.com/rishav12s/Cat-Latte/raw/refs/heads/Cat-Latte/Source/arcs/Gtk_Catppuccin-Latte.tar.xz";
-        sha256 = "sha256-NLrDv7oLzceqILkassGOyNSVAxIXWMIyBRV2/rM4j8I=";
+        sha256 = "sha256-G9YVhFZg+aiE1TFyLE524dPL4ZmP6jFtxMQWLLYGirs=";
       };
       gtkName = "Catppuccin-Latte";
     };
     "Catppuccin-Mocha" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Catppuccin-Mocha/Source/Gtk_CatppuccinMocha.tar.gz";
-        sha256 = "sha256-DPSKSDxwxByj59nU5EUtb5APeGdLeJ+/61AqX21OylI=";
+        sha256 = "sha256-SwNRseof3Jb7sXePqLYhKbeJOukUYlmcvA23eqUQgfI=";
       };
       gtkName = "Catppuccin-Mocha";
     };
     "Decay-Green" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Decay-Green/Source/Gtk_DecayGreen.tar.gz";
-        sha256 = "sha256-j+isQgrfSrfK9kbmkoEAU1obbqz9wcKxJpEKPZFFLic=";
+        sha256 = "sha256-0MC9DvZ4LMs/Or6Bs6FBLzw5LneN+phZdJ7hR8UC95M=";
       };
       gtkName = "Decay-Green";
     };
     "Dracula" = mkGtk {
       src = {
         url = "https://github.com/RAprogramm/HyDe-Themes/raw/refs/heads/Dracula/Source/arcs/Gtk_Dracula.tar.xz";
-        sha256 = "sha256-iUgOFNw6tBtTbkSuehgp9tMbRr9Z+jRonZwXz1aqwPw=";
+        sha256 = "sha256-IIDF5RstR0NPSVgIH87s40RFvTpz6ZTshf/XeiXEajc=";
       };
       gtkName = "Dracula";
     };
     "Edge-Runner" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Edge-Runner/Source/Gtk_EdgeRunner.tar.gz";
-        sha256 = "sha256-zbhOXgd2cJmFDCh+KufhJ4KICUuafmVJAYMgROpNEUk=";
+        sha256 = "sha256-hJ3ptDxqmz5mGWQ+QL2KbaDhJ8Qxgyhh8NoQUXmFR08=";
       };
       gtkName = "Edge-Runner";
     };
     "Frosted-Glass" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Frosted-Glass/Source/Gtk_FrostedGlass.tar.gz";
-        sha256 = "sha256-VAQ8hYKVoBnb+o7SkFmwDTKe/lqZvRdvOjCgVJ9Sueg=";
+        sha256 = "sha256-FzV0opEtmloVniGM3waxqX0iFlCpdGIQI7rBa7FdFzo=";
       };
       gtkName = "Frosted-Glass";
     };
     "Graphite-Mono" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Graphite-Mono/Source/Gtk_GraphiteMono.tar.gz";
-        sha256 = "sha256-ImRaZSSH1X6rAqp/uI4dU5CnuapW7Duzhbs1qsdMcG8=";
+        sha256 = "sha256-akRe15wNUI3iiRUFjM2JXjm/fNFHdYT6Tw27oMWAGQs=";
       };
       gtkName = "Graphite-Mono";
     };
     "Greenify" = mkGtk {
       src = {
         url = "https://github.com/mahaveergurjar/Theme-Gallery/raw/refs/heads/Greenify/Source/arcs/Gtk_Greenify.tar.gz";
-        sha256 = "sha256-SBlWUXxTuA+b54VX0goSxrnNRDwQiCcGEHcOH1IEjms=";
+        sha256 = "sha256-biFyZKer7RFKndWy9rLlJTfr7/UQdOjQBaOmSjZZxsY=";
       };
       gtkName = "Greenify";
     };
     "Gruvbox-Retro" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Gruvbox-Retro/Source/Gtk_GruvboxRetro.tar.gz";
-        sha256 = "sha256-UfBtBpuVYG6TmXJKchCfhOs719PqKQM2EzUWEijnJwM=";
+        sha256 = "sha256-IEu7f57pr7gOMR6LS4tRiJ3QYj0llBHf+JQE6RXwkyE=";
       };
       gtkName = "Gruvbox-Retro";
     };
     "Hackthebox" = mkGtk {
       src = {
         url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/arcs/Gtk_Hack%20the%20Box.tar.gz";
-        sha256 = "sha256-stoCSCdweVXdo5oTgqk02nduyjRnS92iBqzzNAoP/eE=";
+        sha256 = "sha256-WHo3PCwlLFoIoV+0+YVOP3zKU5nZiPvFb183nvOTOM4=";
       };
       gtkName = "Hackthebox";
     };
     "VALYRIAN-Blue-Steel" = mkGtk {
       src = {
         url = "https://github.com/saber-88/Ice-Age/raw/refs/heads/main/Source/arcs/Gtk_VALYRIAN-Blue-Steel.tar.gz";
-        sha256 = "sha256-jK+3S/67vp8qPpwU4ZYyt+GczMCbGKf13unr73J8VvU=";
+        sha256 = "sha256-6QEMrx4fTGcMGpGL54tfCWWoWvwrrG3q/82TnUHJTNk=";
       };
       gtkName = "VALYRIAN-Blue-Steel";
     };
     "Material-Sakura" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Material-Sakura/Source/Gtk_MaterialSakura.tar.gz";
-        sha256 = "sha256-TMe+nBJQxu6pOg08o4tnBhSf1OdjBbH6R75ZkAR4g9M=";
+        sha256 = "sha256-+i3ZAJ8yPvusuNfZs9rZ3qXDgElkoyCNnf0467LKeRQ=";
       };
       gtkName = "Material-Sakura";
     };
@@ -233,7 +233,7 @@ let
     "Gruvbox-Plus-Dark" = mkIcon {
       src = {
         url = "https://github.com/Itz-Abhishek-Tiwari/AbyssGreen/raw/refs/heads/main/Source/arcs/Icon_Gruvbox-Plus-Dark.tar.gz";
-        sha256 = "sha256-fx2yLhjcYJVG2TSIZ5XV9g8CAPrre78SBml9srhGLc4=";
+        sha256 = "sha256-1L7OQY6L7UbnY0GKsnowJcTu1El20yb8o3Bk+0akqLI=";
       };
       iconName = "Gruvbox-Plus-Dark";
     };
@@ -247,63 +247,63 @@ let
     "besgnulinux-mono-red" = mkIcon {
       src = {
         url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Bad-Blood/Source/Icon_Bad-Blood.tar.gz";
-        sha256 = "sha256-6j9H/xA6A2bhj+Cl+yYqDsh3yEym1qpM28PfV4G0+bU=";
+        sha256 = "sha256-estW+9fxlZ8rMYLw4gSIIySUOihDiN/VN5BA1sQyktQ=";
       };
       iconName = "besgnulinux-mono-red";
     };
     "Papirus-Latte" = mkIcon {
       src = {
         url = "https://github.com/rishav12s/Cat-Latte/raw/refs/heads/Cat-Latte/Source/arcs/Icon_Papirus-Latte.tar.xz";
-        sha256 = "sha256-OiFTXKJ9H5ienodooIXP+4s7mjdQcbVjnelBb4QonYw=";
+        sha256 = "sha256-s2cImk31Cex3ZD2zFQc8j9Bx33RGenY2/MtzVrmwkj8=";
       };
       iconName = "Papirus-Latte";
     };
     "Papirus" = mkIcon {
       src = {
         url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/arcs/Icon_Hack%20the%20Box.tar.gz";
-        sha256 = "sha256-0WZ3DAzvXE+IcFVywsWurbYr6iMbfYmCVtDxFg//1rQ=";
+        sha256 = "sha256-f904B1OHHShv5Xv4F51otr2pCnEkKqVT93PUd8M+Wek=";
       };
       iconName = "Papirus";
     };
     "Tela-circle-grey" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Catppuccin-Latte/Source/Icon_TelaGrey.tar.gz";
-        sha256 = "sha256-h8DzdJ1LmBwyajG2SrS+TGyLHZaHRpGohrjYiNcky3Y=";
+        sha256 = "sha256-YiHeXb17vt8EEGOmtcEn80n5e08I/OoUa3cLRZHXKF0=";
       };
       iconName = "Tela-circle-grey";
     };
     "Tela-circle-dracula" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Catppuccin-Mocha/Source/Icon_TelaDracula.tar.gz";
-        sha256 = "sha256-MfMW9aLyopvcqtscoDYDlGoX7qmwV5ZJZcEwaVvU9vw=";
+        sha256 = "sha256-pYIOpPgvzVxo47duDWP+l8nuYwyhaEgQPKXHzIJMML4=";
       };
       iconName = "Tela-circle-dracula";
     };
     "Tela-circle-green" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Decay-Green/Source/Icon_TelaGreen.tar.gz";
-        sha256 = "sha256-iyJ+i+4H6G3jius9LhJoVDSmdRhVgR15dwbjJC5Xz+c=";
+        sha256 = "sha256-CMgaSYxHZsfZaxffXo2Z/lhnTKrGCuv4VsOC9Yo39vA=";
       };
       iconName = "Tela-circle-green";
     };
     "Azure-Dark-Icons" = mkIcon {
       src = {
         url = "https://github.com/RAprogramm/HyDe-Themes/raw/refs/heads/Dracula/Source/arcs/Icon_Azure-Dark-Icons.tar.gz";
-        sha256 = "sha256-KyifmEnbRZIcCqGDUohA/FYsqmPgz37EZPEdhlYeRnw=";
+        sha256 = "sha256-G22sGRng3vUnsHKSttME+HsvKtNIH/rRidksFC59rek=";
       };
       iconName = "Azure-Dark-Icons";
     };
     "Tela-circle-yellow" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Edge-Runner/Source/Icon_TelaYellow.tar.gz";
-        sha256 = "sha256-Ih/Yj1Rn7tjJQLBwt743Qln+ujYTcrmI5h+0fFQoiK0=";
+        sha256 = "sha256-dr/AQlmBX08Q2B83HBjbfAlvTiL5REgYwIp8RVu+ORE=";
       };
       iconName = "Tela-circle-yellow";
     };
     "Tela-circle-blue" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Frosted-Glass/Source/Icon_TelaBlue.tar.gz";
-        sha256 = "sha256-TmsJ+hYZSkSZP9fBrs7T92vpditmN+gQJSOsYOXGUdo=";
+        sha256 = "sha256-lZbY/T5rJgw6AucLdrEj9C/yPhCvzCYJhCZjCYRfwsw=";
       };
       iconName = "Tela-circle-blue";
     };
@@ -317,14 +317,14 @@ let
     "Breeze-Noir-White-Blue" = mkIcon {
       src = {
         url = "https://github.com/saber-88/Ice-Age/raw/refs/heads/main/Source/arcs/Icon_Breeze-Noir-White-Blue.tar.gz";
-        sha256 = "sha256-H2T0oRlVGudFC3wpWFe5g2Sfkku4dgGMnpzJ4lpznW0=";
+        sha256 = "sha256-lU9fCXZnAka0nOTHMJhnFCfG17j0vT2shDfJNK15sLY=";
       };
       iconName = "Breeze-Noir-White-Blue";
     };
     "Tela-circle-black" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Material-Sakura/Source/Icon_TelaBlack.tar.gz";
-        sha256 = "sha256-mreVKUDAPUWFTnaHkA5OQABzwG1/w4f1RhQm+c/iIR4=";
+        sha256 = "sha256-rczKLk9bz67eKn57IMt6DeVlg9A8kHUuEIwpbmdwsBc=";
       };
       iconName = "Tela-circle-black";
     };
@@ -446,35 +446,35 @@ let
     "Night-Diamond-Red" = mkCursor {
       src = {
         url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Bad-Blood/Source/Cursor_Bad-Blood.tar.gz";
-        sha256 = "sha256-238WKgGN2uUi4Yqf+CJD2IWiXhH94AyeNyicqgllWSM=";
+        sha256 = "sha256-EsXdieI5zmi+3tdAFiP++4jVMAQ2m3N7xYO6GEFoMJg=";
       };
       cursorName = "Night-Diamond-Red";
     };
     "Bibata-Modern-Classic" = mkCursor {
       src = {
         url = "https://github.com/rishav12s/Cat-Latte/raw/refs/heads/Cat-Latte/Source/arcs/Cursor_Bibata-Modern-Classic.tar.xz";
-        sha256 = "sha256-yJGqxgNJew5D+0dwtddqAwEi0ZTeLRQ5INTbMjZNn1s=";
+        sha256 = "sha256-tvDOUMHabisqPL1T06fp96CTjLyJGWp7Re+zdB0kD1g=";
       };
       cursorName = "Bibata-Modern-Classic";
     };
     "Dracula-cursors" = mkCursor {
       src = {
         url = "https://github.com/RAprogramm/HyDe-Themes/raw/refs/heads/Dracula/Source/arcs/Cursor_Dracula.tar.gz";
-        sha256 = "sha256-8CMJEmkhg8XJZGwjKyXlLvvzeAUMuNqIgE6vLWqVyOs=";
+        sha256 = "sha256-21kS+Ob6fEyWHHsWcSSGyPGf5vcbql/woqmfJN4Mj+s=";
       };
       cursorName = "Dracula-cursors";
     };
     "Gruvbox-Retro" = mkCursor {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Gruvbox-Retro/Source/Cursor_Gruvbox.tar.gz";
-        sha256 = "sha256-ER72v4cFhzO0N2ZYWOsK4kBp6DOe21/mklpDxhqUE7k=";
+        sha256 = "sha256-/6XLeDmDAWgQKt+t9y0Etx9hlkRvaHmH02LRddUlO/I=";
       };
       cursorName = "Gruvbox-Retro";
     };
     "HackCursor" = mkCursor {
       src = {
         url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/arcs/Cursor_Hack%20the%20Box.tar.gz";
-        sha256 = "sha256-kMHmuhk72IYCKbv6dIQk7ECEJV0h6zns3G3FjE8w5L0=";
+        sha256 = "sha256-O0qXfHEYN1VzQFrRV6l8cn17rsLytDKJnHX4MaPYgpY=";
       };
       cursorName = "HackCursor";
     };

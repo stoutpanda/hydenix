@@ -8,6 +8,7 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchzip {
     url = args.src.url;
     sha256 = args.src.sha256;
+    stripRoot = true;
   };
 
   nativeBuildInputs = [
@@ -25,7 +26,8 @@ pkgs.stdenv.mkDerivation {
 
     mkdir -p "$out/share/icons/${args.cursorName}"
 
-    cp -r . "$out/share/icons/${args.cursorName}/"
+    # Copy cursor contents directly to icons directory
+    cp -a * "$out/share/icons/${args.cursorName}"
 
     jdupes -r "$out/share/icons/${args.cursorName}"
 

@@ -39,19 +39,6 @@ lib.mkMerge [
     GBM_BACKEND = "virgl"; # Set the GBM backend to virgl for virtual machines
     __GL_VENDOR_LIBRARY_NAME = "mesa"; # Set the OpenGL vendor library to Mesa
 
-    # GTK/GNOME theme settings
-    ICON_THEME = activeTheme.arcs.icon.name or "Tela-circle-dracula";
-    # TODO: hyde.conf: when wallbash is 2 or 3 this this should be mkForced
-    GTK_THEME = activeTheme.arcs.gtk.name or "Wallbash-Gtk";
-    COLOR_SCHEME = "prefer-dark";
-    FONT_NAME = activeTheme.arcs.font.name or "Cantarell 10";
-    CURSOR_THEME = activeTheme.arcs.cursor.name or "Bibata-Modern-Ice";
-    CURSOR_SIZE = "20";
-    DOCUMENT_FONT_NAME = activeTheme.arcs.font.name or "Cantarell 10";
-    MONOSPACE_FONT_NAME = "JetBrains Mono 9";
-    FONT_ANTIALIASING = "rgba";
-    FONT_HINTING = "full";
-
     GTK_USE_PORTAL = "1";
 
   }

@@ -13,6 +13,8 @@ in
 
 lib.mkMerge [
 
+  # TODO: cleanup home file calls for performance
+
   # --------------------------------------------------- // Hyde-cli
   {
     ".local/Hyde-cli" = {

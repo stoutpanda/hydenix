@@ -88,8 +88,7 @@ let
 
         cp -r Configs/.config/hyde/themes/"${name}"/. $out/"${name}"
 
-        mkdir -p $out/wallpapers
-        find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -exec cp --no-preserve=mode {} $out/"${name}"/wallpapers/ \;
+        find ./Configs/ -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -exec cp --no-preserve=mode {} $out/"${name}"/wallpapers/ \;
     '';
 
     meta = with pkgs.lib; {

@@ -88,7 +88,8 @@ sudo pacman -S --needed --noconfirm \
     upower \
     iptables \
     libinput \
-    xf86-input-libinput
+    xf86-input-libinput \
+    dconf
 
 # Enable services (without starting them yet)
 sudo systemctl enable \

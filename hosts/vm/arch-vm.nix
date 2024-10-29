@@ -56,7 +56,7 @@ let
 
       provisioner "shell" {
         inline = [
-          "mkdir -p /home/${userConfig.username}/hydenix/hydenix"
+          "mkdir -p /home/${userConfig.username}/hydenix"
         ]
       }
 
@@ -71,7 +71,7 @@ let
 
       provisioner "shell" {
         inline = [
-          "cd /home/${userConfig.username}/hydenix/hydenix",
+          "cd /home/${userConfig.username}/hydenix",
           ". /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh",
           "nix run home-manager/master -- switch --flake .",
           "nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz nixgl && nix-channel --update",
