@@ -1,3 +1,7 @@
 result
 *qcow2
 .wt
+.vscode
+*.log
+*.tmp
+output-*

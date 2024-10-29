@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration for Hyprdots";
+  description = "Nix & home-manager configuration for HyDE, an Arch Linux based Hyprland desktop";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -7,8 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    stylix.url = "github:danth/stylix";
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -16,158 +18,97 @@
       self,
       nixpkgs,
       home-manager,
-      stylix,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
-
-      username = "editme";
-      gitUser = "editme";
-      gitEmail = "editme";
-      host = "editme";
-
-      # you need to change this with passwd when you boot
-      # root will have the same password
-      defaultPassword = "editme";
 
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        config.allowUnfreePredicate = _: true;
       };
 
-      mkVM =
-        { nixosSystem, ... }:
-        nixosSystem.extendModules {
-          modules = [
-            (
-              { config, pkgs, ... }:
-              {
-                virtualisation.libvirtd.enable = true;
-                virtualisation.vmVariant = {
-                  virtualisation = {
-                    memorySize = 8192;
-                    cores = 4;
-                    diskSize = 20480;
-                    qemu = {
-                      options = [
-                        "-device virtio-vga-gl"
-                        "-display gtk,gl=on"
-                      ];
-                    };
-                  };
-                  services.xserver = {
-                    displayManager.autoLogin = {
-                      enable = true;
-                      user = username;
-                    };
-                    videoDrivers = [ "virtio" ];
-                  };
+      mkNixosHost = import ./hosts/nixos;
+      nixVM = import ./hosts/vm/nixVM.nix;
+      userConfig = import ./config.nix;
 
-                };
-                users.users.${username} = {
-                  initialPassword = defaultPassword;
-                };
-                environment.systemPackages = with pkgs; [
-                  open-vm-tools
-                  spice-vdagent
-                ];
-                services.qemuGuest.enable = true;
-                services.spice-vdagentd = {
-                  enable = true;
-                };
-              }
-            )
-          ];
-        };
+      commonArgs = {
+        inherit
+          nixpkgs
+          pkgs
+          home-manager
+          system
+          userConfig
 
+          ;
+      };
+      archVMConfig = import ./hosts/vm/arch-vm.nix;
+      fedoraVMConfig = import ./hosts/vm/fedora-vm.nix;
     in
     {
       nixosConfigurations = {
-        hyprdots-nix = nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
+        hydenix = mkNixosHost commonArgs;
 
-          specialArgs = {
-            inherit
-              username
-              gitUser
-              gitEmail
-              host
-              ;
-          };
-
-          modules = [
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} =
-                { pkgs, ... }:
-                {
-                  imports = [
-                    ./home.nix
-                    stylix.homeManagerModules.stylix
-                  ];
-                };
-              home-manager.extraSpecialArgs = {
-                inherit username gitUser gitEmail;
-              };
-            }
-          ];
-        };
-
-        hyprdots-nix-vm = mkVM {
-          nixosSystem = nixpkgs.lib.nixosSystem {
-            inherit system pkgs;
-            specialArgs = {
-              inherit
-                username
-                gitUser
-                gitEmail
-                host
-                defaultPassword
-                ;
-            };
-            modules = [
-              ./configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.${username} =
-                  { pkgs, ... }:
-                  {
-                    imports = [
-                      ./home.nix
-                      stylix.homeManagerModules.stylix
-                    ];
-                  };
-                home-manager.extraSpecialArgs = {
-                  inherit username gitUser gitEmail;
-                };
-              }
-            ];
-          };
+        hydenix-vm = nixVM {
+          inherit userConfig;
+          nixosSystem = mkNixosHost commonArgs;
         };
       };
+
       packages.${system} = {
-        default = self.nixosConfigurations.hyprdots-nix-vm.config.system.build.vm;
-        hyprdots-nix-vm = self.nixosConfigurations.hyprdots-nix-vm.config.system.build.vm;
+        default = self.nixosConfigurations.hydenix-vm.config.system.build.vm;
+        hydenix-vm = self.nixosConfigurations.hydenix-vm.config.system.build.vm;
+        hydenix = self.nixosConfigurations.hydenix.config.system.build.toplevel;
+        gen-config = pkgs.writeShellScriptBin "gen-config" (builtins.readFile ./scripts/gen-config.sh);
+
+        # EXPERIMENTAL VM BUILDERS
+        build-arch-vm =
+          (archVMConfig {
+            inherit pkgs userConfig;
+          }).build-vm;
+        run-arch-vm =
+          (archVMConfig {
+            inherit pkgs userConfig;
+          }).run-vm;
+
+        build-fedora-vm =
+          (fedoraVMConfig {
+            inherit pkgs userConfig;
+          }).build-vm;
+        run-fedora-vm =
+          (fedoraVMConfig {
+            inherit pkgs userConfig;
+          }).run-vm;
       };
 
+      # import for customized home-manager configurations
+      homeManagerModules.default = {
+        ${userConfig.username} = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./hosts/nixos/home.nix ];
+          extraSpecialArgs = {
+            inherit userConfig;
+            inherit inputs;
+          };
+        };
+      };
+
+      # only to be used on non-NixOS systems
       homeConfigurations = {
-        ${username} = home-manager.lib.homeManagerConfiguration {
+        "${userConfig.username}" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home.nix
-            stylix.homeManagerModules.stylix
+            ./hosts/nixos/home.nix
+            {
+              targets.genericLinux.enable = true;
+            }
           ];
           extraSpecialArgs = {
-            inherit username gitUser gitEmail;
+            inherit userConfig;
+            inherit inputs;
           };
         };
+        activationPackage = self.homeConfigurations.${userConfig.username}.activationPackage;
       };
     };
 }
