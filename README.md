@@ -60,7 +60,7 @@ Why Nix?:
 ## Limitations
 
 - Some Hyde-cli commands are not supported yet
-  - `Hyde theme import` I've had this fail off and on
+  - `Hyde theme import` I've had this fail off and on, working on a fix
   - `Hyde restore/backup/control` while these commands will work, hydenix makes edits to hyde files by default. currently not recommended
   - `Hyde override` changing the user dir conflics with home-manager, rebuilds won't run as expected
   - `Hyde sddm` sddm is not supported yet
@@ -79,8 +79,8 @@ Why Nix?:
 #### 1. Running as a VM
 
 If your system supports it, the NixOS VM is the quickest way to get up and running. 
+If you have issues running the VM, see the [virtio faq](#vm-virtio-guide)
 
-Note as this is a Hyprland DE, YMMV. opengl, mesa, VT-x, and a compatible gpu/igpu is required on host. see the [virtio faq](#vm-virtio-guide) for more on this and how to check if your system has support
 
 ```bash
 # run the flake remotely
@@ -95,7 +95,7 @@ nix run .
 
 ---
 
-> [!CAUTION]  Read before Continuing
+> [!CAUTION]
 > Installation options below are designed for a minimal install of NixOS.
 
 #### 2. Clone the repo
@@ -322,6 +322,8 @@ Hyprland vm is not well supported. check out [Hyprland - Running in a VM](https:
 
 Best bet is to have virtio, opengl, and VT-x support
 
+Non-NixOS hosts should run with [nixGL](https://github.com/nix-community/nixGL) eg `nixGL nix run .`
+
 CPU
 - Intel CPU with VT-x or AMD CPU with AMD-V
 - Virtualization enabled in BIOS/UEFI
@@ -364,6 +366,24 @@ lsmod | grep kvm                       # Check KVM modules
 # Host: Check OpenGL
 glxinfo | grep "OpenGL"
 ```
+<div align="right">
+  <br>
+  <a href="#"><kbd> <br> 🡅 <br> </kbd></a>
+</div>
+
+## Nix Resources
+
+> [!TIP]
+> Nix is a powerful package manager and configuration system that can be overwhelming at first. Here are some resources to help you get started:
+
+General Resources
+- [Nix Packages](https://search.nixos.org/packages)
+- [Nix Options](https://search.nixos.org/options)
+- [Home Manager Options](https://nix-community.github.io/home-manager/options.html) *hint: use control + f to search*
+- [NixOS Wiki](https://nixos.wiki)
+- [Nixpkgs Discussions](https://discourse.nixos.org)
+- [Nixpkgs Issues](https://github.com/NixOS/nixpkgs/issues)
+
 <div align="right">
   <br>
   <a href="#"><kbd> <br> 🡅 <br> </kbd></a>

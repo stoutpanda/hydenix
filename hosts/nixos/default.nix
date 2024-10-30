@@ -4,6 +4,7 @@
   system,
   pkgs,
   userConfig,
+  nix-index-database,
 }:
 
 nixpkgs.lib.nixosSystem {
@@ -23,6 +24,7 @@ nixpkgs.lib.nixosSystem {
         {
           imports = [
             ./home.nix
+            nix-index-database.hmModules.nix-index
           ];
         };
       home-manager.extraSpecialArgs = {

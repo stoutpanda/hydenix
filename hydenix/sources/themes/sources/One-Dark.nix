@@ -1,13 +1,14 @@
-{ pkgs, lib }:
+{ pkgs }:
 let
   utils = import ../utils { inherit pkgs; };
 in
-utils.mkTheme {
+utils.mkTheme rec {
   name = "One Dark";
   src = pkgs.fetchFromGitHub {
     owner = "RAprogramm";
     repo = "HyDe-Themes";
     rev = "One-Dark";
+    name = name;
     sha256 = "sha256-j4KXbLb7gvVNCrdqMscsIinhBZoBp4oIzEbwws4fstU=";
   };
 

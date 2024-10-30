@@ -41,7 +41,7 @@ let
     "Catppuccin-Mocha" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Catppuccin-Mocha/Source/Gtk_CatppuccinMocha.tar.gz";
-        sha256 = "sha256-SwNRseof3Jb7sXePqLYhKbeJOukUYlmcvA23eqUQgfI=";
+        sha256 = "sha256-DPSKSDxwxByj59nU5EUtb5APeGdLeJ+/61AqX21OylI=";
       };
       gtkName = "Catppuccin-Mocha";
     };
@@ -104,14 +104,14 @@ let
     "VALYRIAN-Blue-Steel" = mkGtk {
       src = {
         url = "https://github.com/saber-88/Ice-Age/raw/refs/heads/main/Source/arcs/Gtk_VALYRIAN-Blue-Steel.tar.gz";
-        sha256 = "sha256-6QEMrx4fTGcMGpGL54tfCWWoWvwrrG3q/82TnUHJTNk=";
+        sha256 = "sha256-jK+3S/67vp8qPpwU4ZYyt+GczMCbGKf13unr73J8VvU=";
       };
       gtkName = "VALYRIAN-Blue-Steel";
     };
     "Material-Sakura" = mkGtk {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Material-Sakura/Source/Gtk_MaterialSakura.tar.gz";
-        sha256 = "sha256-+i3ZAJ8yPvusuNfZs9rZ3qXDgElkoyCNnf0467LKeRQ=";
+        sha256 = "sha256-TMe+nBJQxu6pOg08o4tnBhSf1OdjBbH6R75ZkAR4g9M=";
       };
       gtkName = "Material-Sakura";
     };
@@ -275,7 +275,7 @@ let
     "Tela-circle-dracula" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Catppuccin-Mocha/Source/Icon_TelaDracula.tar.gz";
-        sha256 = "sha256-pYIOpPgvzVxo47duDWP+l8nuYwyhaEgQPKXHzIJMML4=";
+        sha256 = "sha256-MfMW9aLyopvcqtscoDYDlGoX7qmwV5ZJZcEwaVvU9vw=";
       };
       iconName = "Tela-circle-dracula";
     };
@@ -317,14 +317,14 @@ let
     "Breeze-Noir-White-Blue" = mkIcon {
       src = {
         url = "https://github.com/saber-88/Ice-Age/raw/refs/heads/main/Source/arcs/Icon_Breeze-Noir-White-Blue.tar.gz";
-        sha256 = "sha256-lU9fCXZnAka0nOTHMJhnFCfG17j0vT2shDfJNK15sLY=";
+        sha256 = "sha256-H2T0oRlVGudFC3wpWFe5g2Sfkku4dgGMnpzJ4lpznW0=";
       };
       iconName = "Breeze-Noir-White-Blue";
     };
     "Tela-circle-black" = mkIcon {
       src = {
         url = "https://github.com/prasanthrangan/hyde-themes/raw/refs/heads/Material-Sakura/Source/Icon_TelaBlack.tar.gz";
-        sha256 = "sha256-rczKLk9bz67eKn57IMt6DeVlg9A8kHUuEIwpbmdwsBc=";
+        sha256 = "sha256-mreVKUDAPUWFTnaHkA5OQABzwG1/w4f1RhQm+c/iIR4=";
       };
       iconName = "Tela-circle-black";
     };

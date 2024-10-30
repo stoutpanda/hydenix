@@ -11,6 +11,9 @@
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -18,6 +21,7 @@
       self,
       nixpkgs,
       home-manager,
+      nix-index-database,
       ...
     }@inputs:
     let
@@ -39,7 +43,7 @@
           home-manager
           system
           userConfig
-
+          nix-index-database
           ;
       };
       archVMConfig = import ./hosts/vm/arch-vm.nix;
@@ -85,7 +89,10 @@
       homeManagerModules.default = {
         ${userConfig.username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./hosts/nixos/home.nix ];
+          modules = [
+            ./hosts/nixos/home.nix
+            nix-index-database.hmModules.nix-index
+          ];
           extraSpecialArgs = {
             inherit userConfig;
             inherit inputs;
@@ -99,6 +106,7 @@
           inherit pkgs;
           modules = [
             ./hosts/nixos/home.nix
+            nix-index-database.hmModules.nix-index
             {
               targets.genericLinux.enable = true;
             }

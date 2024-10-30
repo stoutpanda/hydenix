@@ -1,13 +1,14 @@
-{ pkgs, lib }:
+{ pkgs }:
 let
   utils = import ../utils { inherit pkgs; };
 in
-utils.mkTheme {
+utils.mkTheme rec {
   name = "Gruvbox Retro";
   src = pkgs.fetchFromGitHub {
     owner = "prasanthrangan";
     repo = "hyde-themes";
     rev = "Gruvbox-Retro";
+    name = name;
     sha256 = "sha256-/6CZmFjmUOIw5qCQSURcjsHL6vsA1b5yIfzKi3fd88k=";
   };
 

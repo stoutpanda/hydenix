@@ -69,7 +69,7 @@ let
     dontBuild = true;
 
     installPhase = ''
-        mkdir -p $out
+        mkdir -p $out/share/hyde/themes
 
       # scripts need to use dconf instead of gsettings
        find . -type f -not -name 'themepatcher.sh' -exec sed -i \
@@ -86,9 +86,9 @@ let
          -e 's/\(dconf write.*[^ ]*\) \(\$[A-Za-z_][A-Za-z0-9_]*\)/\1 "\2"/g' \
          {} +
 
-        cp -r Configs/.config/hyde/themes/"${name}"/. $out/"${name}"
+        cp -r Configs/.config/hyde/themes/"${name}"/. $out/share/hyde/themes/"${name}"
 
-        find ./Configs/ -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -exec cp --no-preserve=mode {} $out/"${name}"/wallpapers/ \;
+        find ./Configs/ -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -exec cp --no-preserve=mode {} $out/share/hyde/themes/"${name}"/wallpapers/ \;
     '';
 
     meta = with pkgs.lib; {
@@ -99,7 +99,7 @@ let
   };
 
   # wallpapers are built into the theme package so they are available at build time
-  walls = pkg.outPath + "/wallpapers";
+  walls = pkg.outPath + "/share/hyde/themes/${name}/wallpapers";
 
 in
 {

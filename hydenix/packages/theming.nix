@@ -17,7 +17,9 @@
     gsettings-desktop-schemas # gsettings schemas
     gnome-settings-daemon # for gnome settings
     desktop-file-utils # for updating desktop database
-    hicolor-icon-theme # fallback icon theme
+    hicolor-icon-theme # Base fallback icon theme
+    gnome.adwaita-icon-theme # Standard GNOME icons, excellent fallback
+    libsForQt5.breeze-icons # KDE's icon set, good for Qt apps
     dconf-editor # dconf editor
     gnome-tweaks # gnome tweaks
   ];

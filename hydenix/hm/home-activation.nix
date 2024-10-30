@@ -67,7 +67,7 @@ in
   # links hyde-cli to hyprdots
   hydeLink = lib.hm.dag.entryAfter [ "makeStubMeta" ] ''
     export PATH="${lib.makeBinPath hyde-cli.buildInputs}:$PATH"
-    $DRY_RUN_CMD ${hyde-cli}/bin/Hyde-install -l -d $HOME/.local/hyprdots
+    $DRY_RUN_CMD ${hyde-cli}/bin/Hyde-install -l -d $HOME/.local/state/nix/profiles/home-manager/home-path/share/hyde/hyprdots-modified
   '';
 
   # TODO: this should be in the derivation of hyde-cli if possible

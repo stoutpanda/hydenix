@@ -1,12 +1,13 @@
-{ pkgs, lib }:
+{ pkgs }:
 let
   utils = import ../utils { inherit pkgs; };
 in
-utils.mkTheme {
+utils.mkTheme rec {
   name = "Greenify";
   src = pkgs.fetchFromGitHub {
     owner = "mahaveergurjar";
     repo = "Theme-Gallery";
+    name = name;
     rev = "Greenify";
     sha256 = "sha256-5UhGEVAKCnjQ8pWZ2+zjaheWOM4lZ++5DqoUGXikNls=";
   };

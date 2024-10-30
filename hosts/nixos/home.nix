@@ -15,27 +15,36 @@
       userName = "${userConfig.gitUser}";
       userEmail = "${userConfig.gitEmail}";
     };
-    # TODO: linkGeneration hangs if more than 10 themes are enabled
+    # TODO: linkGeneration hangs if more than 10 themes are enabled due to home.file limitations
     themes = [
-      "Abyssal-Wave"
-      "AbyssGreen"
-      # "Bad Blood"
-      # "Cat Latte"
+
+      # -- Default themes
+      "Catppuccin Mocha"
       # "Catppuccin Latte"
-      # "Catppuccin Mocha"
       # "Decay Green"
-      # "Dracula"
       # "Edge Runner"
       # "Frosted Glass"
       # "Graphite Mono"
+      # "Gruvbox Retro"
+      # "Material Sakura"
+      # "Nordic Blue"
+      # "Rose Pine"
+      # "Synth Wave"
+      # "Tokyo Night"
+
+      # TODO: investigate these themes
+      # -- Themes from hyde-gallery (use with caution)
+      "Abyssal-Wave"
+      # "AbyssGreen"
+      # "Bad Blood"
+      # "Cat Latte"
+      # "Ice Age"
+      # "Dracula"
       # "Green Lush"
       # "Greenify"
-      # "Gruvbox Retro"
       # "Hack the Box"
-      # "Ice Age"
-      # "Material Sakura"
     ];
-    activeTheme = "Abyssal-Wave";
+    activeTheme = "Catppuccin Mocha";
   };
 
   # Don't change this

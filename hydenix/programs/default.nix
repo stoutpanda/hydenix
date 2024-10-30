@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
 
   imports = [
@@ -17,5 +18,6 @@
     };
     swaylock.enable = true;
     zsh.enable = true;
+    nix-index.enable = true;
   };
 }

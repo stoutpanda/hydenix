@@ -1,4 +1,4 @@
-{ pkgs, lib }:
+{ pkgs }:
 let
   utils = import ../utils { inherit pkgs; };
 in

@@ -1,13 +1,14 @@
-{ pkgs, lib }:
+{ pkgs }:
 let
   utils = import ../utils { inherit pkgs; };
 in
-utils.mkTheme {
+utils.mkTheme rec {
   name = "Monokai";
   src = pkgs.fetchFromGitHub {
     owner = "mahaveergurjar";
     repo = "Theme-Gallery";
     rev = "Monokai";
+    name = name;
     sha256 = "sha256-vxIm5Gasnv8xooGnFNFVmZJd7o2YkOORJD2pIQFZrhA=";
   };
 

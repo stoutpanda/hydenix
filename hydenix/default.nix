@@ -54,9 +54,6 @@ in
     home.username = userConfig.username;
     home.homeDirectory = "/home/${userConfig.username}";
 
-    # Ensure icon themes and other assets are properly linked
-    home.enableNixpkgsReleaseCheck = false;
-
     fonts.fontconfig.enable = true;
 
     xdg.portal = {
@@ -70,7 +67,6 @@ in
 
     wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
 
-    # TODO: currently broken on non-nixos systems, find a way dconf works
     dconf = {
       enable = true;
       settings = {
@@ -93,7 +89,7 @@ in
       blueman-applet.enable = true;
     };
 
-    home.sessionVariables = import ./hm/home-env.nix { inherit lib activeTheme; };
+    home.sessionVariables = import ./hm/home-env.nix { inherit lib; };
     home.packages = import ./hm/home-packages.nix { inherit lib pkgs themes; };
     home.file = import ./hm/home-file.nix {
       inherit
@@ -158,14 +154,6 @@ in
 
     nix = {
       package = lib.mkForce pkgs.nix;
-      settings = {
-        auto-optimise-store = true;
-        http-connections = 50;
-        use-sqlite-wal = true;
-        builders-use-substitutes = true;
-        min-free = "1G";
-        max-free = "10G";
-      };
     };
   };
 }

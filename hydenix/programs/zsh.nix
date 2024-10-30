@@ -36,7 +36,7 @@
       # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh  
 
-      source $HOME/.local/Hyde-cli/shell-completions/Hyde.zsh
+      source $HOME/.local/state/nix/profiles/home-manager/home-path/share/hyde/hyde-cli/shell-completions/Hyde.zsh
 
       export PATH=$HOME/.local/bin:$PATH
     '';

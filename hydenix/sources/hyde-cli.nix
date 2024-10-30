@@ -20,17 +20,16 @@ let
     gnutar
   ];
 
-  src = pkgs.fetchFromGitHub {
-    owner = "HyDE-Project";
-    repo = "Hyde-cli";
-    rev = "refs/tags/v0.6.0";
-    sha256 = "sha256-aMMTurz+7QbId3S8jYhWhiA/ZS/L3TbII9/PPD1f+tg=";
-  };
-
   pkg = pkgs.stdenv.mkDerivation {
-    pname = "hyde-cli";
+    name = "hyde-cli";
     version = "master";
-    src = src;
+    src = pkgs.fetchFromGitHub {
+      owner = "HyDE-Project";
+      repo = "Hyde-cli";
+      rev = "refs/tags/v0.6.0";
+      name = "hyde-cli";
+      sha256 = "sha256-aMMTurz+7QbId3S8jYhWhiA/ZS/L3TbII9/PPD1f+tg=";
+    };
 
     nativeBuildInputs = with pkgs; [
       makeWrapper
@@ -54,7 +53,7 @@ let
         find . -type f -print0 | xargs -0 sed -i 's/killall dunst/killall .dunst-wrapped/g'
 
         # update kitty
-        find . -type f -print0 | xargs -0 sed -i 's/killall kitty/killall .kitty-wrapped/g'
+        find . -type f -print0 | xargs -0 sed -i 's/killall -SIGUSR1 kitty/killall -SIGUSR1 .kitty-wrapped/g'
 
        # scripts need to use dconf instead of gsettings
        find . -type f -not -name 'themepatcher.sh' -exec sed -i \
@@ -83,8 +82,8 @@ let
         
       # ------------- end edits ------------ #;
 
-        mkdir -p $out/share/Hyde-cli
-        cp -r . $out/share/Hyde-cli
+        mkdir -p $out/share/hyde/hyde-cli
+        cp -r . $out/share/hyde/hyde-cli
         mkdir -p $out/bin
 
         # Install Hyde, Hyde-install, and Hyde-tool
@@ -120,20 +119,19 @@ let
           --prefix PATH : ${lib.makeBinPath buildInputs}
 
         # make .hyde-cli.version file
-        echo "HyDE CLI version 0.6.0" > $out/share/hyde-cli/.hyde-cli.ver
+        echo "HyDE CLI version 0.6.0" > $out/share/hyde/hyde-cli/.hyde-cli.ver
 
     '';
 
     passthru = {
       inherit buildInputs;
-      inherit src;
     };
 
     installPhase = "true";
 
     postInstall = ''
       mkdir -p $out/share/applications
-      cp $out/share/Hyde-cli/Hyde.desktop $out/share/applications/
+      cp $out/share/hyde/hyde-cli/Hyde.desktop $out/share/applications/
     '';
   };
 in

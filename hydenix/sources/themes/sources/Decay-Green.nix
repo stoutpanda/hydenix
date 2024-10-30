@@ -1,13 +1,14 @@
-{ pkgs, lib }:
+{ pkgs }:
 let
   utils = import ../utils { inherit pkgs; };
 in
-utils.mkTheme {
+utils.mkTheme rec {
   name = "Decay Green";
   src = pkgs.fetchFromGitHub {
     owner = "prasanthrangan";
     repo = "hyde-themes";
     rev = "Decay-Green";
+    name = name;
     sha256 = "sha256-/jApdX6ADJOHU9iSCTpGMmL3phNSDHxsrKXX5sBLRGQ=";
   };
 

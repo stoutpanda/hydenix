@@ -39,6 +39,8 @@ in
     mesa # for gpu support
     dconf # for dconf support
 
+    home-manager # for home-manager
+
     # TODO: check these packages if they are even needed 
     xdg-utils # for xdg-open
   ];
