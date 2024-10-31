@@ -3,7 +3,8 @@
   pkgs,
   ...
 }:
-
+# TODO: use overlays as imports for convenience
+# TODO: include themeStore in overlays
 let
   sources = {
     hyde-cli = import ./hyde-cli.nix { inherit pkgs lib; };
@@ -17,14 +18,13 @@ let
     hyde-gallery = import ./hyde-gallery.nix { inherit pkgs lib; };
   };
 
-  # TODO: include themeStore in overlays
   overlays = builtins.mapAttrs (name: value: self: super: {
     ${name} = value;
   }) sources;
 
 in
 {
-  # TODO: use overlays as imports for convenience
+
   nixpkgs.overlays = builtins.attrValues overlays;
 
   home.packages = builtins.attrValues sources;

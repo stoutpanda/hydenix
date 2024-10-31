@@ -1,14 +1,17 @@
 { pkgs }:
 
 args:
+let
+  normalizedName = builtins.replaceStrings [ " " ] [ "-" ] args.cursorName;
+in
 pkgs.stdenv.mkDerivation {
-  name = args.cursorName;
+  name = "hyde-cursor-${normalizedName}";
   version = "1.0.0";
 
   src = pkgs.fetchzip {
-    url = args.src.url;
-    sha256 = args.src.sha256;
-    stripRoot = true;
+    url = args.url;
+    hash = args.hash;
+    name = "hyde-cursor-${normalizedName}-source";
   };
 
   nativeBuildInputs = [

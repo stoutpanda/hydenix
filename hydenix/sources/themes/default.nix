@@ -5,8 +5,6 @@
 }:
 let
 
-  # TODO: deduplicate theme.arcs
-
   # Helper function to create theme entries
   mkTheme = name: {
     inherit name;
@@ -14,44 +12,48 @@ let
   };
 
   # List of theme names
-  # TODO: linkGeneration hangs if more than 10 themes are enabled
   themeNames = [
+
+    # -- Default themes
+    "Catppuccin Mocha"
+    "Catppuccin Latte"
+    "Decay Green"
+    "Edge Runner"
+    "Frosted Glass"
+    "Graphite Mono"
+    "Gruvbox Retro"
+    "Material Sakura"
+    "Nordic Blue"
+    "Rose Pine"
+    "Synth Wave"
+    "Tokyo Night"
+
+    # -- Themes from hyde-gallery (use with caution)
     "Abyssal-Wave"
     "AbyssGreen"
     "Bad Blood"
     "Cat Latte"
-    "Catppuccin Latte"
-
-    "Decay Green"
     "Dracula"
     "Edge Runner"
-    "Frosted Glass"
-    "Graphite Mono"
     "Green Lush"
     "Greenify"
-    "Gruvbox Retro"
     "Hack the Box"
     "Ice Age"
     "Mac OS"
-    "Material Sakura"
     "Monokai"
-    "Nordic Blue"
     "One Dark"
     "Oxo Carbon"
     "Paranoid Sweet"
     "Rain Dark"
     "Red Stone"
-    "Rosé Pine"
+    "Rose Pine"
     "Scarlet Night"
     "Sci-fi"
     "Solarized Dark"
-    "Synth Wave"
-    "Tokyo Night"
     "Windows 11"
     "Monterey Frost"
-    # TODO: Pixel dream icon build breaks due to symlink issues
+    # TODO: fix pixel dream icon build
     # "Pixel Dream"
-    "Catppuccin Mocha"
   ];
 
   # Generate theme list using map

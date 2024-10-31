@@ -2,7 +2,6 @@
   lib,
 }:
 
-# TODO: review environment variables
 {
   # Wayland and general environment
   NIXOS_OZONE_WL = "1"; # Enable Ozone Wayland support for Electron-based apps

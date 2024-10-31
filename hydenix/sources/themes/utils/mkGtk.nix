@@ -1,14 +1,17 @@
 { pkgs }:
 
 args:
+let
+  normalizedName = builtins.replaceStrings [ " " ] [ "-" ] args.gtkName;
+in
 pkgs.stdenv.mkDerivation {
-  name = args.gtkName;
+  name = "hyde-gtk-${normalizedName}";
   version = "1.0.0";
 
   src = pkgs.fetchzip {
-    url = args.src.url;
-    sha256 = args.src.sha256;
-    stripRoot = true;
+    url = args.url;
+    hash = args.hash;
+    name = "hyde-gtk-${normalizedName}-source";
   };
 
   dontConfigure = true;
@@ -23,7 +26,7 @@ pkgs.stdenv.mkDerivation {
     mkdir -p "$out/share/themes/${args.gtkName}"
 
     # Copy theme contents directly to themes directory
-    cp -a * "$out/share/themes/${args.gtkName}"
+    cp -r . "$out/share/themes/${args.gtkName}/"
 
     runHook postInstall
   '';

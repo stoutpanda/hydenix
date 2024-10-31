@@ -56,7 +56,6 @@ let
       { };
 
   # TODO: perf: swwwallcache.sh and wallbash.sh should run at buildtime
-  # TODO: feat: sddm themes unpacking here, maybe with system-manager
   # mkTheme is a wrapper around the hyde theme package that:
   # - Creates a derivation for the theme package at build time
   # - Parses the hypr.theme file to extract theme values

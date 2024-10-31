@@ -1,14 +1,17 @@
 { pkgs }:
 
 args:
+let
+  normalizedName = builtins.replaceStrings [ " " ] [ "-" ] args.fontName;
+in
 pkgs.stdenv.mkDerivation {
-  name = args.fontName;
+  name = "hyde-font-${normalizedName}";
   version = "1.0.0";
 
   src = pkgs.fetchzip {
-    url = args.src.url;
-    sha256 = args.src.sha256;
-    stripRoot = true;
+    url = args.url;
+    hash = args.hash;
+    name = "hyde-font-${normalizedName}-source";
   };
 
   dontConfigure = true;

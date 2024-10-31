@@ -48,7 +48,6 @@ in
 
   config = mkIf cfg.enable {
 
-    # TODO: split up system configurations
     targets.genericLinux.enable = !isNixOS;
 
     home.username = userConfig.username;
@@ -60,7 +59,7 @@ in
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gtk
+        # xdg-desktop-portal-gtk
       ];
       config.common.default = "*";
     };

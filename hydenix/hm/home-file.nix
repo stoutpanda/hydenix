@@ -4,7 +4,6 @@
   themes,
 }:
 let
-  hyde-cli = import ../sources/hyde-cli.nix { inherit pkgs lib; };
   hyde = import ../sources/hyde.nix { inherit pkgs; };
   wallbash-gtk = import ../sources/wallbash-gtk.nix { inherit pkgs lib; };
   spicetify-sleek = import ../sources/spicetify-sleek.nix { inherit pkgs lib; };
@@ -12,8 +11,6 @@ let
 in
 
 lib.mkMerge [
-
-  # TODO: cleanup home file calls for performance
 
   # --------------------------------------------------- // Hyde-cli
 
