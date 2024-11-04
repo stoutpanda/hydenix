@@ -108,7 +108,7 @@ in
 
           Bibata-Modern-Ice
         ];
-        theme = "Candy";
+        theme = userConfig.hyde.sddmTheme or "Candy";
         settings = {
           General = {
             GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";

@@ -282,10 +282,10 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 
 ## TODO
 
-- [ ] revamp global config.nix to support home-manager options
+- [x] sddm themes 
+- [x] revamp global config.nix to support home-manager options
 - [ ] add hyde.conf params to home-manager config
 - [ ] better home-manager module + install options
-- [ ] sddm themes 
 - [ ] wallbash 
   - [ ] spotify - via flatpak and spicetify 
   - [ ] vesktop/webcord etc
