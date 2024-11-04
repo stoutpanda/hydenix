@@ -9,7 +9,7 @@ utils.mkTheme rec {
     repo = "Ice-Age";
     rev = "main";
     name = name;
-    sha256 = "sha256-cowqH9jn65/9hm5HaOEmdDLTVvqs/dOsP3UpDSIA2v0=";
+    sha256 = "sha256-44l7UTHrCvvJL3TO6hk/SV2fxB9MXJtmSM5S56w8xVQ=";
   };
 
   meta = {

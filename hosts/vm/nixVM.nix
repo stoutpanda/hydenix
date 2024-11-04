@@ -20,10 +20,11 @@ nixosSystem.extendModules {
             };
           };
           services.xserver = {
-            displayManager.autoLogin = {
-              enable = true;
-              user = userConfig.username;
-            };
+            #! you can set this to skip login for sddm
+            # displayManager.autoLogin = {
+            #   enable = true;
+            #   user = userConfig.username;
+            # };
             videoDrivers = [
               "virtio"
             ];
@@ -32,16 +33,15 @@ nixosSystem.extendModules {
         virtualisation.libvirtd.enable = true;
         environment.systemPackages = with pkgs; [
           open-vm-tools
+          spice-gtk
           spice-vdagent
+          spice
         ];
         services.qemuGuest.enable = true;
         services.spice-vdagentd = {
           enable = true;
         };
         hardware.graphics.enable = true;
-        services.xserver.displayManager.sessionCommands = ''
-          ${pkgs.spice-vdagent}/bin/spice-vdagent
-        '';
       }
     )
   ];

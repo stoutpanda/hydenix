@@ -58,8 +58,8 @@ let
         hash = "sha256-UfBtBpuVYG6TmXJKchCfhOs719PqKQM2EzUWEijnJwM=";
       };
       "Hackthebox" = {
-        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/arcs/Gtk_Hack%20the%20Box.tar.gz";
-        hash = "sha256-stoCSCdweVXdo5oTgqk02nduyjRnS92iBqzzNAoP/eE=";
+        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/Gtk_Hack%20the%20Box.tar.gz";
+        hash = "sha256-5Z/fnHfr8VnfPGQFaLJ4615dlBDCRbyGqwyauY5pOrU=";
       };
       "VALYRIAN-Blue-Steel" = {
         url = "https://github.com/saber-88/Ice-Age/raw/refs/heads/main/Source/arcs/Gtk_VALYRIAN-Blue-Steel.tar.gz";
@@ -153,7 +153,7 @@ let
         hash = "sha256-OiFTXKJ9H5ienodooIXP+4s7mjdQcbVjnelBb4QonYw=";
       };
       "Papirus" = {
-        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/arcs/Icon_Hack%20the%20Box.tar.gz";
+        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/Icon_Hack%20the%20Box.tar.gz";
         hash = "sha256-x+3FXlRgoEAkE7yh2rFYxZvF/9JjBdWopJeKIrcSFNU=";
       };
       "Tela-circle-grey" = {
@@ -181,8 +181,8 @@ let
         hash = "sha256-TmsJ+hYZSkSZP9fBrs7T92vpditmN+gQJSOsYOXGUdo=";
       };
       "Hackthebox" = {
-        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/arcs/Icon_Hack%20the%20Box.tar.gz";
-        hash = "sha256-92vpditmN+gQJSOsYOXGUdoTmsJ+hYZSkSZP9fBrs7T=";
+        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/Cursor_Hack%20the%20Box.tar.gz";
+        hash = "";
       };
       "Breeze-Noir-White-Blue" = {
         url = "https://github.com/saber-88/Ice-Age/raw/refs/heads/main/Source/arcs/Icon_Breeze-Noir-White-Blue.tar.gz";
@@ -276,7 +276,7 @@ let
         hash = "sha256-ER72v4cFhzO0N2ZYWOsK4kBp6DOe21/mklpDxhqUE7k=";
       };
       "HackCursor" = {
-        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/arcs/Cursor_Hack%20the%20Box.tar.gz";
+        url = "https://github.com/HyDE-Project/hyde-gallery/raw/refs/heads/Hack-the-Box/Source/Cursor_Hack%20the%20Box.tar.gz";
         hash = "sha256-kMHmuhk72IYCKbv6dIQk7ECEJV0h6zns3G3FjE8w5L0=";
       };
       "Bibata-Modern-Ice" = {

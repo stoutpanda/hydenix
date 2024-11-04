@@ -16,6 +16,8 @@ let
     pokemon-colorscripts = import ./pokemon-colorscripts.nix { inherit pkgs lib; };
     vscode-wallbash = import ./vscode-wallbash.nix { inherit pkgs; };
     hyde-gallery = import ./hyde-gallery.nix { inherit pkgs lib; };
+    sddm-candy = import ./sddm-candy.nix { inherit pkgs; };
+    sddm-corners = import ./sddm-corners.nix { inherit pkgs; };
   };
 
   overlays = builtins.mapAttrs (name: value: self: super: {

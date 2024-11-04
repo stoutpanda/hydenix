@@ -3,6 +3,13 @@
   userConfig,
   ...
 }:
+let
+  sddm-candy = pkgs.callPackage ../../hydenix/sources/sddm-candy.nix { };
+  sddm-corners = pkgs.callPackage ../../hydenix/sources/sddm-corners.nix { };
+  Bibata-Modern-Ice =
+    (import ../../hydenix/sources/themes/utils/arcStore.nix { inherit pkgs; })
+    .cursor."Bibata-Modern-Ice";
+in
 {
 
   imports = [
@@ -84,13 +91,50 @@
     displayManager = {
       sddm = {
         enable = true;
-        wayland.enable = true;
-        package = pkgs.kdePackages.sddm;
+        wayland = {
+          enable = true;
+          compositor = "kwin";
+        };
+        package = pkgs.libsForQt5.sddm;
+        extraPackages = with pkgs; [
+          sddm-candy
+          sddm-corners
+          libsForQt5.qt5.qtquickcontrols # for sddm theme ui elements
+          libsForQt5.layer-shell-qt # for sddm theme wayland support
+          libsForQt5.qt5.qtquickcontrols2 # for sddm theme ui elements
+          libsForQt5.qt5.qtgraphicaleffects # for sddm theme effects
+          libsForQt5.qtsvg # for sddm theme svg icons
+          libsForQt5.qt5.qtwayland # wayland support for qt5
+
+          Bibata-Modern-Ice
+        ];
+        theme = "Candy";
+        settings = {
+          General = {
+            GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
+          };
+          Theme = {
+            ThemeDir = "/run/current-system/sw/share/sddm/themes";
+            CursorTheme = "Bibata-Modern-Ice";
+          };
+        };
       };
       sessionPackages = [ pkgs.hyprland ];
     };
     upower.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    Bibata-Modern-Ice
+    sddm-candy
+    sddm-corners
+    libsForQt5.qt5.qtquickcontrols # for sddm theme ui elements
+    libsForQt5.layer-shell-qt # for sddm theme wayland support
+    libsForQt5.qt5.qtquickcontrols2 # for sddm theme ui elements
+    libsForQt5.qt5.qtgraphicaleffects # for sddm theme effects
+    libsForQt5.qtsvg # for sddm theme svg icons
+    libsForQt5.qt5.qtwayland # wayland support for qt5
+  ];
 
   networking = {
     hostName = userConfig.host;
