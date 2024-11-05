@@ -79,6 +79,11 @@ let
          # find needs -L to follow symlinks
         find . -type f -executable -print0 | xargs -0 sed -i 's/find "/find -L "/g'
         find . -type f -name "*.sh" -print0 | xargs -0 sed -i 's/find "/find -L "/g'
+
+        # SDDM support - replace theme paths in Manage-SDDM script
+        sed -i 's|/usr/share/sddm/themes|/run/current-system/sw/share/sddm/themes|g' ./Scripts/Manage-Sddm
+        sed -i 's/find "/find -L "/g' ./Scripts/Manage-Sddm
+        
         
       # ------------- end edits ------------ #;
 

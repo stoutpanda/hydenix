@@ -34,20 +34,14 @@
 */
 
 let
-  hyde-firefox = import ../sources/hyde-firefox.nix { inherit pkgs lib; };
   hyde-cli = import ../sources/hyde-cli.nix { inherit pkgs lib; };
 in
 
 {
 
-  # installs firefox userChrome.css and userContent.css
-  setupHydeFirefox = lib.hm.dag.entryAfter [ "mutableFileGeneration" ] ''
-    $DRY_RUN_CMD ${hyde-firefox}/bin/setup-hyde-firefox
-  '';
-
   # TODO: i should be able to make this in the derivation of hyde-cli
   # generates meta file for hyde-cli
-  makeStubMeta = lib.hm.dag.entryAfter [ "setupHydeFirefox" ] ''
+  makeStubMeta = lib.hm.dag.entryAfter [ "mutableFileGeneration" ] ''
     mkdir -p $HOME/.cache/hyde
     $DRY_RUN_CMD cat << EOF > $HOME/.cache/hyde/hyde.meta
     #? This is a meta file generated for hyde-cli

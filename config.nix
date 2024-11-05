@@ -12,7 +12,7 @@ rec {
   locale = "en_CA.UTF-8";
 
   hyde = {
-    sddmTheme = "Corners"; # or "Candy"
+    sddmTheme = "Candy"; # or "Corners"
 
     enable = true;
 
