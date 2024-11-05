@@ -11,7 +11,7 @@ rec {
   timezone = "America/Vancouver";
   locale = "en_CA.UTF-8";
 
-  hyde = {
+  hyde = rec {
     sddmTheme = "Candy"; # or "Corners"
 
     enable = true;
@@ -68,6 +68,20 @@ rec {
       # TODO: fix pixel dream icon build
       # "Pixel Dream"
     ];
+
+    # Exactly the same as hyde.conf
+    conf = {
+      hydeTheme = activeTheme;
+      wallFramerate = 144;
+      wallTransDuration = 0.4;
+      wallAddCustomPath = "";
+      enableWallDcol = 2;
+      wallbashCustomCurve = "";
+      themeSelect = 2;
+      rofiStyle = 11;
+      rofiScale = 9;
+      wlogoutStyle = 1;
+    };
   };
 
   vm = {

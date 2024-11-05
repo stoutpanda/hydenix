@@ -95,6 +95,7 @@ in
         lib
         pkgs
         themes
+        userConfig
         ;
     };
     home.activation = import ./hm/home-activation.nix {

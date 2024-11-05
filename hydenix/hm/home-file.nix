@@ -2,6 +2,7 @@
   lib,
   pkgs,
   themes,
+  userConfig,
 }:
 let
   hyde = import ../sources/hyde.nix { inherit pkgs; };
@@ -83,6 +84,15 @@ lib.mkMerge [
       source = "${hyde-gallery}/share/hyde/hyde-gallery";
       force = true;
       recursive = true;
+      mutable = true;
+    };
+  }
+
+  # --------------------------------------------------- // User configurations
+  {
+    ".config/hyde/hyde.conf" = {
+      text = import ./hyde-conf.nix { inherit userConfig; };
+      force = true;
       mutable = true;
     };
   }
