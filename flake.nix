@@ -33,7 +33,7 @@
       };
 
       mkNixosHost = import ./hosts/nixos;
-      nixVM = import ./hosts/vm/nixVM.nix;
+      nix-vm = import ./hosts/vm/nix-vm.nix;
       userConfig = import ./config.nix;
 
       commonArgs = {
@@ -46,69 +46,29 @@
           nix-index-database
           ;
       };
-      archVMConfig = import ./hosts/vm/arch-vm.nix;
-      fedoraVMConfig = import ./hosts/vm/fedora-vm.nix;
+      arch-vm = import ./hosts/vm/arch-vm.nix { inherit pkgs userConfig; };
+      fedora-vm = import ./hosts/vm/fedora-vm.nix { inherit pkgs userConfig; };
 
-      devShell = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          nodejs
-          commitlint
-          pnpm
-          direnv
-          nix-direnv
-        ];
-
-        shellHook = ''
-          export USE_DIRENV=1
-
-          # Install dependencies and setup husky if needed
-          if [ ! -d "node_modules" ]; then
-            pnpm install
-            pnpm prepare
-          fi
-
-          # Set up commit-msg hook if it doesn't exist
-          mkdir -p .husky
-          echo '#!/usr/bin/env sh
-          pnpm dlx commitlint --edit "$1"' > .husky/commit-msg
-          chmod +x .husky/commit-msg
-        '';
-      };
+      devShell = import ./lib/dev-shell.nix { inherit commonArgs; };
     in
     {
       nixosConfigurations = {
         hydenix = mkNixosHost commonArgs;
 
-        hydenix-vm = nixVM {
+        nix-vm = nix-vm {
           inherit userConfig;
           nixosSystem = mkNixosHost commonArgs;
         };
       };
 
       packages.${system} = {
-        default = self.nixosConfigurations.hydenix-vm.config.system.build.vm;
-        hydenix-vm = self.nixosConfigurations.hydenix-vm.config.system.build.vm;
+        default = self.nixosConfigurations.nix-vm.config.system.build.vm;
+        nix-vm = self.nixosConfigurations.nix-vm.config.system.build.vm;
         hydenix = self.nixosConfigurations.hydenix.config.system.build.toplevel;
-        gen-config = pkgs.writeShellScriptBin "gen-config" (builtins.readFile ./scripts/gen-config.sh);
 
         # EXPERIMENTAL VM BUILDERS
-        build-arch-vm =
-          (archVMConfig {
-            inherit pkgs userConfig;
-          }).build-vm;
-        run-arch-vm =
-          (archVMConfig {
-            inherit pkgs userConfig;
-          }).run-vm;
-
-        build-fedora-vm =
-          (fedoraVMConfig {
-            inherit pkgs userConfig;
-          }).build-vm;
-        run-fedora-vm =
-          (fedoraVMConfig {
-            inherit pkgs userConfig;
-          }).run-vm;
+        arch-vm = arch-vm;
+        fedora-vm = fedora-vm;
       };
 
       # import for customized home-manager configurations
