@@ -32,8 +32,6 @@
         config.allowUnfree = true;
       };
 
-      mkNixosHost = import ./hosts/nixos;
-      nix-vm = import ./hosts/vm/nix-vm.nix;
       userConfig = import ./config.nix;
 
       commonArgs = {
@@ -46,19 +44,19 @@
           nix-index-database
           ;
       };
+
+      mkNixosHost = import ./hosts/nixos { inherit commonArgs; };
+      nix-vm = import ./hosts/vm/nix-vm.nix { inherit userConfig mkNixosHost; };
       arch-vm = import ./hosts/vm/arch-vm.nix { inherit pkgs userConfig; };
       fedora-vm = import ./hosts/vm/fedora-vm.nix { inherit pkgs userConfig; };
 
-      devShell = import ./lib/dev-shell.nix { inherit commonArgs; };
+      devShell = import ./lib/dev-shell.nix { inherit pkgs; };
     in
     {
       nixosConfigurations = {
-        hydenix = mkNixosHost commonArgs;
+        hydenix = mkNixosHost;
 
-        nix-vm = nix-vm {
-          inherit userConfig;
-          nixosSystem = mkNixosHost commonArgs;
-        };
+        nix-vm = nix-vm;
       };
 
       packages.${system} = {

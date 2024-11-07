@@ -1,18 +1,18 @@
 {
-  nixpkgs,
-  home-manager,
-  system,
-  pkgs,
-  userConfig,
-  nix-index-database,
+  commonArgs,
 }:
-
+let
+  inherit (commonArgs)
+    system
+    userConfig
+    home-manager
+    nix-index-database
+    nixpkgs
+    ;
+in
 nixpkgs.lib.nixosSystem {
   inherit system;
-  specialArgs = {
-    inherit pkgs;
-    inherit userConfig;
-  };
+  specialArgs = commonArgs;
   modules = [
     ./configuration.nix
     home-manager.nixosModules.home-manager
@@ -20,7 +20,7 @@ nixpkgs.lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${userConfig.username} =
-        { pkgs, ... }:
+        { ... }:
         {
           imports = [
             ./home.nix

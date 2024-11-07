@@ -14,6 +14,7 @@ in
 
   imports = [
     ./hardware-configuration.nix
+    ./drivers.nix
   ];
 
   # ===== Boot Configuration =====
@@ -50,21 +51,6 @@ in
     "/share/bash-completion"
     "/share/fish"
   ];
-
-  # ===== Hardware Configuration =====
-  hardware = {
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-  };
-
-  # ===== Filesystems =====
-  # USER EDITABLE ADD FILESYSTEMS HERE
 
   # # # ===== Security =====
   # security = {

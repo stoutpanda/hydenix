@@ -11,6 +11,15 @@ rec {
   timezone = "America/Vancouver";
   locale = "en_CA.UTF-8";
 
+  # List of drivers to install in ./hosts/nixos/drivers.nix
+  drivers = [
+    "amdgpu"
+    "intel"
+    # "nvidia"
+    # "amdcpu"
+    # "intel-old"
+  ];
+
   hyde = rec {
     sddmTheme = "Candy"; # or "Corners"
 
