@@ -101,6 +101,8 @@
 
       packages.${system} = {
         default = self.nixosConfigurations.nix-vm;
+        gen-config = pkgs.writeShellScript "gen-config" (builtins.readFile ./lib/gen-config.sh);
+
         nix-vm = self.nixosConfigurations.nix-vm;
         # EXPERIMENTAL VM BUILDERS
         arch-vm = defaultConfig.arch-vm;

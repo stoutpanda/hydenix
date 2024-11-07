@@ -4,7 +4,7 @@ set -e
 # Check if the skip flag is provided
 SKIP_CHECKS=false
 if [ "$1" = "--skip-checks" ]; then
-    SKIP_CHECKS=true
+  SKIP_CHECKS=true
 fi
 
 cat <<"EOF"
@@ -18,28 +18,27 @@ cat <<"EOF"
          |___/       ❄️ Powered by Nix ❄️
 EOF
 
-CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/hydenix/config.nix"
+CONFIG_FILE="./config.nix"
 
 if [ "$SKIP_CHECKS" = false ] && [ -f "$CONFIG_FILE" ]; then
-    echo "A config.nix file already exists at $CONFIG_FILE"
-    read -p "Do you want to use the existing config? (y/n) " USE_EXISTING
-    if [[ $USE_EXISTING =~ ^[Yy]$ ]]; then
-        echo "Using existing config file."
-        exit 0
-    fi
+  echo "A config.nix file already exists at $CONFIG_FILE"
+  read -p "Do you want to use the existing config? (y/n) " USE_EXISTING
+  if [[ $USE_EXISTING =~ ^[Yy]$ ]]; then
+    echo "Using existing config file."
+    exit 0
+  fi
 fi
 
 if [ "$SKIP_CHECKS" = false ]; then
-    echo "This script will generate a new config.nix file."
-    read -p "Do you want to proceed? (y/n) " REPLY
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "Config generation cancelled."
-        exit 0
-    fi
+  echo "This script will generate a new config.nix file."
+  read -p "Do you want to proceed? (y/n) " REPLY
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Config generation cancelled."
+    exit 0
+  fi
 fi
 
-mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/hydenix"
 cat <<EOF >"$CONFIG_FILE"
 rec {
   username = "$(whoami || echo "hydenix")";
@@ -141,15 +140,15 @@ EOF
 echo "Config file generated at $CONFIG_FILE"
 
 if [ "$SKIP_CHECKS" = false ]; then
-    if [ -n "$EDITOR" ]; then
-        $EDITOR "$CONFIG_FILE"
-    elif command -v nano >/dev/null 2>&1; then
-        nano "$CONFIG_FILE"
-    elif command -v vim >/dev/null 2>&1; then
-        vim "$CONFIG_FILE"
-    else
-        echo "No suitable editor found. Please open $CONFIG_FILE manually to edit."
-    fi
+  if [ -n "$EDITOR" ]; then
+    $EDITOR "$CONFIG_FILE"
+  elif command -v nano >/dev/null 2>&1; then
+    nano "$CONFIG_FILE"
+  elif command -v vim >/dev/null 2>&1; then
+    vim "$CONFIG_FILE"
+  else
+    echo "No suitable editor found. Please open $CONFIG_FILE manually to edit."
+  fi
 else
-    echo "Skipping editor opening due to --skip-checks flag."
+  echo "Skipping editor opening due to --skip-checks flag."
 fi

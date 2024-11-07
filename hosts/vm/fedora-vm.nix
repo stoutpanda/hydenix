@@ -88,7 +88,7 @@ let
       }
 
       provisioner "shell" {
-        script = "${toString ./.}/scripts/gen-config.sh"
+        script = "${toString ./.}/../../lib/gen-config.sh"
       }
 
       provisioner "shell" {
