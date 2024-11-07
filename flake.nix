@@ -32,76 +32,83 @@
         config.allowUnfree = true;
       };
 
-      userConfig = import ./config.nix;
+      mkConfig = userConfig: rec {
+        commonArgs = {
+          inherit
+            nixpkgs
+            pkgs
+            home-manager
+            system
+            userConfig
+            nix-index-database
+            ;
+        };
 
-      commonArgs = {
-        inherit
-          nixpkgs
-          pkgs
-          home-manager
-          system
-          userConfig
-          nix-index-database
-          ;
+        nixosConfiguration = import ./hosts/nixos { inherit commonArgs; };
+        nix-vm = import ./hosts/vm/nix-vm.nix { inherit userConfig nixosConfiguration; };
+        arch-vm = import ./hosts/vm/arch-vm.nix { inherit pkgs userConfig; };
+        fedora-vm = import ./hosts/vm/fedora-vm.nix { inherit pkgs userConfig; };
+
+        # import for customized home-manager configurations
+        homeManagerModules.default = {
+          ${userConfig.username} = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [
+              ./hosts/nixos/home.nix
+              nix-index-database.hmModules.nix-index
+            ];
+            extraSpecialArgs = {
+              inherit userConfig;
+              inherit inputs;
+            };
+          };
+        };
+
+        # only to be used on non-NixOS systems
+        homeConfigurations = {
+          "${userConfig.username}" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [
+              ./hosts/nixos/home.nix
+              nix-index-database.hmModules.nix-index
+              {
+                targets.genericLinux.enable = true;
+              }
+            ];
+            extraSpecialArgs = {
+              inherit userConfig;
+              inherit inputs;
+            };
+          };
+          activationPackage = self.homeConfigurations.${userConfig.username}.activationPackage;
+        };
+
       };
 
-      mkNixosHost = import ./hosts/nixos { inherit commonArgs; };
-      nix-vm = import ./hosts/vm/nix-vm.nix { inherit userConfig mkNixosHost; };
-      arch-vm = import ./hosts/vm/arch-vm.nix { inherit pkgs userConfig; };
-      fedora-vm = import ./hosts/vm/fedora-vm.nix { inherit pkgs userConfig; };
-
       devShell = import ./lib/dev-shell.nix { inherit pkgs; };
+
+      defaultConfig = mkConfig (import ./config.nix);
     in
     {
-      nixosConfigurations = {
-        hydenix = mkNixosHost;
+      lib = {
+        inherit mkConfig;
+      };
 
-        nix-vm = nix-vm;
+      nixosConfigurations = {
+        hydenix = defaultConfig.nixosConfiguration.config.system.build.toplevel;
+        nix-vm = defaultConfig.nix-vm.config.system.build.vm;
       };
 
       packages.${system} = {
-        default = self.nixosConfigurations.nix-vm.config.system.build.vm;
-        nix-vm = self.nixosConfigurations.nix-vm.config.system.build.vm;
-        hydenix = self.nixosConfigurations.hydenix.config.system.build.toplevel;
-
+        default = self.nixosConfigurations.nix-vm;
+        nix-vm = self.nixosConfigurations.nix-vm;
         # EXPERIMENTAL VM BUILDERS
-        arch-vm = arch-vm;
-        fedora-vm = fedora-vm;
+        arch-vm = defaultConfig.arch-vm;
+        fedora-vm = defaultConfig.fedora-vm;
       };
 
-      # import for customized home-manager configurations
-      homeManagerModules.default = {
-        ${userConfig.username} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/nixos/home.nix
-            nix-index-database.hmModules.nix-index
-          ];
-          extraSpecialArgs = {
-            inherit userConfig;
-            inherit inputs;
-          };
-        };
-      };
-
-      # only to be used on non-NixOS systems
-      homeConfigurations = {
-        "${userConfig.username}" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./hosts/nixos/home.nix
-            nix-index-database.hmModules.nix-index
-            {
-              targets.genericLinux.enable = true;
-            }
-          ];
-          extraSpecialArgs = {
-            inherit userConfig;
-            inherit inputs;
-          };
-        };
-        activationPackage = self.homeConfigurations.${userConfig.username}.activationPackage;
-      };
+      homeConfigurations = defaultConfig.homeConfigurations;
+      homeManagerModules = defaultConfig.homeManagerModules;
 
       devShells.${system}.default = devShell;
     };

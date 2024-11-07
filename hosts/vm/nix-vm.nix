@@ -1,5 +1,5 @@
-{ userConfig, mkNixosHost, ... }:
-mkNixosHost.extendModules {
+{ userConfig, nixosConfiguration, ... }:
+nixosConfiguration.extendModules {
   modules = [
     (
       { config, pkgs, ... }:
