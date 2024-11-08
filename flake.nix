@@ -50,6 +50,27 @@
         inherit mkConfig;
       };
 
+      templates = {
+        default = {
+          path = ./template;
+          description = "Hydenix template";
+          welcomeText = ''
+            # Getting started
+             _    _           _            _
+            | |  | |         | |          (_)
+            | |__| |_   _  __| | ___ _ __  ___  __
+            |  __  | | | |/ _` |/ _ \ '_ \| \ \/ /
+            | |  | | |_| | (_| |  __/ | | | |>  <
+            |_|  |_|\__, |\__,_|\___|_| |_|_/_/\_\
+                    __/ |
+                    |___/       ❄️ Powered by Nix ❄️
+
+            - edit ./config.nix to your liking
+            - run any of the packages in flake.nix
+          '';
+        };
+      };
+
       packages.${system} = {
         # generate-config script
         gen-config = pkgs.writeShellScriptBin "gen-config" (builtins.readFile ./lib/gen-config.sh);
