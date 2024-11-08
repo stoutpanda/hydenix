@@ -45,11 +45,6 @@ rec {
   gitUser = "$(git config --get user.name || echo "hydenix")";
   gitEmail = "$(git config --get user.email || echo "exampleEmail")";
   host = "$(hostname || echo "hydenix")";
-rec {
-  username = "hydenix";
-  gitUser = "hydenix";
-  gitEmail = "exampleEmail";
-  host = "hydenix";
   /*
     Default password is required for sudo support in systems
     !REMEMBER TO USE passwd TO CHANGE THE PASSWORD!
