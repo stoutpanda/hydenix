@@ -56,6 +56,7 @@
           description = "Hydenix template";
           welcomeText = ''
             # Getting started
+            ```
              _    _           _            _
             | |  | |         | |          (_)
             | |__| |_   _  __| | ___ _ __  ___  __
@@ -64,7 +65,7 @@
             |_|  |_|\__, |\__,_|\___|_| |_|_/_/\_\
                     __/ |
                     |___/       ❄️ Powered by Nix ❄️
-
+            ```
             - edit ./config.nix to your liking
             - run any of the packages in flake.nix
           '';
