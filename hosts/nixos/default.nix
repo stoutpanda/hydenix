@@ -25,11 +25,11 @@ nixpkgs.lib.nixosSystem {
           imports = [
             ./home.nix
             nix-index-database.hmModules.nix-index
-          ];
+          ] ++ userConfig.homeModules;
         };
       home-manager.extraSpecialArgs = {
         inherit userConfig;
       };
     }
-  ];
+  ] ++ userConfig.nixModules;
 }

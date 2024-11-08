@@ -11,14 +11,12 @@
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       nix-index-database,
@@ -32,86 +30,50 @@
         config.allowUnfree = true;
       };
 
-      mkConfig = userConfig: rec {
-        commonArgs = {
-          inherit
-            nixpkgs
-            pkgs
-            home-manager
-            system
-            userConfig
-            nix-index-database
-            ;
-        };
-
-        nixosConfiguration = import ./hosts/nixos { inherit commonArgs; };
-        nix-vm = import ./hosts/vm/nix-vm.nix { inherit userConfig nixosConfiguration; };
-        arch-vm = import ./hosts/vm/arch-vm.nix { inherit pkgs userConfig; };
-        fedora-vm = import ./hosts/vm/fedora-vm.nix { inherit pkgs userConfig; };
-
-        # import for customized home-manager configurations
-        homeManagerModules.default = {
-          ${userConfig.username} = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [
-              ./hosts/nixos/home.nix
-              nix-index-database.hmModules.nix-index
-            ];
-            extraSpecialArgs = {
-              inherit userConfig;
-              inherit inputs;
-            };
-          };
-        };
-
-        # only to be used on non-NixOS systems
-        homeConfigurations = {
-          "${userConfig.username}" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [
-              ./hosts/nixos/home.nix
-              nix-index-database.hmModules.nix-index
-              {
-                targets.genericLinux.enable = true;
-              }
-            ];
-            extraSpecialArgs = {
-              inherit userConfig;
-              inherit inputs;
-            };
-          };
-          activationPackage = self.homeConfigurations.${userConfig.username}.activationPackage;
-        };
-
+      mkConfig = import ./lib/mkConfig.nix {
+        inherit
+          inputs
+          pkgs
+          system
+          home-manager
+          nix-index-database
+          nixpkgs
+          ;
       };
-
-      devShell = import ./lib/dev-shell.nix { inherit pkgs; };
 
       defaultConfig = mkConfig (import ./config.nix);
     in
     {
+
+      # Main config builder
       lib = {
         inherit mkConfig;
       };
 
-      nixosConfigurations = {
-        hydenix = defaultConfig.nixosConfiguration.config.system.build.toplevel;
-        nix-vm = defaultConfig.nix-vm.config.system.build.vm;
-      };
-
       packages.${system} = {
-        default = self.nixosConfigurations.nix-vm;
+        # generate-config script
         gen-config = pkgs.writeShellScriptBin "gen-config" (builtins.readFile ./lib/gen-config.sh);
 
-        nix-vm = self.nixosConfigurations.nix-vm;
+        /*
+          Packages below are default configurations
+          These are used for testing
+        */
+
+        # defaults to nix-vm
+        default = defaultConfig.nix-vm.config.system.build.vm;
+
+        # NixOS activation packages
+        hydenix = defaultConfig.nixosConfiguration.config.system.build.toplevel;
+
+        # Home activation packages - you probably don't want to use these
+        hm = defaultConfig.homeConfigurations.${defaultConfig.username}.activationPackage;
+        hm-generic = defaultConfig.homeConfigurations."${defaultConfig.username}-generic".activationPackage;
+
         # EXPERIMENTAL VM BUILDERS
         arch-vm = defaultConfig.arch-vm;
         fedora-vm = defaultConfig.fedora-vm;
       };
 
-      homeConfigurations = defaultConfig.homeConfigurations;
-      homeManagerModules = defaultConfig.homeManagerModules;
-
-      devShells.${system}.default = devShell;
+      devShells.${system}.default = import ./lib/dev-shell.nix { inherit pkgs; };
     };
 }

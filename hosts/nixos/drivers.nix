@@ -64,7 +64,7 @@ in
     # CPU Configuration
     cpu = {
       amd.updateMicrocode = hasAmdCpu;
-      intel.updateMicrocode = hasIntelCpu;
+      intel.updateMicrocode = hasIntelCpu || hasOlderIntelCpu;
     };
 
     # Nvidia specific configuration
@@ -98,7 +98,7 @@ in
       with pkgs.lib;
       [ ]
       ++ (optionals hasAmdCpu [ "kvm-amd" ])
-      ++ (optionals hasIntelCpu [ "kvm-intel" ])
+      ++ (optionals (hasIntelCpu || hasOlderIntelCpu) [ "kvm-intel" ])
       ++ (optionals hasAmdGpu [ "amdgpu" ])
       ++ (optionals hasNvidia [
         "nvidia"

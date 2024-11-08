@@ -45,14 +45,51 @@ rec {
   gitUser = "$(git config --get user.name || echo "hydenix")";
   gitEmail = "$(git config --get user.email || echo "exampleEmail")";
   host = "$(hostname || echo "hydenix")";
+rec {
+  username = "hydenix";
+  gitUser = "hydenix";
+  gitEmail = "exampleEmail";
+  host = "hydenix";
   /*
     Default password is required for sudo support in systems
     !REMEMBER TO USE passwd TO CHANGE THE PASSWORD!
-    post install this will run passwd by default
   */
   defaultPassword = "hydenix";
   timezone = "America/Vancouver";
   locale = "en_CA.UTF-8";
+
+  # List of drivers to install in ./hosts/nixos/drivers.nix
+  drivers = [
+    "amdgpu"
+    "intel"
+    # "nvidia"
+    # "amdcpu"
+    # "intel-old"
+  ];
+
+  /*
+    These will be imported after the default modules and override any conflicting options
+    !Its very possible to break hydenix by overriding options
+    eg:
+      # lets say hydenix has a default of:
+      {
+        services.openssh.enable = true;
+        environment.systemPackages = [ pkgs.vim ];
+      }
+      # your module
+      {
+        services.openssh.enable = false;  #? This wins by default (last definition)
+        environment.systemPackages = [ pkgs.git ];  #? This gets merged with Module A
+      }
+  */
+  # List of nix modules to import in ./hosts/nixos/default.nix
+  nixModules = [
+    # "import ./my-module.nix"
+  ];
+  # List of nix modules to import in ./lib/mkConfig.nix
+  homeModules = [
+    # "import ./my-module.nix"
+  ];
 
   hyde = rec {
     sddmTheme = "Candy"; # or "Corners"
@@ -108,7 +145,7 @@ rec {
       # "Solarized Dark"
       # "Windows 11"
       # "Monterey Frost"
-      #! "Pixel Dream" Currently broken due to icon build
+      #! "Pixel Dream" currently fails to build due to icon issues
     ];
 
     # Exactly the same as hyde.conf
