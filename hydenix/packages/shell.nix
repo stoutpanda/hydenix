@@ -10,5 +10,6 @@
     fastfetch # system information fetch tool
     git # distributed version control system
     fzf # command line fuzzy finder
+    comma # package runner
   ];
 }
