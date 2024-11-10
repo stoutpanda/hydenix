@@ -55,7 +55,6 @@
           path = ./template;
           description = "Hydenix template";
           welcomeText = ''
-            # Getting started
             ```
              _    _           _            _
             | |  | |         | |          (_)
@@ -67,6 +66,7 @@
                     |___/       ❄️ Powered by Nix ❄️
             ```
             - edit ./config.nix to your liking
+            - run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
             - run any of the packages in flake.nix
           '';
         };
@@ -88,8 +88,9 @@
         hydenix = defaultConfig.nixosConfiguration.config.system.build.toplevel;
 
         # Home activation packages - you probably don't want to use these
-        hm = defaultConfig.homeConfigurations.${defaultConfig.username}.activationPackage;
-        hm-generic = defaultConfig.homeConfigurations."${defaultConfig.username}-generic".activationPackage;
+        hm = defaultConfig.homeConfigurations.${defaultConfig.userConfig.username}.activationPackage;
+        hm-generic =
+          defaultConfig.homeConfigurations."${defaultConfig.userConfig.username}-generic".activationPackage;
 
         # EXPERIMENTAL VM BUILDERS
         arch-vm = defaultConfig.arch-vm;

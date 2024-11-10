@@ -53,6 +53,9 @@ rec {
   timezone = "America/Vancouver";
   locale = "en_CA.UTF-8";
 
+  # hardware config - sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix
+  hardwareConfig = (toString ./hardware-configuration.nix);
+
   # List of drivers to install in ./hosts/nixos/drivers.nix
   drivers = [
     "amdgpu"

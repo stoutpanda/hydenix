@@ -26,6 +26,8 @@ userConfig: rec {
   arch-vm = import ../hosts/vm/arch-vm.nix { inherit pkgs userConfig; };
   fedora-vm = import ../hosts/vm/fedora-vm.nix { inherit pkgs userConfig; };
 
+  inherit userConfig;
+
   homeConfigurations = {
 
     # Home configuration for nix

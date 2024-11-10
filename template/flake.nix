@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:richen604/hydenix/dev";
+    hydenix = {
+      url = "path:/home/richen/hydenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -21,10 +21,7 @@
     in
     {
 
-      # Main config builder
-      lib = {
-        inherit hydenixConfig;
-      };
+      nixosConfigurations.${hydenixConfig.userConfig.host} = hydenixConfig.nixosConfiguration;
 
       packages.${system} = {
         # Packages below load your config in ./config.nix

@@ -13,7 +13,7 @@ in
 {
 
   imports = [
-    ./hardware-configuration.nix
+    userConfig.hardwareConfig
     ./drivers.nix
   ];
 
