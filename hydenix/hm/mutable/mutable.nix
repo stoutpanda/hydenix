@@ -87,7 +87,7 @@ in
           in
           ''
             $VERBOSE_ECHO "Copying mutable file: ${source} -> ${target}"
-            if [ ${recursiveFlag} != "" ]; then
+            if [ -n "${recursiveFlag}" ]; then
               $DRY_RUN_CMD cp -r --remove-destination --no-preserve=mode ${source}/. ${target}
             else
               $DRY_RUN_CMD cp --remove-destination --no-preserve=mode ${source} ${target}
@@ -95,15 +95,18 @@ in
 
             $DRY_RUN_CMD chmod -R u+w ${target}
 
-            # Check if the file is a script or binary before making it executable
             if [ -d ${target} ]; then
-              find ${target} -type f -print0 | xargs -0 -I {} sh -c '
-                if ${pkgs.file}/bin/file -b "{}" | grep -qE "executable|script" || [[ "{}" == *.sh ]]; then
-                  $DRY_RUN_CMD chmod u+wx "{}"
-                fi
-              '
+              find ${target} -type f -exec sh -c '
+                for f do
+                  type=$(${pkgs.file}/bin/file -b "$f")
+                  if echo "$type" | grep -qE "executable|script" || [[ "$f" =~ \.sh$ ]]; then
+                    $DRY_RUN_CMD chmod u+wx "$f"
+                  fi
+                done
+              ' sh {} +
             else
-              if ${pkgs.file}/bin/file -b ${target} | grep -qE "executable|script" || [[ ${target} == *.sh ]]; then
+              type=$(${pkgs.file}/bin/file -b ${target})
+              if echo "$type" | grep -qE "executable|script" || [[ ${target} =~ \.sh$ ]]; then
                 $DRY_RUN_CMD chmod u+wx ${target}
               fi
             fi
