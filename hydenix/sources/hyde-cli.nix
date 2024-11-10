@@ -43,8 +43,12 @@ let
 
       # ------------ edits ------------ #
 
-         # ensure all hyprdots scripts are executable
-        find . -type f -executable -print0 | xargs -0 -I {} sed -i '1s|^#!.*|#!/usr/bin/env bash|' {}
+        # ensure all shell scripts use env bash shebang, preserving other interpreters
+        find . -type f -executable -print0 | xargs -0 -I {} sh -c '
+         if head -n1 "{}" | grep -q "^#!.*sh" ; then
+           sed -i "1s|^#!.*|#!/usr/bin/env bash|" "{}"
+         fi'
+
 
         # Update waybar killall command in all hyprdots files
         find . -type f -print0 | xargs -0 sed -i 's/killall waybar/killall .waybar-wrapped/g'
