@@ -66,6 +66,12 @@
   #//    "''${hydeConfDir}/wallbash/Wall-Ways/code.dcol" #! Skips code
   #// )
 
+  skip_wallbash=(
+    ${toString (builtins.concatStringsSep "\n  " 
+      (map (path: "\"${path}\"") (userConfig.hyde.conf.skip_wallbash or []))
+    )}
+  )
+
 
   # █▀█ █▀█ █▀▀ █
   # █▀▄ █▄█ █▀░ █

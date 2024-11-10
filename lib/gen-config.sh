@@ -83,6 +83,10 @@ rec {
   # List of nix modules to import in ./hosts/nixos/default.nix
   nixModules = [
     # (toString ./my-module.nix)
+    # in my-module.nix you can reference this userConfig
+    # ({ userConfig, pkgs, ... }: {
+    #   environment.systemPackages = [ pkgs.git ];
+    # })
   ];
   # List of nix modules to import in ./lib/mkConfig.nix
   homeModules = [
@@ -154,6 +158,7 @@ rec {
       wallAddCustomPath = "";
       enableWallDcol = 2;
       wallbashCustomCurve = "";
+      skip_wallbash = [ ];
       themeSelect = 2;
       rofiStyle = 11;
       rofiScale = 9;
