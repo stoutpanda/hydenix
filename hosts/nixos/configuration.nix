@@ -39,6 +39,11 @@ in
   #   };
   # };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   environment.pathsToLink = [
     "/share/icons"
     "/share/themes"
@@ -57,6 +62,7 @@ in
   #   polkit.enable = true;
   #   pam.services.swaylock = { };
   # };
+  security.rtkit.enable = true;
 
   # ===== System Services =====
   services = {
