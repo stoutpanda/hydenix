@@ -40,8 +40,10 @@ in
 {
 
   # TODO: i should be able to make this in the derivation of hyde-cli
+  # TODO: if exists nothing i can do about it cause chattr
   # generates meta file for hyde-cli
   makeStubMeta = lib.hm.dag.entryAfter [ "mutableFileGeneration" ] ''
+    if [ ! -f "$HOME/.cache/hyde/hyde.meta" ]; then
     mkdir -p $HOME/.cache/hyde
     $DRY_RUN_CMD cat << EOF > $HOME/.cache/hyde/hyde.meta
     #? This is a meta file generated for hyde-cli
@@ -56,6 +58,7 @@ in
     export modify_date=""
     export commit_message=""
     EOF
+    fi
   '';
 
   # links hyde-cli to hyprdots

@@ -66,7 +66,7 @@ rec {
   ];
 
   /*
-    These will be imported after the default modules and override any conflicting options
+    These will be imported after the default modules and override/merge any conflicting options
     !Its very possible to break hydenix by overriding options
     eg:
       # lets say hydenix has a default of:
@@ -77,16 +77,16 @@ rec {
       # your module
       {
         services.openssh.enable = false;  #? This wins by default (last definition)
-        environment.systemPackages = [ pkgs.git ];  #? This gets merged with Module A
+        environment.systemPackages = [ pkgs.git ];  #? This gets merged with hydenix
       }
   */
   # List of nix modules to import in ./hosts/nixos/default.nix
   nixModules = [
-    # "import ./my-module.nix"
+    # (toString ./my-module.nix)
   ];
   # List of nix modules to import in ./lib/mkConfig.nix
   homeModules = [
-    # "import ./my-module.nix"
+    # (toString ./my-module.nix)
   ];
 
   hyde = rec {
@@ -143,7 +143,7 @@ rec {
       # "Solarized Dark"
       # "Windows 11"
       # "Monterey Frost"
-      #! "Pixel Dream" currently fails to build due to icon issues
+      # "Pixel Dream" #! currently broken due to icon build
     ];
 
     # Exactly the same as hyde.conf
@@ -163,11 +163,11 @@ rec {
 
   vm = {
     # 4 GB minimum
-    memorySize = 8192;
+    memorySize = 4096;
     # 2 cores minimum
-    cores = 4;
+    cores = 2;
     # 30GB minimum for one theme - 50GB for multiple themes - more for development and testing
-    diskSize = 30000;
+    diskSize = 20000;
   };
 }
 EOF

@@ -40,11 +40,11 @@ rec {
   */
   # List of nix modules to import in ./hosts/nixos/default.nix
   nixModules = [
-    # "import ./my-module.nix"
+    # (toString ./my-module.nix)
   ];
   # List of nix modules to import in ./lib/mkConfig.nix
   homeModules = [
-    # "import ./my-module.nix"
+    # (toString ./my-module.nix)
   ];
 
   hyde = rec {
