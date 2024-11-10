@@ -1,5 +1,5 @@
-{
-  commonArgs,
+{ commonArgs
+,
 }:
 let
   inherit (commonArgs)
