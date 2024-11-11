@@ -9,16 +9,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: cachix/install-nix-action@v24
         with:
-          node-version: "20"
-
-      - name: Install commitlint
-        run: |
-          npm install --global @commitlint/cli @commitlint/config-conventional
+          nix_path: nixpkgs=channel:nixos-unstable
 
       - name: Copy commitlint config
         run: cp .commitlintrc.js $HOME/.commitlintrc.js
 
       - name: Validate PR commits
-        run: npx commitlint --config $HOME/.commitlintrc.js --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+        run: nix-shell -p commitlint --run "commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose"
