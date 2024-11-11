@@ -4,7 +4,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hydenix = {
-      url = "path:/home/richen/hydenix";
+      # Available inputs:
+      # Main: github:richen604/hydenix
+      # Dev: github:richen604/hydenix/dev 
+      # Commit: github:richen604/hydenix/<commit-hash>
+      # Version: github:richen604/hydenix/v1.0.0
+      url = "github:richen604/hydenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
