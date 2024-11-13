@@ -93,8 +93,8 @@
           defaultConfig.homeConfigurations."${defaultConfig.userConfig.username}-generic".activationPackage;
 
         # EXPERIMENTAL VM BUILDERS
-        arch-vm = defaultConfig.arch-vm;
-        fedora-vm = defaultConfig.fedora-vm;
+        arch-vm = defaultConfig.arch-vm.default;
+        fedora-vm = defaultConfig.fedora-vm.default;
       };
 
       devShells.${system}.default = import ./lib/dev-shell.nix { inherit pkgs; };
