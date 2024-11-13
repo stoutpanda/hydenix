@@ -14,6 +14,8 @@
     blueman # bluetooth manager gui
     brightnessctl # screen brightness control
     udiskie # manage removable media
+    ntfs3g # ntfs support
+    exfat # exFAT support
     swayidle # sway idle management
     playerctl # media player cli
     gobject-introspection # for python packages

@@ -58,10 +58,10 @@ in
   ];
 
   # # # ===== Security =====
-  # security = {
-  #   polkit.enable = true;
-  #   pam.services.swaylock = { };
-  # };
+  security = {
+    polkit.enable = true;
+    pam.services.swaylock = { };
+  };
   security.rtkit.enable = true;
 
   # ===== System Services =====
@@ -78,7 +78,10 @@ in
       wireplumber.enable = true;
     };
     dbus.enable = true;
-    udisks2.enable = true;
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
     openssh.enable = true;
     displayManager = {
       sddm = {
@@ -126,6 +129,8 @@ in
     libsForQt5.qt5.qtgraphicaleffects # for sddm theme effects
     libsForQt5.qtsvg # for sddm theme svg icons
     libsForQt5.qt5.qtwayland # wayland support for qt5
+
+    polkit_gnome # polkit gui
   ];
 
   networking = {
