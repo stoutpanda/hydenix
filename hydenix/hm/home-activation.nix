@@ -81,16 +81,21 @@ in
   '';
 
   # sets the theme to the last theme in the themes list 
+  # TODO: waybar borks, users have to run Hyde waybar reload
   setTheme = lib.hm.dag.entryAfter [ "swwwallCache" ] ''
     export PATH="${
       lib.makeBinPath [
-        pkgs.hyprland # For hyprctl
         pkgs.swww
-        pkgs.systemd # For hostnamectl
         pkgs.killall
+        pkgs.hyprland
+        pkgs.dunst
+        pkgs.libnotify
+        pkgs.systemd
+        pkgs.waybar
+        pkgs.kitty
       ]
     }:$PATH"
-    $DRY_RUN_CMD $HOME/.local/share/bin/themeswitch.sh -s "${activeTheme}"
-  '';
 
+    $DRY_RUN_CMD $HOME/.local/share/bin/themeswitch.sh -s "${activeTheme}
+  '';
 }
