@@ -18,22 +18,12 @@ in
   imports = [
     ./hm/mutable
     ./packages
-    ./programs
+    (import ./programs/default.nix { inherit pkgs userConfig; })
     ./sources
   ];
 
   options.hydenix = {
     enable = mkEnableOption "hydenix";
-    git = {
-      userName = mkOption {
-        type = types.str;
-        description = "Git user name";
-      };
-      userEmail = mkOption {
-        type = types.str;
-        description = "Git user email";
-      };
-    };
     themes = mkOption {
       type = types.listOf types.str;
       default = [ "Catppuccin Mocha" ];

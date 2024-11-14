@@ -40,7 +40,7 @@ if [ "$SKIP_CHECKS" = false ]; then
 fi
 
 cat <<EOF >"$CONFIG_FILE"
-rec {
+{
   username = "$(whoami || echo "hydenix")";
   gitUser = "$(git config --get user.name || echo "hydenix")";
   gitEmail = "$(git config --get user.email || echo "exampleEmail")";
@@ -98,10 +98,9 @@ rec {
 
     enable = true;
 
-    # git config, useful for initial setup
-    git = {
-      userName = "\${username}";
-      userEmail = "\${gitEmail}";
+    # wallbash config, sets extensions as active
+    wallbash = {
+      vscode = true;
     };
 
     # active theme, must be in themes list

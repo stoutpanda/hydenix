@@ -1,22 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, userConfig, ... }:
 {
 
   imports = [
-    ./git.nix
+    (import ./git.nix { inherit pkgs userConfig; })
     ./zsh.nix
-    ./vscode.nix
+    (import ./vscode.nix { inherit pkgs userConfig; })
   ];
 
   programs = {
     home-manager.enable = true;
-    kitty.enable = true;
-    waybar.enable = true;
-    vscode.enable = true;
     neovim = {
       enable = true;
       defaultEditor = true;
     };
-    swaylock.enable = true;
     zsh.enable = true;
     nix-index.enable = true;
   };
