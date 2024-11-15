@@ -20,12 +20,10 @@
 <br>
 
   <a href="#installation-options"><kbd> <br> Installation <br> </kbd></a>&ensp;
-  <a href="#themes"><kbd> <br> Themes <br> </kbd></a>&ensp;
-  <a href="#styles"><kbd> <br> Styles <br> </kbd></a>&ensp;
-  <a href="#keybindings"><kbd> <br> Keybindings <br> </kbd></a>&ensp;
+  <a href="#upgrading"><kbd> <br> Upgrading <br> </kbd></a>&ensp;
     <a href="#troubleshooting--issues"><kbd> <br> Issues <br> </kbd></a>&ensp;
       <a href="#faq"><kbd> <br> FAQ <br> </kbd></a>&ensp;
-        <a href="#keybindings"><kbd> <br> Keybindings <br> </kbd></a>&ensp;
+        <a href="#contributing"><kbd> <br> Contributing <br> </kbd></a>&ensp;
   <a href="https://www.youtube.com/watch?v=2rWqdKU1vu8&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY&index=1"><kbd> <br> Youtube <br> </kbd></a>&ensp;
   <a href="https://discord.gg/qWehcFJxPa"><kbd> <br> Discord <br> </kbd></a>
 
@@ -44,7 +42,7 @@ Features:
 - Includes [HyDE-cli](https://github.com/HyDE-Project/Hyde-cli) by default
 - NixOS VM that can be run with any supported distro
 - Themes are fetched at build-time, for faster setup
-- Includes **beta cross-distro** support using home-manager, more on that [here](##installation-options). 
+- Includes **beta cross-distro** support using home-manager, more on that [here](#installation-options). 
 
 Why Nix?:
 - Reproducible environment
@@ -53,19 +51,19 @@ Why Nix?:
 - home-manager for managing dotfiles
 
 > [!NOTE]
-> If you are new to Nix, please refer to the [Nix Resources](##Nix-Resources).
+> If you are new to Nix, please refer to the [Nix Resources](#Nix-Resources).
 
 ---
 
 ## Limitations
 
-- Some Hyde-cli commands are not supported yet
-  - `Hyde theme import` I've had this fail off and on, working on a fix
-  - `Hyde restore/backup/control` while these commands will work, hydenix makes edits to hyde files by default. currently not recommended
+- Custom modules in `config.nix` may override hydenix defaults.
+- Some Hyde-cli commands are not supported
+  - `Hyde theme import` use `config.nix` options
+  - `Hyde restore/backup/control` while these commands will work, hydenix makes edits to hyde files by default.
   - `Hyde override` changing the user dir conflics with home-manager, rebuilds won't run as expected
-  - `Hyde sddm` sddm is not supported yet
-  - `Hyde inject` not supported
-- Any other issues that don't match base HyDE config, see [Troubleshooting & Issues](#troubleshooting--issues)
+  - `Hyde inject` not supported, use nixos options
+- Any other issues, see [Troubleshooting & Issues](#troubleshooting--issues)
 
 ## Requirements
 
@@ -85,10 +83,6 @@ If you have issues running the VM, see the [virtio faq](#vm-virtio-guide)
 ```bash
 # run the flake remotely
 nix run github:richen604/hydenix
-
-# or clone the repo
-git clone https://github.com/richen604/hydenix.git && cd hydenix
-nix run .
 ```
 
 > **note:** any changes require the vm to be rebuilt. run `rm hydenix.qcow2` to remove the old one.
@@ -98,27 +92,13 @@ nix run .
 > [!CAUTION]
 > Installation options below are designed for a minimal install of NixOS.
 
-#### 2. Clone the repo
+#### 2. Template the Flake
 
-1. clone this repository:
-
-   ```bash
-   git clone https://github.com/richen604/hydenix.git && cd hydenix
-   ```
-2. edit `config.nix` and `hosts/nixos/home.nix` with your preferences
-> customizations outside of config.nix & hydenix in home.nix will have limited support
-
-1. generate hardware configuration:
-
-   ```bash
-   sudo nixos-generate-config --show-hardware-config > ./hosts/nixos/hardware-configuration.nix
-   ```
-
- 2. run the flake:
-
-    ```bash
-    sudo nixos-rebuild switch --flake .#hydenix
-    ```
+1. in a new directory, `nix flake init -t github:richen604/hydenix`
+2. edit `config.nix` with your preferences
+3. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
+4. `git init && git add .` (flakes have to be managed via git)
+5. run any of the packages in your new `flake.nix`
 
 #### 3. (BETA) Cross-distro VMs
 
@@ -132,182 +112,55 @@ nix run github:richen604/hydenix/#build-fedora-vm # or #build-arch-vm
 nix run github:richen604/hydenix/#run-fedora-vm # or #run-arch-vm
 ```
 
-## Themes
+## Upgrading
 
-All our official themes are stored in a separate repository, allowing users to install them using themepatcher.
-For more information, visit [prasanthrangan/hyde-themes](https://github.com/prasanthrangan/hyde-themes).
+Hydenix can be upgraded, downgraded, or version locked easy.
 
-<div align="center">
-  <table><tr><td>
+in your template flake folder, update hydenix to main using
+```bash
+nix flake update hydenix
+```
 
-[![Catppuccin-Latte](https://placehold.co/130x30/dd7878/eff1f5?text=Catppuccin-Latte&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Catppuccin-Latte)
-[![Catppuccin-Mocha](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin-Mocha&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Catppuccin-Mocha)
-[![Decay-Green](https://placehold.co/130x30/90ceaa/151720?text=Decay-Green&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Decay-Green)
-[![Edge-Runner](https://placehold.co/130x30/fada16/000000?text=Edge-Runner&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Edge-Runner)
-[![Frosted-Glass](https://placehold.co/130x30/7ed6ff/1e4c84?text=Frosted-Glass&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Frosted-Glass)
-[![Graphite-Mono](https://placehold.co/130x30/a6a6a6/262626?text=Graphite-Mono&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Graphite-Mono)
-[![Gruvbox-Retro](https://placehold.co/130x30/475437/B5CC97?text=Gruvbox-Retro&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Gruvbox-Retro)
-[![Material-Sakura](https://placehold.co/130x30/f2e9e1/b4637a?text=Material-Sakura&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Material-Sakura)
-[![Nordic-Blue](https://placehold.co/130x30/D9D9D9/476A84?text=Nordic-Blue&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Nordic-Blue)
-[![Rosé-Pine](https://placehold.co/130x30/c4a7e7/191724?text=Rosé-Pine&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Rose-Pine)
-[![Synth-Wave](https://placehold.co/130x30/495495/ff7edb?text=Synth-Wave&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Synth-Wave)
-[![Tokyo-Night](https://placehold.co/130x30/7aa2f7/24283b?text=Tokyo-Night&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Tokyo-Night)
+or define a specific version in your `flake.nix` template
+```nix
+inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hydenix = {
+      # Available inputs:
+      # Main: github:richen604/hydenix
+      # Dev: github:richen604/hydenix/dev 
+      # Commit: github:richen604/hydenix/<commit-hash>
+      # Version: github:richen604/hydenix/v1.0.0
+      url = "github:richen604/hydenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+```
 
-  </td></tr></table>
-</div>
-
-> [!TIP]
-> Everyone, including you can create, maintain, and share additional themes, all of which can be installed using themepatcher!
-> To create your own custom theme, please refer to the [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming).
-> If you wish to have your hyde theme showcased, or you want to find some non-official themes, visit [kRHYME7/hyde-gallery](https://github.com/kRHYME7/hyde-gallery)!
-
-<div align="right">
-  <br>
-  <a href="#"><kbd> <br> 🡅 <br> </kbd></a>
-</div>
-
-## Styles
-
-<div align="center"><table><tr>Theme Select</tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_1.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_2.png"/></td></tr></table></div>
-
-<div align="center"><table><tr><td>Wallpaper Select</td><td>Launcher Select</td></tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/walls_select.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png"/></td></tr>
-<tr><td>Wallbash Modes</td><td>Notification Action</td></tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wb_mode_sel.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/notif_action_sel.png"/></td></tr>
-</table></div>
-
-<div align="center"><table><tr>Rofi Launcher</tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_1.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_2.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_3.png"/></td></tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_4.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_5.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_6.png"/></td></tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_7.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_8.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_9.png"/></td></tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_10.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_11.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_12.png"/></td></tr>
-</table></div>
-
-<div align="center"><table><tr>Wlogout Menu</tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_1.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_2.png"/></td></tr></table></div>
-
-<div align="center"><table><tr>Game Launcher</tr><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_1.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_2.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_3.png"/></td></tr></table></div>
-<div align="center"><table><tr><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_4.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_5.png"/></td></tr></table></div>
-
-<div align="right">
-  <br>
-  <a href="#"><kbd> <br> 🡅 <br> </kbd></a>
-</div>
-
-## Keybindings
-
-<div align="center">
-
-| Keys | Action |
-| :--- | :--- |
-| <kbd>Super</kbd> + <kbd>Q</kbd><br><kbd>Alt</kbd> + <kbd>F4</kbd> | Close focused window|
-| <kbd>Super</kbd> + <kbd>Del</kbd> | Kill Hyprland session |
-| <kbd>Super</kbd> + <kbd>W</kbd> | Toggle the window between focus and float |
-| <kbd>Super</kbd> + <kbd>G</kbd> | Toggle the window between focus and group |
-| <kbd>Super</kbd> + <kbd>slash</kbd> | Launch keybinds hint |
-| <kbd>Alt</kbd> + <kbd>Enter</kbd> | Toggle the window between focus and fullscreen |
-| <kbd>Super</kbd> + <kbd>L</kbd> | Launch lock screen |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | Toggle pin on focused window |
-| <kbd>Super</kbd> + <kbd>Backspace</kbd> | Launch logout menu |
-| <kbd>Ctrl</kbd> + <kbd>Esc</kbd> | Toggle waybar |
-| <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal emulator (kitty) |
-| <kbd>Super</kbd> + <kbd>E</kbd> | Launch file manager (dolphin) |
-| <kbd>Super</kbd> + <kbd>C</kbd> | Launch text editor (vscode) |
-| <kbd>Super</kbd> + <kbd>F</kbd> | Launch web browser (firefox) |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd> | Launch system monitor (htop/btop or fallback to top) |
-| <kbd>Super</kbd> + <kbd>A</kbd> | Launch application launcher (rofi) |
-| <kbd>Super</kbd> + <kbd>Tab</kbd> | Launch window switcher (rofi) |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | Launch file explorer (rofi) |
-| <kbd>F10</kbd> | Toggle audio mute |
-| <kbd>F11</kbd> | Decrease volume |
-| <kbd>F12</kbd> | Increase volume |
-| <kbd>Super</kbd> + <kbd>P</kbd> | Partial screenshot capture |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>P</kbd> | Partial screenshot capture (frozen screen) |
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | Monitor screenshot capture |
-| <kbd>PrtScn</kbd> | All monitors screenshot capture |
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>G</kbd> | Disable hypr effects for gamemode |
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>→</kbd><kbd>←</kbd> | Cycle wallpaper |
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd><kbd>↓</kbd> | Cycle waybar mode |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Launch wallbash mode select menu (rofi) |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Launch theme select menu (rofi) |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | Launch style select menu (rofi) |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | Launch wallpaper select menu (rofi) |
-| <kbd>Super</kbd> + <kbd>V</kbd> | Launch clipboard (rofi) |
-| <kbd>Super</kbd> + <kbd>K</kbd> | Switch keyboard layout |
-| <kbd>Super</kbd> + <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> | Move window focus |
-| <kbd>Alt</kbd> + <kbd>Tab</kbd> | Change window focus |
-| <kbd>Super</kbd> + <kbd>[0-9]</kbd> | Switch workspaces |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>←</kbd><kbd>→</kbd> | Switch workspaces to a relative workspace |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>↓</kbd> | Move to the first empty workspace |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> | Resize windows |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>[0-9]</kbd> | Move focused window to a relative workspace |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> | Move focused window (tiled/floating) around the current workspace |
-| <kbd>Super</kbd> + <kbd>MouseScroll</kbd> | Scroll through existing workspaces |
-| <kbd>Super</kbd> + <kbd>LeftClick</kbd><br><kbd>Super</kbd> + <kbd>Z</kbd> | Move focused window |
-| <kbd>Super</kbd> + <kbd>RightClick</kbd><br><kbd>Super</kbd> + <kbd>X</kbd> | Resize focused window |
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Move/Switch to special workspace (scratchpad) |
-| <kbd>Super</kbd> + <kbd>S</kbd> | Toggle to special workspace |
-| <kbd>Super</kbd> + <kbd>J</kbd> | Toggle focused window split |
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>[0-9]</kbd> | Move focused window to a workspace silently |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>H</kbd> | Move between grouped windows backward |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>L</kbd> | Move between grouped windows forward |
-
-
-</div>
-<br>
-
-<div align="right">
-  <br>
-  <a href="#"><kbd> <br> 🡅 <br> </kbd></a>
-</div>
-
-
-## TODO
-
-- [x] sddm themes 
-- [x] revamp global config.nix to support home-manager options
-- [ ] add hyde.conf params to home-manager config
-- [ ] better home-manager module + install options
-- [ ] wallbash 
-  - [ ] spotify - via flatpak and spicetify 
-  - [ ] vesktop/webcord etc
-  - [ ] cava
-- [ ] minimize all home.file calls for performance
-- [ ] Cross-distro support
-  - [ ] Arch & Base HyDE VM for testing
-  - [ ] Fedora
-  - [ ] MacOS via nix-darwin and OSX-KVM
-
-Future:
-- [ ] remove nixGL in support for system-manager and nix-system-graphics
+run `nix flake update hydenix` again to apply the changes
 
 ## Troubleshooting & Issues
 
-- if you encounter any issues, please check the nixos and home manager logs:
-  ```bash
-  journalctl -b
-  journalctl --user -b
-  sudo systemctl status home-manager-<hostname>.service
-  ```
-- if running nixos on host, please run `nix-shell -p nix-info --run "nix-info -m"` and paste the result.
+The following information is required when creating an issue, please provide as much as possible.
+It's also possible to diagnose this yourself with the information provided.
+
+1. **System Logs**
+```bash
+journalctl -b                                           # System logs
+journalctl --user -b                                   # User logs
+sudo systemctl status home-manager-$HOSTNAME.service   # Home-manager status
+```
+
+2. **System Information**
+```bash
+nix-shell -p nix-info --run "nix-info -m"
+```
+
+3. **Configuration**
+- Link to a github repo with your templated flake or fork
+
+> [!NOTE]
+> Custom modules in `config.nix` have limited support.
 
 <div align="right">
   <br>

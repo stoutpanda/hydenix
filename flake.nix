@@ -63,9 +63,10 @@
                     __/ |
                     |___/       ❄️ Powered by Nix ❄️
             ```
-            - edit ./config.nix to your liking
-            - run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
-            - run any of the packages in flake.nix
+            1. edit `config.nix` with your preferences
+            2. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
+            3. `git init && git add .` (flakes have to be managed via git)
+            4. run any of the packages in your new `flake.nix`
           '';
         };
       };
