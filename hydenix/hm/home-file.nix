@@ -3,6 +3,7 @@
   pkgs,
   themes,
   userConfig,
+  activeTheme,
 }:
 let
   hyde = import ../sources/hyde.nix { inherit pkgs; };
@@ -165,7 +166,7 @@ lib.mkMerge [
       mutable = true;
     };
     ".config/libinput-gestures.conf" = {
-      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/libinput-gestures.conf"; 
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/libinput-gestures.conf";
       force = true;
       mutable = true;
     };
@@ -199,7 +200,6 @@ lib.mkMerge [
       recursive = true;
       mutable = true;
     };
-
 
     ".icons/default" = {
       source = "${hyde}/share/hyde/hyprdots-modified/Configs/.icons/default";
@@ -271,5 +271,8 @@ lib.mkMerge [
 
   # --------------------------------------------------- // Theme generation
   (import ./gen-theme-homefiles.nix { inherit lib pkgs; } themes)
+
+  # --------------------------------------------------- // Theme activation
+  (import ./gen-theme-activation.nix { inherit lib pkgs activeTheme; })
 
 ]
