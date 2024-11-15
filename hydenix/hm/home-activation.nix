@@ -96,6 +96,6 @@ in
       ]
     }:$PATH"
 
-    $DRY_RUN_CMD $HOME/.local/share/bin/themeswitch.sh -s "${activeTheme}
+    $DRY_RUN_CMD $HOME/.local/share/bin/themeswitch.sh -s "${activeTheme}"
   '';
 }
