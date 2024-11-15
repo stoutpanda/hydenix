@@ -1,8 +1,5 @@
 {
   inputs,
-  nixpkgs,
-  home-manager,
-  nix-index-database,
   pkgs,
   system,
   ...
@@ -10,12 +7,10 @@
 userConfig: rec {
   commonArgs = {
     inherit
-      nixpkgs
+      inputs
       pkgs
-      home-manager
       system
       userConfig
-      nix-index-database
       ;
   };
 
@@ -31,11 +26,11 @@ userConfig: rec {
   homeConfigurations = {
 
     # Home configuration for nix
-    "${userConfig.username}" = home-manager.lib.homeManagerConfiguration {
+    "${userConfig.username}" = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
         ../hosts/nixos/home.nix
-        nix-index-database.hmModules.nix-index
+        inputs.nix-index-database.hmModules.nix-index
       ] ++ userConfig.homeModules;
       extraSpecialArgs = {
         inherit userConfig;
@@ -44,11 +39,11 @@ userConfig: rec {
     };
 
     # Generic home configuration for non-NixOS systems
-    "${userConfig.username}-generic" = home-manager.lib.homeManagerConfiguration {
+    "${userConfig.username}-generic" = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
         ../hosts/nixos/home.nix
-        nix-index-database.hmModules.nix-index
+        inputs.nix-index-database.hmModules.nix-index
         {
           targets.genericLinux.enable = true;
         }

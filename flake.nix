@@ -35,8 +35,6 @@
           inputs
           pkgs
           system
-          home-manager
-          nix-index-database
           nixpkgs
           ;
       };
