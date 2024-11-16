@@ -120,6 +120,24 @@ home.file = {
 }
 ```
 
+### Common issues
+
+- waybar look weird after rebuild? run `Hyde waybar reload`
+- config resets on rebuild? note [readme](https://github.com/richen604/hydenix/blob/main/README.md#limitations)
+
 ### Requesting features
 
 Please open a [feature request](https://github.com/richen604/hydenix/issues/new?template=feature_request.md) if you have any feature requests.
+
+## Nix Resources
+
+> [!TIP]
+> Nix is a powerful package manager and configuration system that can be overwhelming at first. Here are some resources to help you get started:
+
+General Resources
+- [Nix Packages](https://search.nixos.org/packages)
+- [Nix Options](https://search.nixos.org/options)
+- [Home Manager Options](https://nix-community.github.io/home-manager/options.html) *hint: use control + f to search*
+- [NixOS Wiki](https://nixos.wiki)
+- [Nixpkgs Discussions](https://discourse.nixos.org)
+- [Nixpkgs Issues](https://github.com/NixOS/nixpkgs/issues)
