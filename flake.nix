@@ -17,15 +17,12 @@
 
   outputs =
     {
-      nixpkgs,
-      home-manager,
-      nix-index-database,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
+      pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
@@ -35,7 +32,6 @@
           inputs
           pkgs
           system
-          nixpkgs
           ;
       };
 
