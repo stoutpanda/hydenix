@@ -52,12 +52,14 @@ Why Nix?:
 
 > [!NOTE]
 > If you are new to Nix, please refer to the [Nix Resources](#Nix-Resources).
+> Feel free to ask questions in discussions or discord.
 
 ---
 
 ## Limitations
 
-- Custom modules in `config.nix` may override hydenix defaults.
+- *important* Custom modules in `config.nix` may override hydenix defaults.
+- *important* Configurations will RESET on reboot/relog/rebuilds if your configuration does not match commands run in Hyde; such as active theme and waybar styles. This by design, as nixos and home-manager rerun.
 - Some Hyde-cli commands are not supported
   - `Hyde theme import` use `config.nix` options
   - `Hyde restore/backup/control` while these commands will work, hydenix makes edits to hyde files by default.
@@ -74,11 +76,25 @@ Why Nix?:
 
 ## Installation Options
 
-#### 1. Running as a VM
+
+
+---
+
+> [!CAUTION]
+> Templated flake is designed for a minimal install of NixOS. YMMV.
+
+#### 1. Template the Flake
+
+1. in a new directory, `nix flake init -t github:richen604/hydenix`
+2. edit `config.nix` with your preferences
+3. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
+4. `git init && git add .` (flakes have to be managed via git)
+5. run any of the packages in your new `flake.nix`
+
+#### 2. Running as a nixos VM
 
 If your system supports it, the NixOS VM is the quickest way to get up and running. 
 If you have issues running the VM, see the [virtio faq](#vm-virtio-guide)
-
 
 ```bash
 # run the flake remotely
@@ -86,19 +102,6 @@ nix run github:richen604/hydenix
 ```
 
 > **note:** any changes require the vm to be rebuilt. run `rm hydenix.qcow2` to remove the old one.
-
----
-
-> [!CAUTION]
-> Installation options below are designed for a minimal install of NixOS.
-
-#### 2. Template the Flake
-
-1. in a new directory, `nix flake init -t github:richen604/hydenix`
-2. edit `config.nix` with your preferences
-3. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
-4. `git init && git add .` (flakes have to be managed via git)
-5. run any of the packages in your new `flake.nix`
 
 #### 3. (BETA) Cross-distro VMs
 
@@ -139,10 +142,49 @@ inputs = {
 
 run `nix flake update hydenix` again to apply the changes
 
+## Directory Structure
+
+Below is a brief reference of the directory structure to hydenix:
+
+## `/hosts`
+Contains host-specific configurations and settings.
+
+### `/hosts/nixos`
+NixOS-specific configurations:
+- `configuration.nix` - main nixos system configuration, anything that cannot be done in home-manager
+- `default.nix` - nixos configuration function used in `lib/mkConfig.nix`
+- `drivers.nix` - Hardware driver config - used in `config.nix`
+- `home.nix` - base home-manager config
+
+### `/hosts/vm`
+Virtual machine related configurations:
+- `arch-vm.nix` - Arch Linux VM configuration
+- `fedora-vm.nix` - Fedora VM configuration
+- `nix-vm.nix` - NixOS VM configuration
+- `vm-utils.nix` - Shared VM utilities for non-nixos 
+- `/scripts` - VM management scripts
+
+## `/hydenix`
+home-manager module containing most of hydenix's configurations:
+- `/hm` - Home-manager specific configurations
+- `/packages` - Custom package definitions
+- `/programs` - Program-specific configurations
+- `/sources` - Source files and dependencies, including hyde-cli and themes
+- `default.nix` - Main configuration entry point
+
+## `/lib`
+Shared libraries and utilities:
+- `dev-shell.nix` - Development shell configuration for pre-commit hook
+- `gen-config.sh` - Configuration generation script
+- `mkConfig.nix` - Configuration builder, takes `config.nix` and returns hydenix
+
+## `/template`
+Template for creating your own flake.
+
 ## Troubleshooting & Issues
 
 The following information is required when creating an issue, please provide as much as possible.
-It's also possible to diagnose this yourself with the information provided.
+It's also possible to diagnose issues yourself with the information provided.
 
 1. **System Logs**
 ```bash
@@ -243,6 +285,16 @@ General Resources
 </div>
 
 ## Contributing
+
+This project uses [direnv](https://direnv.net/) for pre-commit hooks. Please install it first:
+
+- **Nix**: `nix-env -iA nixpkgs.direnv`
+- **MacOS**: `brew install direnv`
+- **Ubuntu/Debian**: `apt-get install direnv`
+
+then run `direnv allow` to enable the hooks
+
+More documentation on the codebase can be found at [Template README](template/README.md)
 
 This project enforces [Conventional Commits](https://www.conventionalcommits.org/) format for all commit messages. Each commit message must follow this structure:
 
