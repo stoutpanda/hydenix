@@ -23,7 +23,19 @@ pkgs.mkShell {
     ${pkgs.commitlint}/bin/commitlint --edit "$1"
     EOF
 
-    # Make hook executable
+    # Create pre-commit hook
+    cat > .git-hooks/pre-commit <<'EOF'
+    #!/usr/bin/env sh
+    echo "Running nix flake check..."
+    nix flake check
+    if [ $? -ne 0 ]; then
+      echo "Error: nix flake check failed"
+      exit 1
+    fi
+    EOF
+
+    # Make hooks executable
     chmod +x .git-hooks/commit-msg
+    chmod +x .git-hooks/pre-commit
   '';
 }
