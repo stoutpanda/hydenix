@@ -7,9 +7,15 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "Itz-Abhishek-Tiwari";
     repo = "Abyssal-Wave";
-    rev = "main";
+    # locking commit 
+    rev = "1f6eff0eb85ed05ac2c402d9e608cc70a3bb16a0";
     name = name;
     sha256 = "sha256-VpKPKgRQMQhDWmlrFignZ1tN69MB/cd8KBsAARMIKIo=";
+  };
+
+  arcs = {
+    gtk = "Abyssal-Wave";
+    icon = "Papirus-kanagawa";
   };
 
   meta = {

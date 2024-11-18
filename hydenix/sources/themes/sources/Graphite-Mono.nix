@@ -7,9 +7,14 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "prasanthrangan";
     repo = "hyde-themes";
-    rev = "Graphite-Mono";
+    rev = "20710b605787b54489bbb9881e2a011258c2956a";
     name = name;
     sha256 = "sha256-gY7HWmxw7LApPQPYQ0LoKpYKvEVbAS2Gz2rogAi4PFY=";
+  };
+
+  arcs = {
+    gtk = "Graphite-Mono";
+    icon = "Tela-circle-grey";
   };
 
   meta = {

@@ -8,8 +8,14 @@ utils.mkTheme rec {
     owner = "HyDE-Project";
     repo = "hyde-gallery";
     name = name;
-    rev = "Bad-Blood";
-    sha256 = "sha256-8BQukT9sXd89qiCelc9KitfXy7x9sgLChTGKzRpHUaA=";
+    rev = "162a40d67b07c7f7f63ac4262e2d007c21919aca";
+    sha256 = "sha256-VKq++NlPM5a2XqzlfMMUMgHSLLqfLgtsDSalKNrUMqg=";
+  };
+
+  arcs = {
+    gtk = "Bad-Blood";
+    icon = "besgnulinux-mono-red";
+    cursor = "Night-Diamond-Red";
   };
 
   meta = {

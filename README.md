@@ -42,6 +42,7 @@ Features:
 - Includes [HyDE-cli](https://github.com/HyDE-Project/Hyde-cli) by default
 - NixOS VM that can be run with any supported distro
 - Themes are fetched at build-time, for faster setup
+- `config.nix` for easy configuration
 - Includes **beta cross-distro** support using home-manager, more on that [here](#installation-options). 
 
 Why Nix?:
@@ -50,7 +51,8 @@ Why Nix?:
 - changes in configuration can be rolled back easily
 - home-manager for managing dotfiles
 
-> [!NOTE]
+> [!IMPORTANT]
+> NixOS is entirely different than Arch. Experience in functional programming is recommended.
 > If you are new to Nix, please refer to the [Nix Resources](#Nix-Resources).
 > Feel free to ask questions in discussions or discord.
 
@@ -58,8 +60,8 @@ Why Nix?:
 
 ## Limitations
 
-- *important* Custom modules in `config.nix` may override hydenix defaults.
-- *important* Configurations will RESET on reboot/relog/rebuilds if your configuration does not match commands run in Hyde; such as active theme and waybar styles. This by design, as nixos and home-manager rerun.
+- **important** - Custom modules in `config.nix` may override hydenix defaults.
+- **important** - Configurations will RESET on reboot/relog/rebuilds if your configuration does not match commands run in Hyde; such as active theme and waybar styles. This by design, as nixos and home-manager rerun.
 - Some Hyde-cli commands are not supported
   - `Hyde theme import` use `config.nix` options
   - `Hyde restore/backup/control` while these commands will work, hydenix makes edits to hyde files by default.

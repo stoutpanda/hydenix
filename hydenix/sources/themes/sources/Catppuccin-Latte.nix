@@ -7,9 +7,14 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "prasanthrangan";
     repo = "hyde-themes";
-    rev = "Catppuccin-Latte";
+    rev = "2b526598b76ae613d1de42fd3b089ba919ea6aec";
     name = name;
     sha256 = "sha256-WX+knhJnlnSMsNrof+b1d5+kGIGsmRWi962HhkBRJyc=";
+  };
+
+  arcs = {
+    gtk = "Catppuccin-Latte";
+    icon = "Tela-circle-grey";
   };
 
   meta = {

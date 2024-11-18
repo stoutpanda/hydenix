@@ -7,9 +7,14 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "abenezerw";
     repo = "Green-Lush";
-    rev = "main";
+    rev = "61a21b77a8b285b88f3cc5e1677dae64456dd370";
     name = name;
     sha256 = "sha256-Z0TdPlk5sPIAVZvoZeEbzs61XhTx5p6q9vm3hhhhY0o=";
+  };
+
+  arcs = {
+    gtk = "Decay-Green";
+    icon = "Tela-circle-green";
   };
 
   meta = {

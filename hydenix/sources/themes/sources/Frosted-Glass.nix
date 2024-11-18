@@ -7,9 +7,14 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "prasanthrangan";
     repo = "hyde-themes";
-    rev = "Frosted-Glass";
+    rev = "c6f5c5ca25c66741772b5c25582ab1ad8972ba49";
     name = name;
     sha256 = "sha256-AsSXRvVvIyhpPB789oSezEpmXCuCrQIDjYTf+PljHmM=";
+  };
+
+  arcs = {
+    gtk = "Frosted-Glass";
+    icon = "Tela-circle-blue";
   };
 
   meta = {

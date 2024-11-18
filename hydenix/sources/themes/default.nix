@@ -13,7 +13,6 @@ let
 
   # List of theme names
   themeNames = [
-
     # -- Default themes
     "Catppuccin Mocha"
     "Catppuccin Latte"
@@ -28,7 +27,7 @@ let
     "Synth Wave"
     "Tokyo Night"
 
-    # -- Themes from hyde-gallery (use with caution)
+    # -- Themes from hyde-gallery
     "Abyssal-Wave"
     "AbyssGreen"
     "Bad Blood"
@@ -52,8 +51,9 @@ let
     "Solarized Dark"
     "Windows 11"
     "Monterey Frost"
-    # TODO: fix pixel dream icon build
-    # "Pixel Dream"
+    "Vanta Black"
+    "Pixel Dream"
+    "Crimson Blade"
   ];
 
   # Generate theme list using map

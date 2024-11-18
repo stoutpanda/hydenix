@@ -3,17 +3,22 @@
   name,
   src,
   meta,
+  arcs,
 }:
 let
 
-  themeStore = builtins.fromJSON (builtins.readFile ./themes.json);
   arcStore = import ./arcStore.nix { inherit pkgs; };
 
   # Get theme configuration from themes.json
-  themeConfig = themeStore.${name} or null;
+  themeConfig = {
+    gtk = arcs.gtk or null;
+    icon = arcs.icon or null;
+    cursor = arcs.cursor or null;
+    font = arcs.font or null;
+  };
 
   # Fetch arc packages if defined in theme config
-  arcs =
+  themeArcs =
     if themeConfig != null then
       {
         gtk =
@@ -104,5 +109,5 @@ in
 {
   inherit name pkg walls;
   src = pkg.src;
-  inherit arcs;
+  arcs = themeArcs;
 }
