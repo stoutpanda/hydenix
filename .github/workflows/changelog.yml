@@ -24,11 +24,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-          cache: "npm"
 
       - name: Install release tools
         run: |
-          npm ci || npm install
           npm install -g semantic-release @semantic-release/changelog @semantic-release/git conventional-changelog-cli
 
       - name: Release
