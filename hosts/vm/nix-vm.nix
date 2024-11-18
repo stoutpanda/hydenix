@@ -1,5 +1,5 @@
-{ userConfig, nixosSystem, ... }:
-nixosSystem.extendModules {
+{ userConfig, nixosConfiguration, ... }:
+nixosConfiguration.extendModules {
   modules = [
     (
       { config, pkgs, ... }:

@@ -7,9 +7,15 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "RAprogramm";
     repo = "HyDe-Themes";
-    rev = "Dracula";
+    rev = "fc51f05927f2fe9d90393fdf2debc1afaf429df6";
     name = name;
     sha256 = "sha256-AaFFKyFasjGQuLtqJeZYWxrtAgqsW0FDVxB8KqZkkzM=";
+  };
+
+  arcs = {
+    gtk = "Dracula";
+    icon = "Azure-Dark-Icons";
+    cursor = "Dracula-cursors";
   };
 
   meta = {

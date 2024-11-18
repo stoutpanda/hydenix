@@ -7,9 +7,15 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "rishav12s";
     repo = "Paranoid-Sweet";
-    rev = "Paranoid-Sweet";
+    rev = "668f6a5a403416e5f50c1924ee5667bcccd2c1af";
     name = name;
     sha256 = "sha256-0FhznHsg2ov4XYVvhY0y5Uy45s2nWMi8JZMQPBUvpPg=";
+  };
+
+  arcs = {
+    gtk = "Sweet-Dark";
+    icon = "candy-icons";
+    cursor = "Sweet-cursors";
   };
 
   meta = {

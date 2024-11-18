@@ -7,9 +7,14 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "prasanthrangan";
     repo = "hyde-themes";
-    rev = "Rose-Pine";
+    rev = "b009a30d15c994fcbfa30f8a3fc5d1b0670d9653";
     name = name;
     sha256 = "sha256-hvTqM45cw580OXK95a09PxSCidFt7T4bVNjizhsb7IQ=";
+  };
+
+  arcs = {
+    gtk = "Rose-Pine";
+    icon = "Tela-circle-pink";
   };
 
   meta = {

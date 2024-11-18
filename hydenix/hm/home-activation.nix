@@ -40,8 +40,10 @@ in
 {
 
   # TODO: i should be able to make this in the derivation of hyde-cli
+  # TODO: if exists nothing i can do about it cause chattr
   # generates meta file for hyde-cli
   makeStubMeta = lib.hm.dag.entryAfter [ "mutableFileGeneration" ] ''
+    if [ ! -f "$HOME/.cache/hyde/hyde.meta" ]; then
     mkdir -p $HOME/.cache/hyde
     $DRY_RUN_CMD cat << EOF > $HOME/.cache/hyde/hyde.meta
     #? This is a meta file generated for hyde-cli
@@ -56,6 +58,7 @@ in
     export modify_date=""
     export commit_message=""
     EOF
+    fi
   '';
 
   # links hyde-cli to hyprdots
@@ -78,16 +81,21 @@ in
   '';
 
   # sets the theme to the last theme in the themes list 
+  # TODO: waybar borks, users have to run Hyde waybar reload
   setTheme = lib.hm.dag.entryAfter [ "swwwallCache" ] ''
     export PATH="${
       lib.makeBinPath [
-        pkgs.hyprland # For hyprctl
         pkgs.swww
-        pkgs.systemd # For hostnamectl
         pkgs.killall
+        pkgs.hyprland
+        pkgs.dunst
+        pkgs.libnotify
+        pkgs.systemd
+        pkgs.waybar
+        pkgs.kitty
       ]
     }:$PATH"
+
     $DRY_RUN_CMD $HOME/.local/share/bin/themeswitch.sh -s "${activeTheme}"
   '';
-
 }

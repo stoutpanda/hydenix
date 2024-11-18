@@ -7,9 +7,14 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "prasanthrangan";
     repo = "hyde-themes";
-    rev = "Tokyo-Night";
+    rev = "da8c38b7a6927eb585203e28fb8e403203578fe5";
     name = name;
     sha256 = "sha256-YL91+Q7CIGT+Ams9FOdw343OgQ19NWz6GJZEG37Gg9A=";
+  };
+
+  arcs = {
+    gtk = "Tokyo-Night";
+    icon = "Tela-circle-purple";
   };
 
   meta = {

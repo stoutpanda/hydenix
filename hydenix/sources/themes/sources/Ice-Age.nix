@@ -7,9 +7,14 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "saber-88";
     repo = "Ice-Age";
-    rev = "main";
+    rev = "56564067e8bf74416eaaf68e8c6730e4c381c67a";
     name = name;
     sha256 = "sha256-44l7UTHrCvvJL3TO6hk/SV2fxB9MXJtmSM5S56w8xVQ=";
+  };
+
+  arcs = {
+    gtk = "VALYRIAN-Blue-Steel";
+    icon = "Breeze-Noir-White-Blue";
   };
 
   meta = {

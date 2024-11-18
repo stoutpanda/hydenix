@@ -11,10 +11,6 @@
 
   hydenix = {
     enable = userConfig.hyde.enable or true;
-    git = {
-      userName = userConfig.gitUser or "";
-      userEmail = userConfig.gitEmail or "";
-    };
     themes =
       userConfig.hyde.themes or [
         "Catppuccin Mocha"

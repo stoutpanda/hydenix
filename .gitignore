@@ -5,6 +5,5 @@ result
 *.log
 *.tmp
 output-*
-.husky
 .direnv
-node_modules
+.git-hooks

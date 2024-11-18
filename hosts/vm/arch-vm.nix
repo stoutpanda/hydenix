@@ -55,7 +55,7 @@ let
       }
 
       provisioner "shell" {
-        script = "${toString ./.}/scripts/gen-config.sh"
+        script = "${toString ./.}/../../lib/gen-config.sh"
       }
 
       provisioner "shell" {
@@ -77,7 +77,7 @@ let
         inline = [
           "cd /home/${userConfig.username}/hydenix",
           ". /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh",
-          "nix run home-manager/master -- switch --flake .",
+          "nix run home-manager/master -- switch --flake .#${userConfig.username}-generic",
           "nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz nixgl && nix-channel --update",
           "nix-env -iA nixgl.auto.nixGLDefault",
         ]

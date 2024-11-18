@@ -13,7 +13,8 @@ in
 {
 
   imports = [
-    ./hardware-configuration.nix
+    userConfig.hardwareConfig
+    ./drivers.nix
   ];
 
   # ===== Boot Configuration =====
@@ -38,6 +39,11 @@ in
   #   };
   # };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   environment.pathsToLink = [
     "/share/icons"
     "/share/themes"
@@ -51,26 +57,12 @@ in
     "/share/fish"
   ];
 
-  # ===== Hardware Configuration =====
-  hardware = {
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-  };
-
-  # ===== Filesystems =====
-  # USER EDITABLE ADD FILESYSTEMS HERE
-
   # # # ===== Security =====
-  # security = {
-  #   polkit.enable = true;
-  #   pam.services.swaylock = { };
-  # };
+  security = {
+    polkit.enable = true;
+    pam.services.swaylock = { };
+  };
+  security.rtkit.enable = true;
 
   # ===== System Services =====
   services = {
@@ -86,7 +78,10 @@ in
       wireplumber.enable = true;
     };
     dbus.enable = true;
-    udisks2.enable = true;
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
     openssh.enable = true;
     displayManager = {
       sddm = {
@@ -134,6 +129,8 @@ in
     libsForQt5.qt5.qtgraphicaleffects # for sddm theme effects
     libsForQt5.qtsvg # for sddm theme svg icons
     libsForQt5.qt5.qtwayland # wayland support for qt5
+
+    polkit_gnome # polkit gui
   ];
 
   networking = {

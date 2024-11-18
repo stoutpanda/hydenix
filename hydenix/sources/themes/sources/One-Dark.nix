@@ -7,9 +7,15 @@ utils.mkTheme rec {
   src = pkgs.fetchFromGitHub {
     owner = "RAprogramm";
     repo = "HyDe-Themes";
-    rev = "One-Dark";
+    rev = "4109ebca756257b63f22b2b74a5597e1650f3434";
     name = name;
     sha256 = "sha256-j4KXbLb7gvVNCrdqMscsIinhBZoBp4oIzEbwws4fstU=";
+  };
+
+  arcs = {
+    gtk = "One-Dark";
+    icon = "One-Dark";
+    cursor = "onedark-cursor";
   };
 
   meta = {
