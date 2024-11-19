@@ -18,11 +18,14 @@
     {
       hydenix,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
 
-      hydenixConfig = hydenix.lib.mkConfig (import ./config.nix);
+      hydenixConfig = hydenix.lib.mkConfig {
+        userConfig = import ./config.nix;
+        extraInputs = inputs;
+      };
     in
     {
 

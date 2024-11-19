@@ -35,7 +35,10 @@
           ;
       };
 
-      defaultConfig = mkConfig (import ./config.nix);
+      defaultConfig = mkConfig {
+        userConfig = import ./config.nix;
+        extraInputs = { };
+      };
     in
     {
 
