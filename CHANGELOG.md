@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/richen604/hydenix/compare/v1.1.0...v1.1.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* removed nixpkgs from custom inputs in template ([1370c44](https://github.com/richen604/hydenix/commit/1370c44d3fd2b0bfb2c33b0d966d954915685f9d))
+
 # [1.1.0](https://github.com/richen604/hydenix/compare/v1.0.0...v1.1.0) (2024-11-21)
 
 
