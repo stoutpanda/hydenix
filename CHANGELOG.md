@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/richen604/hydenix/compare/v1.0.0...v1.1.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* removed overriding nixpkgs from flake template ([85067a4](https://github.com/richen604/hydenix/commit/85067a4402f3b2a303fba22b6a79014722b72502))
+
+
+### Features
+
+* user flake input args for mkconfig ([ef9feb5](https://github.com/richen604/hydenix/commit/ef9feb53494d697fbac1ed9716e376992e0d426f))
+
 # 1.0.0 (2024-11-18)
 
 
