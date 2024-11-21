@@ -10,7 +10,6 @@
       # Commit: github:richen604/hydenix/<commit-hash>
       # Version: github:richen604/hydenix/v1.0.0
       url = "github:richen604/hydenix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -18,11 +17,14 @@
     {
       hydenix,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
 
-      hydenixConfig = hydenix.lib.mkConfig (import ./config.nix);
+      hydenixConfig = hydenix.lib.mkConfig {
+        userConfig = import ./config.nix;
+        extraInputs = inputs;
+      };
     in
     {
 

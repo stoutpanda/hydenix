@@ -4,14 +4,14 @@
   system,
   ...
 }:
-userConfig: rec {
+{
+  userConfig,
+  extraInputs ? { },
+}:
+rec {
   commonArgs = {
-    inherit
-      inputs
-      pkgs
-      system
-      userConfig
-      ;
+    inherit pkgs system userConfig;
+    inputs = inputs // extraInputs;
   };
 
   nixosConfiguration = import ../hosts/nixos { inherit commonArgs; };
