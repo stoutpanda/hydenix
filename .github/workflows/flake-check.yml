@@ -12,5 +12,11 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      - name: Check Flake
+      - name: Check Root Flake
         run: nix flake check
+
+      - name: Check Template Flake
+        run: |
+          cd template
+          nix flake check
+          rm -f flake.lock
