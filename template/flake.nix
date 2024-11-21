@@ -23,7 +23,8 @@
 
       hydenixConfig = hydenix.lib.mkConfig {
         userConfig = import ./config.nix;
-        extraInputs = inputs;
+        # inputs without nixpkgs to prevent override
+        extraInputs = removeAttrs inputs [ "nixpkgs" ];
       };
     in
     {
