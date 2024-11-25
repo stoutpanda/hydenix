@@ -62,7 +62,7 @@ let
         hash = "sha256-5Z/fnHfr8VnfPGQFaLJ4615dlBDCRbyGqwyauY5pOrU=";
       };
       "VALYRIAN-Blue-Steel" = {
-        url = "https://github.com/saber-88/Ice-Age/raw/56564067e8bf74416eaaf68e8c6730e4c381c67aSource/arcs/Gtk_VALYRIAN-Blue-Steel.tar.gz";
+        url = "https://github.com/saber-88/Ice-Age/raw/3f2fe81611ee036c4f0845454d05fbf263ac5c84/Source/arcs/Gtk_VALYRIAN-Blue-Steel.tar.gz";
         hash = "sha256-jK+3S/67vp8qPpwU4ZYyt+GczMCbGKf13unr73J8VvU=";
       };
       "Material-Sakura" = {

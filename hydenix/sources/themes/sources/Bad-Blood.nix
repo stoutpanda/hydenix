@@ -8,8 +8,8 @@ utils.mkTheme rec {
     owner = "HyDE-Project";
     repo = "hyde-gallery";
     name = name;
-    rev = "162a40d67b07c7f7f63ac4262e2d007c21919aca";
-    sha256 = "sha256-VKq++NlPM5a2XqzlfMMUMgHSLLqfLgtsDSalKNrUMqg=";
+    rev = "1ce31f0d5cffcfd649eea25177b4ff23422955fe";
+    sha256 = "sha256-vWhQ6Mhf3NnXqgGKv38bEM478cJHSfRJtsMPAYqXSv8=";
   };
 
   arcs = {
