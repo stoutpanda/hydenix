@@ -123,6 +123,7 @@ home.file = {
 
 - waybar look weird after rebuild? run `Hyde waybar reload`
 - config resets on rebuild? note [readme](https://github.com/richen604/hydenix/blob/main/README.md#limitations)
+- dolphin icons not showing? open `qt5ct` and set icon theme
 
 ### Requesting features
 
