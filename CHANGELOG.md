@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/richen604/hydenix/compare/v1.1.1...v1.2.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* bad blood theme hash, gtk theme link ([88ada26](https://github.com/richen604/hydenix/commit/88ada268f77316dda2eadf4b445afeb0de8d21f6))
+
+
+### Features
+
+* common gitignore for template ([4b65547](https://github.com/richen604/hydenix/commit/4b655478b69266dce065053a97cce7f657b607e1))
+
 ## [1.1.1](https://github.com/richen604/hydenix/compare/v1.1.0...v1.1.1) (2024-11-21)
 
 
