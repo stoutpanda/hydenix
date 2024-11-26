@@ -78,7 +78,7 @@ in
       blueman-applet.enable = true;
     };
 
-    home.sessionVariables = import ./hm/home-env.nix { inherit lib; };
+    home.sessionVariables = import ./hm/home-env.nix { inherit lib pkgs; };
     home.packages = import ./hm/home-packages.nix { inherit lib pkgs themes; };
     home.file = import ./hm/home-file.nix {
       inherit
