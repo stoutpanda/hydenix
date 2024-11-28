@@ -37,6 +37,9 @@ let
       find . -type f -executable -print0 | xargs -0 sed -i 's/find "/find -L "/g'
       find . -type f -name "*.sh" -print0 | xargs -0 sed -i 's/find "/find -L "/g'
 
+      # needed for themeswitch to be able to be run on activationScripts
+      sed -i '72s/^/#/' ./Configs/.local/share/bin/themeswitch.sh 
+
       # add `hyprctl reload` to themeswitch.sh
       sed -i '/^hyprctl reload/d' ./Configs/.local/share/bin/themeswitch.sh
       echo 'hyprctl reload' >> ./Configs/.local/share/bin/themeswitch.sh
