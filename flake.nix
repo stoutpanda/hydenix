@@ -93,6 +93,10 @@
         # EXPERIMENTAL VM BUILDERS
         arch-vm = defaultConfig.arch-vm.default;
         fedora-vm = defaultConfig.fedora-vm.default;
+
+        # Add the ISO builder
+        iso = defaultConfig.installer.iso;
+        burn-iso = defaultConfig.installer.burn-iso;
       };
 
       devShells.${system}.default = import ./lib/dev-shell.nix { inherit pkgs; };

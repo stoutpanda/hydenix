@@ -16,6 +16,9 @@ rec {
 
   nixosConfiguration = import ../hosts/nixos { inherit commonArgs; };
 
+  # Add ISO configuration
+  installer = import ./iso { inherit commonArgs; };
+
   # TODO: wrap all vms in nixGL. openGL issues haha
   nix-vm = import ../hosts/vm/nix-vm.nix { inherit userConfig nixosConfiguration; };
   arch-vm = import ../hosts/vm/arch-vm.nix { inherit pkgs userConfig; };
