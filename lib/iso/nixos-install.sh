@@ -25,6 +25,23 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
+# Check for required commands
+check_requirements() {
+  local required_commands=("wipefs" "parted" "mkfs.fat" "mkfs.ext4" "lsblk" "fzf")
+  local missing_commands=()
+
+  for cmd in "${required_commands[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      missing_commands+=("$cmd")
+    fi
+  done
+
+  if [ ${#missing_commands[@]} -ne 0 ]; then
+    echo -e "${RED}Error: Required commands not found: ${missing_commands[*]}${NC}"
+    exit 1
+  fi
+}
+
 # Calculate swap size based on RAM
 get_swap_size() {
   local mem_kb=$(grep MemTotal /proc/meminfo | awk '{print $2}')
@@ -41,9 +58,30 @@ get_swap_size() {
 
 # Select installation drive
 select_drive() {
-  echo -e "${BLUE}Available drives:${NC}"
-  lsblk -d -p -n -l -o NAME,SIZE,MODEL | grep -v "loop" | \
-    fzf --header "Select installation drive" --height=10
+  # Check if any block devices exist
+  if ! lsblk -d -p -n -l -o NAME,SIZE,MODEL > /dev/null 2>&1; then
+    echo -e "${RED}Error: Unable to list block devices. Are you running in a virtual environment?${NC}"
+    echo -e "${RED}Debug info:${NC}"
+    ls -l /dev/sd* /dev/nvme* /dev/vd* 2>&1 || true
+    echo
+    exit 1
+  fi
+  
+  local drives=$(lsblk -d -p -n -l -o NAME,SIZE,MODEL | grep -v "loop")
+  if [ -z "$drives" ]; then
+    echo -e "${RED}Error: No valid drives found${NC}"
+    exit 1
+  fi
+
+  # Quote the selection to handle whitespace properly
+  local selection
+  selection=$(echo "$drives" | fzf --header "Select installation drive" --height=10)
+  if [ -z "$selection" ]; then
+    echo -e "${RED}No drive selected${NC}"
+    exit 1
+  fi
+  # Extract just the device path and ensure it's trimmed
+  echo "$selection" | awk '{print $1}' | tr -d '[:space:]'
 }
 
 # Detect boot mode
@@ -63,8 +101,17 @@ detect_boot_mode() {
 
 # Main installation function
 main() {
+  # Check requirements first
+  check_requirements
+  
   # Select drive
-  local selected_drive=$(select_drive | awk '{print $1}')
+
+  local selected_drive
+  selected_drive="$(select_drive)"
+  if [ ! -b "$selected_drive" ]; then
+    echo -e "${RED}Error: Invalid drive selected: $selected_drive${NC}"
+    exit 1
+  fi
   echo -e "${GREEN}Selected drive: $selected_drive${NC}"
 
   # Confirm selection
@@ -75,43 +122,65 @@ main() {
   fi
 
   # Detect boot mode
-  local boot_mode=$(detect_boot_mode)
+  local boot_mode
+  boot_mode=$(detect_boot_mode)
   echo -e "${BLUE}Detected boot mode: $boot_mode${NC}"
 
   # Calculate sizes
-  local swap_size=$(get_swap_size)
+  local swap_size
+  swap_size=$(get_swap_size)
   echo -e "${BLUE}Calculated swap size: ${swap_size}GB${NC}"
 
   # Wipe existing signatures
-  wipefs -a "$selected_drive"
+   wipefs -a "$selected_drive"
 
   # Partition drive
   if [ "$boot_mode" = "uefi" ]; then
     # GPT/UEFI partitioning (preferred)
-    parted "$selected_drive" -- mklabel gpt
-    parted "$selected_drive" -- mkpart ESP fat32 1MiB 512MiB
-    parted "$selected_drive" -- set 1 esp on
-    parted "$selected_drive" -- mkpart primary 512MiB 100%
+     parted "$selected_drive" -- mklabel gpt
+     parted "$selected_drive" -- mkpart ESP fat32 1MiB 512MiB
+     parted "$selected_drive" -- set 1 esp on
+     parted "$selected_drive" -- mkpart primary 512MiB 100%
   else
     # MBR/BIOS partitioning (fallback)
     echo -e "${RED}Warning: Using legacy BIOS boot mode. Some NixOS features may not work correctly.${NC}"
-    parted "$selected_drive" -- mklabel msdos
-    parted "$selected_drive" -- mkpart primary 1MiB 512MiB
-    parted "$selected_drive" -- set 1 boot on
-    parted "$selected_drive" -- mkpart primary 512MiB 100%
+     parted "$selected_drive" -- mklabel msdos
+     parted "$selected_drive" -- mkpart primary 1MiB 512MiB
+     parted "$selected_drive" -- set 1 boot on
+     parted "$selected_drive" -- mkpart primary 512MiB 100%
   fi
 
   # Format partitions
   local boot_partition="${selected_drive}1"
   local root_partition="${selected_drive}2"
 
-  mkfs.fat -F 32 -n NIXBOOT "$boot_partition"
-  mkfs.ext4 -L NIXROOT "$root_partition"
+   mkfs.fat -F 32 -n NIXBOOT "$boot_partition"
+   mkfs.ext4 -L NIXROOT "$root_partition"
 
   # Mount partitions
-  mount /dev/disk/by-label/NIXROOT /mnt
-  mkdir -p /mnt/boot
-  mount /dev/disk/by-label/NIXBOOT /mnt/boot
+  if [ -e "/dev/disk/by-label/NIXROOT" ] && [ -e "/dev/disk/by-label/NIXBOOT" ]; then
+    # Try mounting by labels first
+    mount /dev/disk/by-label/NIXROOT /mnt
+    mkdir -p /mnt/boot
+    mount /dev/disk/by-label/NIXBOOT /mnt/boot
+  else
+    # Fall back to direct device mounting
+    echo -e "${BLUE}Waiting for partition labels to be available...${NC}"
+    sleep 2  # Give udev a moment to create the labels
+    
+    # Try one more time with labels
+    if [ -e "/dev/disk/by-label/NIXROOT" ] && [ -e "/dev/disk/by-label/NIXBOOT" ]; then
+      mount /dev/disk/by-label/NIXROOT /mnt
+      mkdir -p /mnt/boot
+      mount /dev/disk/by-label/NIXBOOT /mnt/boot
+    else
+      # Fall back to direct device mounting
+      echo -e "${BLUE}Mounting partitions directly by device...${NC}"
+      mount "$root_partition" /mnt
+      mkdir -p /mnt/boot
+      mount "$boot_partition" /mnt/boot
+    fi
+  fi
 
   # Create and enable swap file
   dd if=/dev/zero of=/mnt/.swapfile bs=1G count=$swap_size status=progress

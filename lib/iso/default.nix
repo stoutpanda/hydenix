@@ -17,6 +17,12 @@ let
     modules = [
       isoImageModule
       {
+        # Enable nix experimental features
+        nix.settings.experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+
         # Live USB settings
         isoImage.makeEfiBootable = true;
         isoImage.makeUsbBootable = true;
@@ -34,11 +40,32 @@ let
           dosfstools # for mkfs.fat
           e2fsprogs # for mkfs.ext4
           util-linux # for wipefs, lsblk
+          util-linux.bin
+          git
+          vim
+          # Add WiFi support packages
+          networkmanager # Includes nmcli
         ];
+
+        # Enable NetworkManager
+        networking.networkmanager.enable = true;
+        networking.wireless.enable = false; # Disable wpa_supplicant as we're using NetworkManager
+
+        # Copy installation script to home directory
+        system.activationScripts.copyTemplate = ''
+          mkdir -p /home/nixos
+          cp -r ${../../template} /home/nixos/hydenix
+          chmod -R u+w /home/nixos/hydenix
+          chown -R nixos:nixos /home/nixos/hydenix
+        '';
 
         # Display welcome message and instructions at boot
         services.getty.helpLine = ''
           Welcome to HydeNix! 💻
+
+          WiFi Setup:
+          - Use 'nmtui' for text-based network configuration
+          - Or use 'nmcli' for command-line interface
 
           To start the installation:
           1. Log in as "root" (no password required)
@@ -46,16 +73,16 @@ let
           3. Follow the on-screen prompts
 
           For manual installation:
-          1. Edit configuration: nano /mnt/etc/nixos/configuration.nix
-          2. Install: nixos-install
-          3. Set root password when prompted
-          4. Reboot: reboot
+          1. cd hydenix
+          2. Edit config.nix with your preferences
+          3. Generate hardware config: nixos-generate-config --show-hardware-config > hardware-configuration.nix
+          4. Initialize git: git init && git add .
+          5. Install: nixos-install --flake .#<YOUR-HOSTNAME>
+          6. Set root password when prompted
+          7. Reboot: reboot
 
-          Need help? Visit: https://github.com/yourusername/hydenix
+          Need help? Visit: https://github.com/richen604/hydenix
         '';
-
-        # Fix networking conflict
-        networking.wireless.enable = pkgs.lib.mkForce false;
 
         i18n.supportedLocales = [ "all" ];
       }
