@@ -78,6 +78,10 @@ in
   # sets the theme to the last theme in the themes list 
   # TODO: waybar borks, users have to run Hyde waybar reload
   setTheme = lib.hm.dag.entryAfter [ "swwwallCache" ] ''
+    # Set Wayland display variables
+    export WAYLAND_DISPLAY="wayland-1"
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
     export PATH="${
       lib.makeBinPath [
         pkgs.swww
