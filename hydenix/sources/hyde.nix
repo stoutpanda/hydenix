@@ -38,11 +38,13 @@ let
       find . -type f -name "*.sh" -print0 | xargs -0 sed -i 's/find "/find -L "/g'
 
       # needed for themeswitch to be able to be run on activationScripts
-      sed -i '72s/^/#/' ./Configs/.local/share/bin/themeswitch.sh 
+      sed -i '71s/^/#/' ./Configs/.local/share/bin/themeswitch.sh 
 
-      # add `hyprctl reload` to themeswitch.sh
+      # add `hyprctl reload` to themeswitch.sh only if Hyprland is running
       sed -i '/^hyprctl reload/d' ./Configs/.local/share/bin/themeswitch.sh
-      echo 'hyprctl reload' >> ./Configs/.local/share/bin/themeswitch.sh
+      echo 'if [[ -n $HYPRLAND_INSTANCE_SIGNATURE ]]; then' >> ./Configs/.local/share/bin/themeswitch.sh
+      echo '    hyprctl reload' >> ./Configs/.local/share/bin/themeswitch.sh
+      echo 'fi' >> ./Configs/.local/share/bin/themeswitch.sh
 
        # add home-manager case to scripts
        find . -type f \( -name "*.sh" -o -executable \) -exec sed -i '/^if \[ -d \/run\/current-system\/sw\/share\/themes/,/else/c\if [ -d /run/current-system/sw/share/themes ] ; then\n    themeDir=/run/current-system/sw/share/themes\nelif [ -d ~/.local/state/nix/profiles/home-manager/home-path/share/themes ] ; then\n    themeDir=~/.local/state/nix/profiles/home-manager/home-path/share/themes\nelse' {} \;
