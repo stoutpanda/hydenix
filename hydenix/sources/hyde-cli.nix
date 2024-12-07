@@ -26,9 +26,9 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "HyDE-Project";
       repo = "Hyde-cli";
-      rev = "refs/tags/v0.6.0";
+      rev = "e5d5a6a5b8ac33688ad6c06fe3c89752f6862eef";
       name = "hyde-cli";
-      sha256 = "sha256-aMMTurz+7QbId3S8jYhWhiA/ZS/L3TbII9/PPD1f+tg=";
+      sha256 = "sha256-UbtPW88TtOUilE1vqLADlYQ/UbtuHGcl5+HZVslOwxU=";
     };
 
     nativeBuildInputs = with pkgs; [
@@ -38,7 +38,6 @@ let
 
     makeFlags = [ "LOCAL=1" ];
 
-    # TODO: sddm support by editing path in hyde-cli, then referencing path in sddm module
     buildPhase = ''
 
       # ------------ edits ------------ #
