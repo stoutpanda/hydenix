@@ -67,8 +67,8 @@
     # list of themes to choose from
     themes = [
       # -- Default themes
-      "Catppuccin Mocha"
       "Catppuccin Latte"
+      "Catppuccin Mocha"
       "Decay Green"
       "Edge Runner"
       "Frosted Glass"
@@ -85,6 +85,7 @@
       "AbyssGreen"
       "Bad Blood"
       "Cat Latte"
+      "Crimson Blade"
       "Dracula"
       "Edge Runner"
       "Green Lush"
@@ -93,20 +94,19 @@
       "Ice Age"
       "Mac OS"
       "Monokai"
+      "Monterey Frost"
       "One Dark"
       "Oxo Carbon"
       "Paranoid Sweet"
+      "Pixel Dream"
       "Rain Dark"
       "Red Stone"
       "Rose Pine"
       "Scarlet Night"
       "Sci-fi"
       "Solarized Dark"
-      "Windows 11"
-      "Monterey Frost"
       "Vanta Black"
-      "Pixel Dream"
-      "Crimson Blade"
+      "Windows 11"
     ];
 
     # Exactly the same as hyde.conf
@@ -130,7 +130,6 @@
     memorySize = 4096;
     # 2 cores minimum
     cores = 2;
-    # TODO: review, it also seems to matter which vm is run
     # 30GB minimum for one theme - 50GB for multiple themes - more for development and testing
     diskSize = 20000;
   };
