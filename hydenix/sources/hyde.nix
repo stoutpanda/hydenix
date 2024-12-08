@@ -9,11 +9,12 @@ let
     sha256 = "sha256-ApdCWMWp/6vM4jE/AKzGQYyVzLzBSGjXWLdXZWUeo5o=";
   };
 
-  polkitkdeauth = ''
-    #! /usr/bin/env bash
-    ~/.local/state/nix/profiles/home-manager/home-path/libexec/polkit-gnome-authentication-agent-1 &
-  '';
+  # polkitkdeauth = ''
+  #   #! /usr/bin/env bash
+  #   ~/.local/state/nix/profiles/home-manager/home-path/libexec/polkit-gnome-authentication-agent-1 &
+  # '';
 
+  # TODO: add polkitkdeauth when i get spicetify working
   pkg = pkgs.stdenv.mkDerivation rec {
     name = "hyprdots-modified";
     src = hyprdotsRepo;
@@ -46,11 +47,8 @@ let
       echo '    hyprctl reload' >> ./Configs/.local/share/bin/themeswitch.sh
       echo 'fi' >> ./Configs/.local/share/bin/themeswitch.sh
 
-       # add home-manager case to scripts
-       find . -type f \( -name "*.sh" -o -executable \) -exec sed -i '/^if \[ -d \/run\/current-system\/sw\/share\/themes/,/else/c\if [ -d /run/current-system/sw/share/themes ] ; then\n    themeDir=/run/current-system/sw/share/themes\nelif [ -d ~/.local/state/nix/profiles/home-manager/home-path/share/themes ] ; then\n    themeDir=~/.local/state/nix/profiles/home-manager/home-path/share/themes\nelse' {} \;
-
-       # replace polkitkdeauth
-       cat ${polkitkdeauth} > ./Configs/.local/share/bin/polkitkdeauth.sh
+      # update theme directory check in scripts with home-manager case
+      find . -type f \( -name "*.sh" -o -executable \) -exec sed -i '/^if \[ -d \/run\/current-system\/sw\/share\/themes/,/else/c\if [ -d /run/current-system/sw/share/themes ] ; then\n    themeDir=/run/current-system/sw/share/themes\nelif [ -d ~/.local/state/nix/profiles/home-manager/home-path/share/themes ] ; then\n    themeDir=~/.local/state/nix/profiles/home-manager/home-path/share/themes\nelse' {} \;
 
        # add nix check to globalcontrol.sh pkg_installed
         sed -i '/command -v "''${pkgIn}" /i\    elif command -v nix \&> /dev/null \&\& nix-locate --whole-name --top-level "bin/''${pkgIn}" \&> /dev/null ; then\n        return 0' ./Configs/.local/share/bin/globalcontrol.sh
