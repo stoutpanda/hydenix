@@ -50,12 +50,19 @@ in
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
+        libsForQt5.xdg-desktop-portal-kde
       ];
       config.common.default = "*";
       xdgOpenUsePortal = true;
     };
 
-    wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
+    wayland.windowManager.hyprland = {
+      enable = true;
+      systemd = {
+        enableXdgAutostart = true;
+        variables = [ "--all" ];
+      };
+    };
 
     dconf = {
       enable = true;
