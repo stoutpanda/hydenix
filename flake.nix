@@ -66,6 +66,8 @@
             2. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
             3. `git init && git add .` (flakes have to be managed via git)
             4. run any of the packages in your new `flake.nix`
+              - for vm `nix run .`
+              - for rebuild `sudo nixos-rebuild switch/test/boot --flake .`
           '';
         };
       };
@@ -81,9 +83,6 @@
 
         # defaults to nix-vm
         default = defaultConfig.nix-vm.config.system.build.vm;
-
-        # NixOS activation packages
-        hydenix = defaultConfig.nixosConfiguration.config.system.build.toplevel;
 
         # Home activation packages - you probably don't want to use these
         hm = defaultConfig.homeConfigurations.${defaultConfig.userConfig.username}.activationPackage;
