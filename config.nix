@@ -42,8 +42,8 @@
   nixModules = [
     # (toString ./my-module.nix)
     # in my-module.nix you can reference this userConfig
-    # ({ userConfig, pkgs, ... }: {
-    #   environment.systemPackages = [ pkgs.git ];
+    # ({ userConfig, userPkgs, pkgs, ... }: {
+    #   environment.systemPackages = [ userPkgs.nushell ];
     # })
   ];
   # List of nix modules to import in ./lib/mkConfig.nix

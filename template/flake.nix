@@ -2,7 +2,10 @@
   description = "template for hydenix";
 
   inputs = {
+    # User's nixpkgs - for user packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Hydenix and its nixpkgs - kept separate to avoid conflicts
     hydenix = {
       # Available inputs:
       # Main: github:richen604/hydenix
@@ -14,21 +17,24 @@
   };
 
   outputs =
-    {
-      hydenix,
-      ...
-    }@inputs:
+    { ... }@inputs:
     let
       system = "x86_64-linux";
 
-      hydenixConfig = hydenix.lib.mkConfig {
+      # User's pkgs instance
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
+      hydenixConfig = inputs.hydenix.lib.mkConfig {
         userConfig = import ./config.nix;
-        # inputs without nixpkgs to prevent override
-        extraInputs = removeAttrs inputs [ "nixpkgs" ];
+        extraInputs = inputs;
+        # Pass user's pkgs to be used alongside hydenix's pkgs (eg. userPkgs.kitty)
+        extraPkgs = pkgs;
       };
     in
     {
-
       nixosConfigurations.${hydenixConfig.userConfig.host} = hydenixConfig.nixosConfiguration;
 
       packages.${system} = {

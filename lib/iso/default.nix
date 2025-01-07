@@ -9,10 +9,10 @@ let
     ;
 
   # Add the ISO image module
-  isoImageModule = "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix";
+  isoImageModule = "${inputs.hydenix-nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix";
 
   # Create the base ISO configuration
-  isoSystem = inputs.nixpkgs.lib.nixosSystem {
+  isoSystem = inputs.hydenix-nixpkgs.lib.nixosSystem {
     inherit system;
     modules = [
       isoImageModule
@@ -29,7 +29,7 @@ let
 
         # ISO-specific configuration
         isoImage.edition = pkgs.lib.mkForce "hydenix";
-        isoImage.isoName = pkgs.lib.mkForce "hydenix-${inputs.nixpkgs.lib.version}.iso";
+        isoImage.isoName = pkgs.lib.mkForce "hydenix-${inputs.hydenix-nixpkgs.lib.version}.iso";
 
         # Add installation script and required packages to ISO
         environment.systemPackages = with pkgs; [

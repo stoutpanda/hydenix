@@ -2,27 +2,28 @@
   description = "Nix & home-manager configuration for HyDE, an Arch Linux based Hyprland desktop";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Hydenix's nixpkgs
+    hydenix-nixpkgs.url = "github:nixos/nixpkgs/2768c7d042a37de65bb1b5b3268fc987e534c49d";
+
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "hydenix-nixpkgs";
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "hydenix-nixpkgs";
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.inputs.nixpkgs.follows = "hydenix-nixpkgs";
   };
 
   outputs =
-    {
-      ...
-    }@inputs:
+    { ... }@inputs:
     let
       system = "x86_64-linux";
 
-      pkgs = import inputs.nixpkgs {
+      # Hydenix's pkgs instance
+      pkgs = import inputs.hydenix-nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
@@ -41,7 +42,6 @@
       };
     in
     {
-
       # Main config builder
       lib = {
         inherit mkConfig;
@@ -74,18 +74,13 @@
         # generate-config script
         gen-config = pkgs.writeShellScriptBin "gen-config" (builtins.readFile ./lib/gen-config.sh);
 
-        /*
-          Packages below are default configurations
-          These are used for testing
-        */
-
         # defaults to nix-vm
         default = defaultConfig.nix-vm.config.system.build.vm;
 
         # NixOS activation packages
         hydenix = defaultConfig.nixosConfiguration.config.system.build.toplevel;
 
-        # Home activation packages - you probably don't want to use these
+        # Home activation packages
         hm = defaultConfig.homeConfigurations.${defaultConfig.userConfig.username}.activationPackage;
         hm-generic =
           defaultConfig.homeConfigurations."${defaultConfig.userConfig.username}-generic".activationPackage;
