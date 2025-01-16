@@ -8,6 +8,8 @@ Now that you've created your own flake, you can start customizing the template t
 2. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
 3. `git init && git add .` (flakes have to be managed via git)
 4. run any of the packages in your new `flake.nix`
+    - for rebuild, use `sudo nixos-rebuild switch --flake .`
+    - for vm, use `nix run .`
 
 `config.nix` is your main configuration file. It is used to set variables and import your own custom modules
 
@@ -124,6 +126,7 @@ home.file = {
 - waybar look weird after rebuild? run `Hyde waybar reload`
 - config resets on rebuild? note [readme](https://github.com/richen604/hydenix/blob/main/README.md#limitations)
 - dolphin icons not showing? open `qt5ct` and set icon theme
+- if you *remove* hyde themes in `config.nix`, youll have to remove them manually from `~/.config/hyde/themes`
 
 ### Requesting features
 

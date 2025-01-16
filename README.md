@@ -101,6 +101,8 @@ Why Nix?:
 3. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
 4. `git init && git add .` (flakes have to be managed via git)
 5. run any of the packages in your new `flake.nix`
+    - for rebuild, use `sudo nixos-rebuild switch --flake .`
+    - for vm, use `nix run .`
 
 #### 2. Running as a nixos VM
 
