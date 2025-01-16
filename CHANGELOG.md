@@ -1,3 +1,28 @@
+# [1.3.0](https://github.com/richen604/hydenix/compare/v1.2.0...v1.3.0) (2025-01-16)
+
+
+### Bug Fixes
+
+* allow themepatcher to run on activationScripts ([43bad79](https://github.com/richen604/hydenix/commit/43bad793079b37e8fe98fc027a22474a065f5245))
+* allow themeswitch to work without hyprland ([363720b](https://github.com/richen604/hydenix/commit/363720b7a3376e498257dd7dd44920f51c0d294f))
+* commit hash for fonts package ([2362241](https://github.com/richen604/hydenix/commit/236224139850530cc415703f536c32401c39e675))
+* re-added hyprland xdg portal ([c44fa02](https://github.com/richen604/hydenix/commit/c44fa02066420f2e09dda26b1d37b4459421556a))
+
+
+### Features
+
+* 25.05 update ([899d39a](https://github.com/richen604/hydenix/commit/899d39aadf67b288622136d1743572f0f215ec2d))
+* add separate nixpkgs instance for user packages ([#17](https://github.com/richen604/hydenix/issues/17)) ([5394a94](https://github.com/richen604/hydenix/commit/5394a943867d55bd7e6b269f9607b9586a2453d7))
+* common rebuild command, added better updating docs ([ad5b8c3](https://github.com/richen604/hydenix/commit/ad5b8c30e9f6e7e35ea349bf037f3625d893eec6))
+* gave display for settheme ([6c88a34](https://github.com/richen604/hydenix/commit/6c88a3462e4efefd3f1ef8537739d839fd9f19f2))
+* home-manager hyprland, xdg ([6992ff5](https://github.com/richen604/hydenix/commit/6992ff58726c55b6a94fe1aae0276e3b6d1b00ad))
+* iso builder ([088c5f8](https://github.com/richen604/hydenix/commit/088c5f8c80bb5c2e70afd8958a75bd4157b2bb85))
+* kdepackages for qt6 ([0039b4c](https://github.com/richen604/hydenix/commit/0039b4ccc2b88d26956f179558cac2fa8ccc5bce))
+* update hyprdots, no more dconf ([2c5cb4c](https://github.com/richen604/hydenix/commit/2c5cb4cb12dd24b991fe36293ab0d4960f2ffb61))
+* updated hyde cli ([bda2305](https://github.com/richen604/hydenix/commit/bda23050bd3752059343a7e74d6c11d67eaa5722))
+* updated hyde stub meta ([fdd96fc](https://github.com/richen604/hydenix/commit/fdd96fcf31560f048dfc47e7e3fc4f7e156274f0))
+* updated iso build and install script ([0a6d889](https://github.com/richen604/hydenix/commit/0a6d889feb4db35824f383fa5f139fac4077588d))
+
 # [1.2.0](https://github.com/richen604/hydenix/compare/v1.1.1...v1.2.0) (2024-11-25)
 
 
