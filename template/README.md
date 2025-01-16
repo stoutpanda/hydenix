@@ -8,8 +8,8 @@ Now that you've created your own flake, you can start customizing the template t
 2. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
 3. `git init && git add .` (flakes have to be managed via git)
 4. run any of the packages in your new `flake.nix`
-    - for vm `nix run .`
-    - for rebuild `sudo nixos-rebuild switch/test/boot --flake .`
+    - for rebuild, use `sudo nixos-rebuild switch --flake .`
+    - for vm, use `nix run .`
 
 `config.nix` is your main configuration file. It is used to set variables and import your own custom modules
 
@@ -22,20 +22,18 @@ in your template flake folder, update hydenix to main using
 nix flake update hydenix
 ```
 
-or define a specific version in your `flake.nix` template
-```nix
-inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hydenix = {
-      # Available inputs:
-      # Main: github:richen604/hydenix
-      # Dev: github:richen604/hydenix/dev 
-      # Commit: github:richen604/hydenix/<commit-hash>
-      # Version: github:richen604/hydenix/v1.0.0
-      url = "github:richen604/hydenix";
-    };
-  };
+Hydenix might have updated api changes, compare with a new template flake to see what changed.
+```bash
+mkdir new-flake
+nix flake new -t github:richen604/hydenix ./new-flake
+
+# compare the two files, for example
+diff flake.nix new-flake/flake.nix
+diff config.nix new-flake/config.nix
+diff README.md new-flake/README.md
 ```
+
+then make changes as needed, `rm -rf new-flake` when done
 
 ## Hydenix Documentation - Customization and Common Issues
 
@@ -126,6 +124,7 @@ home.file = {
 - waybar look weird after rebuild? run `Hyde waybar reload`
 - config resets on rebuild? note [readme](https://github.com/richen604/hydenix/blob/main/README.md#limitations)
 - dolphin icons not showing? open `qt5ct` and set icon theme
+- if you *remove* hyde themes in `config.nix`, youll have to remove them manually from `~/.config/hyde/themes`
 
 ### Requesting features
 

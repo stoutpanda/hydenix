@@ -49,12 +49,20 @@ in
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+        libsForQt5.xdg-desktop-portal-kde
       ];
       config.common.default = "*";
       xdgOpenUsePortal = true;
     };
 
-    wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
+    wayland.windowManager.hyprland = {
+      enable = true;
+      systemd = {
+        enableXdgAutostart = true;
+        variables = [ "--all" ];
+      };
+    };
 
     dconf = {
       enable = true;
@@ -78,7 +86,7 @@ in
       blueman-applet.enable = true;
     };
 
-    home.sessionVariables = import ./hm/home-env.nix { inherit lib; };
+    home.sessionVariables = import ./hm/home-env.nix { inherit lib pkgs; };
     home.packages = import ./hm/home-packages.nix { inherit lib pkgs themes; };
     home.file = import ./hm/home-file.nix {
       inherit

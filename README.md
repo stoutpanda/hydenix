@@ -1,5 +1,14 @@
 ###### *<div align="right"><sub>// design by t2</sub></div>*
 
+<div align="center">
+
+[![NixOS Unstable](https://img.shields.io/badge/NixOS-unstable-blue.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
+[![Release](https://img.shields.io/github/v/release/richen604/hydenix?style=flat-square)](https://github.com/richen604/hydenix/releases)
+[![Last Commit](https://img.shields.io/github/last-commit/richen604/hydenix/main?style=flat-square)](https://github.com/richen604/hydenix/commits/main)
+
+[![Nix Flake Check](https://github.com/richen604/hydenix/actions/workflows/flake-check.yml/badge.svg?style=flat-square)](https://github.com/richen604/hydenix/actions/workflows/flake-check.yml)
+
+</div>
 
 <div align = center>
     <a href="https://discord.gg/AYbJ9MJez7">

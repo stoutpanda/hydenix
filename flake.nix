@@ -2,27 +2,28 @@
   description = "Nix & home-manager configuration for HyDE, an Arch Linux based Hyprland desktop";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Hydenix's nixpkgs
+    hydenix-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "hydenix-nixpkgs";
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "hydenix-nixpkgs";
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.inputs.nixpkgs.follows = "hydenix-nixpkgs";
   };
 
   outputs =
-    {
-      ...
-    }@inputs:
+    { ... }@inputs:
     let
       system = "x86_64-linux";
 
-      pkgs = import inputs.nixpkgs {
+      # Hydenix's pkgs instance
+      pkgs = import inputs.hydenix-nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
@@ -41,7 +42,6 @@
       };
     in
     {
-
       # Main config builder
       lib = {
         inherit mkConfig;
@@ -66,32 +66,36 @@
             2. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
             3. `git init && git add .` (flakes have to be managed via git)
             4. run any of the packages in your new `flake.nix`
-              - for vm `nix run .`
-              - for rebuild `sudo nixos-rebuild switch/test/boot --flake .`
+              - for rebuild, use `sudo nixos-rebuild switch --flake .`
+              - for vm, use `nix run .`
           '';
         };
       };
+
+      nixosConfigurations.nixos = defaultConfig.nixosConfiguration;
 
       packages.${system} = {
         # generate-config script
         gen-config = pkgs.writeShellScriptBin "gen-config" (builtins.readFile ./lib/gen-config.sh);
 
-        /*
-          Packages below are default configurations
-          These are used for testing
-        */
-
         # defaults to nix-vm
         default = defaultConfig.nix-vm.config.system.build.vm;
 
-        # Home activation packages - you probably don't want to use these
+        # NixOS activation packages
+        hydenix = defaultConfig.nixosConfiguration.config.system.build.toplevel;
+
+        # Home activation packages
         hm = defaultConfig.homeConfigurations.${defaultConfig.userConfig.username}.activationPackage;
         hm-generic =
           defaultConfig.homeConfigurations."${defaultConfig.userConfig.username}-generic".activationPackage;
 
         # EXPERIMENTAL VM BUILDERS
-        arch-vm = defaultConfig.arch-vm.default;
-        fedora-vm = defaultConfig.fedora-vm.default;
+        arch-vm = defaultConfig.arch-vm;
+        fedora-vm = defaultConfig.fedora-vm;
+
+        # Add the ISO builder
+        iso = defaultConfig.installer.iso;
+        burn-iso = defaultConfig.installer.burn-iso;
       };
 
       devShells.${system}.default = import ./lib/dev-shell.nix { inherit pkgs; };

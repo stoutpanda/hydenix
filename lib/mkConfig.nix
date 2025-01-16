@@ -7,14 +7,20 @@
 {
   userConfig,
   extraInputs ? { },
+  extraPkgs ? null,
 }:
 rec {
   commonArgs = {
-    inherit pkgs system userConfig;
+    inherit system userConfig;
     inputs = inputs // extraInputs;
+    pkgs = pkgs;
+    userPkgs = extraPkgs;
   };
 
   nixosConfiguration = import ../hosts/nixos { inherit commonArgs; };
+
+  # Add ISO configuration
+  installer = import ./iso { inherit commonArgs; };
 
   # TODO: wrap all vms in nixGL. openGL issues haha
   nix-vm = import ../hosts/vm/nix-vm.nix { inherit userConfig nixosConfiguration; };

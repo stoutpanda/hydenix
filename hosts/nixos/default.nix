@@ -8,7 +8,7 @@ let
     inputs
     ;
 in
-inputs.nixpkgs.lib.nixosSystem {
+inputs.hydenix-nixpkgs.lib.nixosSystem {
   inherit system;
   specialArgs = commonArgs;
   modules = [

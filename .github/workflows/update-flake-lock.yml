@@ -1,0 +1,31 @@
+name: Update flake.lock
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0" # weekly
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Update flake.lock
+        run: nix flake update
+      - name: Check flake
+        id: check
+        continue-on-error: true
+        run: nix flake check
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "chore(deps): update flake.lock"
+          title: "chore(deps): update flake.lock"
+          branch: update-flake-lock-${{ github.run_id }}
+          delete-branch: true
+          body: |
+            Updated flake.lock file.
+
+            Flake check status: ${{ steps.check.outcome == 'success' && '✅ Passed' || '❌ Failed' }}

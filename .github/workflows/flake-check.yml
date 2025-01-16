@@ -1,9 +1,13 @@
 name: Flake Check
 
-on: [pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  flake-check:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

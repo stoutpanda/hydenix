@@ -26,9 +26,9 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "HyDE-Project";
       repo = "Hyde-cli";
-      rev = "refs/tags/v0.6.0";
+      rev = "e5d5a6a5b8ac33688ad6c06fe3c89752f6862eef";
       name = "hyde-cli";
-      sha256 = "sha256-aMMTurz+7QbId3S8jYhWhiA/ZS/L3TbII9/PPD1f+tg=";
+      sha256 = "sha256-UbtPW88TtOUilE1vqLADlYQ/UbtuHGcl5+HZVslOwxU=";
     };
 
     nativeBuildInputs = with pkgs; [
@@ -38,7 +38,6 @@ let
 
     makeFlags = [ "LOCAL=1" ];
 
-    # TODO: sddm support by editing path in hyde-cli, then referencing path in sddm module
     buildPhase = ''
 
       # ------------ edits ------------ #
@@ -58,21 +57,6 @@ let
 
         # update kitty
         find . -type f -print0 | xargs -0 sed -i 's/killall -SIGUSR1 kitty/killall -SIGUSR1 .kitty-wrapped/g'
-
-       # scripts need to use dconf instead of gsettings
-       find . -type f -not -name 'themepatcher.sh' -exec sed -i \
-         -e 's/gsettings set/dconf write/g' \
-         -e 's/gsettings get/dconf read/g' \
-         -e 's/org\.gnome\.desktop\.interface \([^ ]*\)/\/org\/gnome\/desktop\/interface\/\1/g' \
-         -e 's/org\.gnome\.desktop\.gtk \([^ ]*\)/\/org\/gnome\/desktop\/gtk\/\1/g' \
-         -e 's/\(dconf write.*font-name\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
-         -e 's/\(dconf write.*cursor-theme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
-         -e 's/\(dconf write.*color-scheme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
-         -e 's/\(dconf write.*gtk-theme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
-         -e 's/\(dconf write.*icon-theme\) '"'"'\([^'"'"']*\)'"'"'/\1 "'"'"'\2'"'"'"/' \
-         -e 's/\(dconf write.*[^ ]*\) '"'"'\(\$[A-Za-z_][A-Za-z0-9_]*\)'"'"'/\1 "\2"/g' \
-         -e 's/\(dconf write.*[^ ]*\) \(\$[A-Za-z_][A-Za-z0-9_]*\)/\1 "\2"/g' \
-         {} +
 
          # add home-manager case to scripts
          find . -type f \( -name "*.sh" -o -executable \) -exec sed -i '/^if \[ -d \/run\/current-system\/sw\/share\/themes/,/else/c\if [ -d /run/current-system/sw/share/themes ] ; then\n    themeDir=/run/current-system/sw/share/themes\nelif [ -d ~/.local/state/nix/profiles/home-manager/home-path/share/themes ] ; then\n    themeDir=~/.local/state/nix/profiles/home-manager/home-path/share/themes\nelse' {} \;

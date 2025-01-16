@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   activeTheme,
   ...
 }:
@@ -43,22 +42,18 @@ in
   # TODO: if exists nothing i can do about it cause chattr
   # generates meta file for hyde-cli
   makeStubMeta = lib.hm.dag.entryAfter [ "mutableFileGeneration" ] ''
-    if [ ! -f "$HOME/.cache/hyde/hyde.meta" ]; then
     mkdir -p $HOME/.cache/hyde
+    rm -f $HOME/.cache/hyde/hyde.meta
     $DRY_RUN_CMD cat << EOF > $HOME/.cache/hyde/hyde.meta
-    #? This is a meta file generated for hyde-cli
-    #! Do not touch this!
-    #* Use 'chattr -i "\' to lift protection attributes   
-    export CloneDir="/home/${config.home.username}/.local/hyprdots"
+    export CloneDir="$HOME/.local/state/nix/profiles/home-manager/home-path/share/hyde/hyprdots-modified"
     export current_branch="master"
     export git_url="https://github.com/prasanthrangan/hyprdots.git"
     export restore_cfg_hash=""
-    export git_hash=""
-    export hyde_version="master"
+    export git_hash="204edc16847f8a67dd32a2b37c6139af88f5228a"
+    export hyde_version="204edc16847f8a67dd32a2b37c6139af88f5228a"
     export modify_date=""
-    export commit_message=""
+    export commit_message="Generated from Hydenix"
     EOF
-    fi
   '';
 
   # links hyde-cli to hyprdots
@@ -83,6 +78,10 @@ in
   # sets the theme to the last theme in the themes list 
   # TODO: waybar borks, users have to run Hyde waybar reload
   setTheme = lib.hm.dag.entryAfter [ "swwwallCache" ] ''
+    # Set Wayland display variables
+    export WAYLAND_DISPLAY="wayland-1"
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
     export PATH="${
       lib.makeBinPath [
         pkgs.swww
