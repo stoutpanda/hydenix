@@ -66,9 +66,13 @@
             2. run `sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix`
             3. `git init && git add .` (flakes have to be managed via git)
             4. run any of the packages in your new `flake.nix`
+              - for rebuild, use `sudo nixos-rebuild switch --flake .`
+              - for vm, use `nix run .`
           '';
         };
       };
+
+      nixosConfigurations.nixos = defaultConfig.nixosConfiguration;
 
       packages.${system} = {
         # generate-config script

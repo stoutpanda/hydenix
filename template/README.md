@@ -22,20 +22,18 @@ in your template flake folder, update hydenix to main using
 nix flake update hydenix
 ```
 
-or define a specific version in your `flake.nix` template
-```nix
-inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hydenix = {
-      # Available inputs:
-      # Main: github:richen604/hydenix
-      # Dev: github:richen604/hydenix/dev 
-      # Commit: github:richen604/hydenix/<commit-hash>
-      # Version: github:richen604/hydenix/v1.0.0
-      url = "github:richen604/hydenix";
-    };
-  };
+Hydenix might have updated api changes, compare with a new template flake to see what changed.
+```bash
+mkdir new-flake
+nix flake new -t github:richen604/hydenix ./new-flake
+
+# compare the two files, for example
+diff flake.nix new-flake/flake.nix
+diff config.nix new-flake/config.nix
+diff README.md new-flake/README.md
 ```
+
+then make changes as needed, `rm -rf new-flake` when done
 
 ## Hydenix Documentation - Customization and Common Issues
 
