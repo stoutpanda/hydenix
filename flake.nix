@@ -3,7 +3,7 @@
 
   inputs = {
     # Hydenix's nixpkgs
-    hydenix-nixpkgs.url = "github:nixos/nixpkgs/2768c7d042a37de65bb1b5b3268fc987e534c49d";
+    hydenix-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -90,8 +90,8 @@
           defaultConfig.homeConfigurations."${defaultConfig.userConfig.username}-generic".activationPackage;
 
         # EXPERIMENTAL VM BUILDERS
-        arch-vm = defaultConfig.arch-vm.default;
-        fedora-vm = defaultConfig.fedora-vm.default;
+        arch-vm = defaultConfig.arch-vm;
+        fedora-vm = defaultConfig.fedora-vm;
 
         # Add the ISO builder
         iso = defaultConfig.installer.iso;

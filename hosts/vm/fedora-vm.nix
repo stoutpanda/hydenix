@@ -118,33 +118,31 @@ let
     }
   '';
 in
-{
-  default = pkgs.writeShellScriptBin "run-fedora-vm" ''
-    # Check if VM image exists, if not, build it
+pkgs.writeShellScriptBin "run-fedora-vm" ''
+  # Check if VM image exists, if not, build it
+  if [ ! -f "${vmImage}" ]; then
+    echo "VM image not found. Building it now..."
+    
+    # Generate the Kickstart file
+    ${generateKickstartScript}/bin/generate-kickstart
+    
+    # Clean up existing output directory
+    rm -rf output-fedora-vm
+    
+    ${vmUtils.cleanupVM vmName}
+
+    ${pkgs.packer}/bin/packer init ${fedoraVmHcl}
+    ${pkgs.packer}/bin/packer build ${fedoraVmHcl}
+    
+    # Check if build was successful
     if [ ! -f "${vmImage}" ]; then
-      echo "VM image not found. Building it now..."
-      
-      # Generate the Kickstart file
-      ${generateKickstartScript}/bin/generate-kickstart
-      
-      # Clean up existing output directory
-      rm -rf output-fedora-vm
-      
-      ${vmUtils.cleanupVM vmName}
-
-      ${pkgs.packer}/bin/packer init ${fedoraVmHcl}
-      ${pkgs.packer}/bin/packer build ${fedoraVmHcl}
-      
-      # Check if build was successful
-      if [ ! -f "${vmImage}" ]; then
-        echo "Failed to build VM image. Exiting."
-        exit 1
-      fi
+      echo "Failed to build VM image. Exiting."
+      exit 1
     fi
+  fi
 
-    ${vmUtils.createAndStartVM {
-      inherit vmName vmImage userConfig;
-      osVariant = "fedora37";
-    }}
-  '';
-}
+  ${vmUtils.createAndStartVM {
+    inherit vmName vmImage userConfig;
+    osVariant = "fedora37";
+  }}
+''

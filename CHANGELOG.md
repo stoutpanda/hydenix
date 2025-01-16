@@ -1,3 +1,34 @@
+# [1.2.0](https://github.com/richen604/hydenix/compare/v1.1.1...v1.2.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* bad blood theme hash, gtk theme link ([88ada26](https://github.com/richen604/hydenix/commit/88ada268f77316dda2eadf4b445afeb0de8d21f6))
+
+
+### Features
+
+* common gitignore for template ([4b65547](https://github.com/richen604/hydenix/commit/4b655478b69266dce065053a97cce7f657b607e1))
+
+## [1.1.1](https://github.com/richen604/hydenix/compare/v1.1.0...v1.1.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* removed nixpkgs from custom inputs in template ([1370c44](https://github.com/richen604/hydenix/commit/1370c44d3fd2b0bfb2c33b0d966d954915685f9d))
+
+# [1.1.0](https://github.com/richen604/hydenix/compare/v1.0.0...v1.1.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* removed overriding nixpkgs from flake template ([85067a4](https://github.com/richen604/hydenix/commit/85067a4402f3b2a303fba22b6a79014722b72502))
+
+
+### Features
+
+* user flake input args for mkconfig ([ef9feb5](https://github.com/richen604/hydenix/commit/ef9feb53494d697fbac1ed9716e376992e0d426f))
+
 # 1.0.0 (2024-11-18)
 
 
