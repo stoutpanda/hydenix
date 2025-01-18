@@ -73,6 +73,7 @@
       };
 
       nixosConfigurations.nixos = defaultConfig.nixosConfiguration;
+      nixosConfigurations.${defaultConfig.userConfig.host} = defaultConfig.nixosConfiguration;
 
       packages.${system} = {
         # generate-config script

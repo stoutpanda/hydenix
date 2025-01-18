@@ -36,6 +36,7 @@
     in
     {
       nixosConfigurations.nixos = hydenixConfig.nixosConfiguration;
+      nixosConfigurations.${hydenixConfig.userConfig.host} = hydenixConfig.nixosConfiguration;
 
       packages.${system} = {
         # Packages below load your config in ./config.nix
