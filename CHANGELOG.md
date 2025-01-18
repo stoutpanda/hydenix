@@ -1,3 +1,11 @@
+## [1.3.1](https://github.com/richen604/hydenix/compare/v1.3.0...v1.3.1) (2025-01-18)
+
+
+### Bug Fixes
+
+* added user hostname to nix configurations, improves dot notation ([373caed](https://github.com/richen604/hydenix/commit/373caed0d7d2600aa617a096e532aa91664c6d9a))
+* removed pkgs from special args, fixes user provided overlays ([1c40217](https://github.com/richen604/hydenix/commit/1c402174434ea5243c765ae6b222894d3be8a824))
+
 # [1.3.0](https://github.com/richen604/hydenix/compare/v1.2.0...v1.3.0) (2025-01-16)
 
 
