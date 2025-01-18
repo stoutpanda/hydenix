@@ -37,15 +37,15 @@ pkgs.mkShell {
 
     echo "Running template flake check..."
     cd template
-    sed -i 's|url = "github:richen604/hydenix"|url = "path:../"|' flake.nix
+    # sed -i 's|url = "github:richen604/hydenix"|url = "path:../"|' flake.nix
     nix flake check
     if [ $? -ne 0 ]; then
       echo "Error: template flake check failed"
-      git checkout flake.nix
+      # git checkout flake.nix hardware-configuration.nix
       rm -f flake.lock
       exit 1
     fi
-    git checkout flake.nix
+    # git checkout flake.nix hardware-configuration.nix
     rm -f flake.lock
     cd ..
     EOF
