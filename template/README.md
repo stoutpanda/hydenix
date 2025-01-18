@@ -22,12 +22,17 @@ in your template flake folder, update hydenix to main using
 nix flake update hydenix
 ```
 
-Hydenix might have updated api changes, compare with a new template flake to see what changed.
+then rebuild your template flake
+```bash
+sudo nixos-rebuild switch --flake .
+```
+
+Hydenix might have updated api changes, compare with a new template flake to see what changed. heres a quick way to do this:
 ```bash
 mkdir new-flake
 nix flake new -t github:richen604/hydenix ./new-flake
 
-# compare the two files, for example
+# compare the two files, for example:
 diff flake.nix new-flake/flake.nix
 diff config.nix new-flake/config.nix
 diff README.md new-flake/README.md
