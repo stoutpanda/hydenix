@@ -41,11 +41,11 @@ pkgs.mkShell {
     nix flake check
     if [ $? -ne 0 ]; then
       echo "Error: template flake check failed"
-      # git checkout flake.nix hardware-configuration.nix
+      # git checkout flake.nix flake.lock
       rm -f flake.lock
       exit 1
     fi
-    # git checkout flake.nix hardware-configuration.nix
+    # git checkout flake.nix flake.lock
     rm -f flake.lock
     cd ..
     EOF
