@@ -23,19 +23,35 @@ pkgs.mkShell {
     ${pkgs.commitlint}/bin/commitlint --edit "$1"
     EOF
 
-    # Create pre-commit hook
-    cat > .git-hooks/pre-commit <<'EOF'
+    # Create pre-push hook
+    cat > .git-hooks/pre-push <<'EOF'
     #!/usr/bin/env sh
+    echo "Running pre-push checks..."
+
     echo "Running nix flake check..."
     nix flake check
     if [ $? -ne 0 ]; then
       echo "Error: nix flake check failed"
       exit 1
     fi
+
+    echo "Running template flake check..."
+    cd template
+    sed -i 's|url = "github:richen604/hydenix"|url = "path:../"|' flake.nix
+    nix flake check
+    if [ $? -ne 0 ]; then
+      echo "Error: template flake check failed"
+      git checkout flake.nix
+      rm -f flake.lock
+      exit 1
+    fi
+    git checkout flake.nix
+    rm -f flake.lock
+    cd ..
     EOF
 
     # Make hooks executable
     chmod +x .git-hooks/commit-msg
-    chmod +x .git-hooks/pre-commit
+    chmod +x .git-hooks/pre-push
   '';
 }
