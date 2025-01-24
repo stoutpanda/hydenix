@@ -47,6 +47,7 @@ pkgs.mkShell {
     fi
     git checkout flake.nix
     rm -f flake.lock
+    git rm flake.lock
     cd ..
     EOF
 
