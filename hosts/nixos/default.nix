@@ -6,12 +6,13 @@ let
     system
     userConfig
     inputs
+    userPkgs
     ;
 in
 inputs.hydenix-nixpkgs.lib.nixosSystem {
   inherit system;
   specialArgs = {
-    inherit userConfig inputs;
+    inherit userConfig inputs userPkgs;
   };
   modules = [
     {
