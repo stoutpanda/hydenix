@@ -1,3 +1,11 @@
+## [1.3.2](https://github.com/richen604/hydenix/compare/v1.3.1...v1.3.2) (2025-01-25)
+
+
+### Bug Fixes
+
+* qt6 dolphin, fixes file previews ([7acf16d](https://github.com/richen604/hydenix/commit/7acf16dd0089fcbe72e75d1cffe834e27d8fa31c))
+* userpkgs added back to specialargs ([9f69b9e](https://github.com/richen604/hydenix/commit/9f69b9edceee5ff909330c75e4c54e5822f8d4d0)), closes [#36](https://github.com/richen604/hydenix/issues/36)
+
 ## [1.3.1](https://github.com/richen604/hydenix/compare/v1.3.0...v1.3.1) (2025-01-18)
 
 
