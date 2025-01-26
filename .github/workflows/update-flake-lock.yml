@@ -23,7 +23,7 @@ jobs:
         run: nix flake update
       - name: Update flake.nix with new rev
         run: |
-          NEW_REV=$(jq -r '.nodes.hydenix-nixpkgs.locked.rev' flake.lock)
+          NEW_REV=$(jq -r '.nodes."hydenix-nixpkgs".locked.rev' flake.lock)
           sed -i "s|hydenix-nixpkgs.url = \"github:nixos/nixpkgs/.*\"|hydenix-nixpkgs.url = \"github:nixos/nixpkgs/$NEW_REV\"|" flake.nix
       - name: Check flake
         id: check
