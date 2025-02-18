@@ -6,37 +6,72 @@ kanban-plugin: board
 
 ## Sprint 1: Derivation Builds
 
-- [ ] feat: Package python-pyamdgpuinfo
-- [ ] feat: Create hyde-fonts package
-- [ ] feat: Create hyde package
-- [ ] feat: Create hyde-gallery package
-- [ ] feat: create pokego package
-- [ ] feat: Create wallbash-gtk package
-- [ ] feat: Package icon-wallbash for fastfetch
-- [ ] feat: Package Cursor_BibataIce theme
-- [ ] feat: Package Tela-circle-dracula theme
-- [ ] feat: Create base SDDM themes package
+- [x] feat: create python-pyamdgpuinfo package ✅ 2025-02-05
+- [x] feat: create hyde-fonts package ✅ 2025-02-06
+- [x] feat: create hyde package ✅ 2025-02-07
+- [x] feat: create pokego package ✅ 2025-02-08
+- [x] feat: create wallbash-gtk package ✅ 2025-02-09
+- [x] feat: create code-wallbash package ✅ 2025-02-10
+- [x] feat: create icon-wallbash package ✅ 2025-02-11
+- [x] feat: create sddm-candy package ✅ 2025-02-12
+- [x] feat: create sddm-corners package ✅ 2025-02-13
+- [x] feat: create spicetify-sleek package ✅ 2025-02-14
+- [x] feat: create grub-pochita package ✅ 2025-02-15
+- [x] feat: create grub-retroboot package ✅ 2025-02-16
+- [x] feat: custom sources now part of hydenix nixpkgs via overlay ✅ 2025-02-17
 
 
 ## Sprint 2: Modules
 
-- [ ] feat: Add hyprlock module
-- [ ] feat: Add grim module
-- [ ] feat: Add satty module
-- [ ] feat: Add hyprsunset module
-- [ ] feat: Add noto-fonts-emoji module
-- [ ] feat: Add unzip module
-- [ ] feat: Add nwg-displays module
-- [ ] feat: Add pokego module
-- [ ] feat: Add starship module
-- [ ] feat: Add fish module
-- [ ] feat: Add hypridle module
-- [ ] feat: Add wttrbar module
-- [ ] feat: Add python-requests module
-- [ ] feat: Add ddccui module
-- [ ] feat: Add hyprgui-bin module
-- [ ] feat: Create zsh module
-- [ ] feat: Add hyde module
+- [ ] organize module structure from pkgs and xdg files
+	  - [ ] check .config
+	  - [ ] check .local
+	  - [ ] check .cache
+	  - [ ] revise homefile.md
+	  - [ ] organize into module structure from pkgs
+- [ ] feat: created audio module
+- [ ] feat: created default module
+- [ ] feat: created dolphin module
+- [ ] feat: created editors module
+- [ ] feat: created fastfetch module
+- [ ] feat: created firefox module
+- [ ] feat: created gaming module
+- [ ] feat: created gtk module
+- [ ] feat: created hardware module
+- [ ] feat: created hyde module
+	  - [ ] feat: created wallbash module
+- [ ] feat: created hyprland module
+	  - [ ] feat: created hypridle module
+- [ ] feat: created network module
+- [ ] feat: created notifications module
+- [ ] feat: created qt module
+- [ ] feat: created runners module
+- [ ] feat: created screenshots module
+- [ ] feat: created shell module
+- [ ] feat: created spotify module
+	  - needs declarative flatpak for spicetify
+	  - spictify module
+- [ ] feat: created system module
+- [ ] feat: created terminals module
+- [ ] feat: created veskop module
+- [ ] feat: created wallpapers module
+- [ ] feat: created waybar module
+- [ ] feat: created wlogout module
+- [ ] feat: created hyprlock module
+- [ ] feat: created grim module
+- [ ] feat: created satty module
+- [ ] feat: created hyprsunset module
+- [ ] feat: created noto-fonts-emoji module
+- [ ] feat: created unzip module
+- [ ] feat: created nwg-displays module
+- [ ] feat: created pokego module
+- [ ] feat: created starship module
+- [ ] feat: created fish module
+- [ ] feat: created hypridle module
+- [ ] feat: created wttrbar module
+- [ ] feat: created python-requests module
+- [ ] feat: created ddccui module
+- [ ] feat: created hyprgui-bin module
 	  - [ ] feat: hyde.conf settings
 	  - [ ] feat: config.toml options
 	  - [ ] feat: change defaults
@@ -59,14 +94,10 @@ kanban-plugin: board
 - [ ] docs: Add custom theme folder documentation
 
 
-## Sprint 4: Package Dependencies
+## Sprint 4: Configuration Updates
 
 - [ ] refactor: remove swaylock
 - [ ] refactor: remove pokemon-colorscripts
-
-
-## Sprint 5: Configuration Updates
-
 - [ ] refactor: Migrate config.nix to module system
 - [ ] feat: Add hydenix.enable option
 - [ ] refactor: Update template file structure
@@ -99,14 +130,10 @@ kanban-plugin: board
 - [ ] refactor: Deprecate unnecessary home.file calls
 
 
-## Done
-
-
-
 
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","list-collapse":[null,null,false]}
+{"kanban-plugin":"board","list-collapse":[null,null,false],"show-checkboxes":true,"lane-width":300}
 ```
 %%

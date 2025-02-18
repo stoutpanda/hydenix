@@ -26,6 +26,9 @@
       pkgs = import inputs.hydenix-nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [
+          (import ./hydenix/sources/overlay.nix)
+        ];
       };
 
       mkConfig = import ./lib/mkConfig.nix {

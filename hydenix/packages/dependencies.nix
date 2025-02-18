@@ -1,7 +1,4 @@
 { pkgs, ... }:
-let
-  fonts = import ../sources/hyde-fonts.nix { inherit pkgs; };
-in
 {
   home.packages = with pkgs; [
     # --------------------------------------------------- // Dependencies
@@ -54,7 +51,7 @@ in
     hyprutils # Utility tools for Hyprland
 
     # Fonts & Theming
-    fonts # Hyde font collection
+    hyde.hyde-fonts # Hyde font collection
 
     # TODO: build python-pyamdgpuinfo from https://github.com/mark9064/pyamdgpuinfo
     # python-pyamdgpuinfo # for amd gpu info

@@ -18,8 +18,7 @@ in
   imports = [
     ./hm/mutable
     ./packages
-    (import ./programs/default.nix { inherit pkgs userConfig; })
-    ./sources
+    ./programs/default.nix
   ];
 
   options.hydenix = {

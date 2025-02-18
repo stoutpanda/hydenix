@@ -4,8 +4,6 @@
   ...
 }:
 let
-  sddm-candy = pkgs.callPackage ../../hydenix/sources/sddm-candy.nix { };
-  sddm-corners = pkgs.callPackage ../../hydenix/sources/sddm-corners.nix { };
   Bibata-Modern-Ice =
     (import ../../hydenix/sources/themes/utils/arcStore.nix { inherit pkgs; })
     .cursor."Bibata-Modern-Ice";
@@ -92,8 +90,6 @@ in
         };
         package = pkgs.libsForQt5.sddm;
         extraPackages = with pkgs; [
-          sddm-candy
-          sddm-corners
           libsForQt5.qt5.qtquickcontrols # for sddm theme ui elements
           libsForQt5.layer-shell-qt # for sddm theme wayland support
           libsForQt5.qt5.qtquickcontrols2 # for sddm theme ui elements
@@ -102,6 +98,8 @@ in
           libsForQt5.qt5.qtwayland # wayland support for qt5
 
           Bibata-Modern-Ice
+          hyde.sddm-candy
+          hyde.sddm-corners
         ];
         theme = userConfig.hyde.sddmTheme or "Candy";
         settings = {
@@ -121,8 +119,8 @@ in
 
   environment.systemPackages = with pkgs; [
     Bibata-Modern-Ice
-    sddm-candy
-    sddm-corners
+    hyde.sddm-candy
+    hyde.sddm-corners
     libsForQt5.qt5.qtquickcontrols # for sddm theme ui elements
     libsForQt5.layer-shell-qt # for sddm theme wayland support
     libsForQt5.qt5.qtquickcontrols2 # for sddm theme ui elements

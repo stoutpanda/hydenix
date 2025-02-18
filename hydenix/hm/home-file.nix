@@ -6,11 +6,11 @@
   activeTheme,
 }:
 let
-  hyde = import ../sources/hyde.nix { inherit pkgs; };
-  wallbash-gtk = import ../sources/wallbash-gtk.nix { inherit pkgs lib; };
-  spicetify-sleek = import ../sources/spicetify-sleek.nix { inherit pkgs lib; };
-  hyde-gallery = import ../sources/hyde-gallery.nix { inherit pkgs lib; };
+  hyde = import ../sources/hyprdots.nix { inherit pkgs; };
 in
+# wallbash-gtk = import ../sources/wallbash-gtk.nix { inherit pkgs lib; };
+# spicetify-sleek = import ../sources/spicetify-sleek.nix { inherit pkgs lib; };
+# hyde-gallery = import ../sources/hyde-gallery.nix { inherit pkgs lib; };
 
 lib.mkMerge [
 
@@ -66,12 +66,69 @@ lib.mkMerge [
       recursive = true;
       mutable = true;
     };
-    ".config/hyde" = {
-      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde";
+
+    ".config/hyde/wallbash/Wall-Dcol/gtk" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Dcol/gtk";
       force = true;
       recursive = true;
       mutable = true;
     };
+    ".config/hyde/wallbash/Wall-Dcol/kvantum" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Dcol/kvantum";
+      force = true;
+      recursive = true;
+      mutable = true;
+    };
+    ".config/hyde/wallbash/Wall-Dcol/hypr.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Dcol/hypr.dcol";
+      force = true;
+    };
+    ".config/hyde/wallbash/Wall-Dcol/kitty.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Dcol/kitty.dcol";
+      force = true;
+
+    };
+    ".config/hyde/wallbash/Wall-Dcol/rofi.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Dcol/rofi.dcol";
+      force = true;
+    };
+    ".config/hyde/wallbash/Wall-Dcol/waybar.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Dcol/waybar.dcol";
+      force = true;
+    };
+    ".config/hyde/wallbash/Wall-Ways/notification" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Ways/notification";
+      force = true;
+      recursive = true;
+      mutable = true;
+    };
+    ".config/hyde/wallbash/Wall-Ways/palette" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Ways/palette";
+      force = true;
+      recursive = true;
+      mutable = true;
+    };
+    ".config/hyde/wallbash/Wall-Ways/cava.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Ways/cava.dcol";
+      force = true;
+    };
+    ".config/hyde/wallbash/Wall-Ways/code.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Ways/code.dcol";
+      force = true;
+    };
+    ".config/hyde/wallbash/Wall-Ways/discord.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Ways/discord.dcol";
+      force = true;
+    };
+    ".config/hyde/wallbash/Wall-Ways/qtct.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Ways/qtct.dcol";
+      force = true;
+    };
+    ".config/hyde/wallbash/Wall-Ways/spotify.dcol" = {
+      source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hyde/wallbash/Wall-Ways/spotify.dcol";
+      force = true;
+    };
+
     ".config/hypr" = {
       source = "${hyde}/share/hyde/hyprdots-modified/Configs/.config/hypr";
       force = true;
@@ -223,14 +280,14 @@ lib.mkMerge [
   {
     # Wallbash GTK theme
     ".themes/Wallbash-Gtk" = {
-      source = "${wallbash-gtk}/share/themes/Wallbash-Gtk";
+      source = "${pkgs.hyde.wallbash-gtk}/share/themes/Wallbash-Gtk";
       force = true;
       recursive = true;
       mutable = true;
     };
     # Spicetify Sleek theme
     ".config/spicetify/Themes/Sleek" = {
-      source = "${spicetify-sleek}/share/spicetify/themes/Spicetify-Sleek";
+      source = "${pkgs.hyde.spicetify-sleek}/share/spicetify/themes/Spicetify-Sleek";
       force = true;
       recursive = true;
       mutable = true;
@@ -253,7 +310,7 @@ lib.mkMerge [
     };
     # Hyde Gallery
     ".cache/hyde/landing/hyde-gallery" = {
-      source = "${hyde-gallery}/share/hyde/hyde-gallery";
+      source = "${pkgs.hyde-gallery}/share/hyde/hyde-gallery";
       force = true;
       recursive = true;
       mutable = true;
