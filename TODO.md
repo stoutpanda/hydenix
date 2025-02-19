@@ -19,6 +19,7 @@ kanban-plugin: board
 - [x] feat: create grub-pochita package ✅ 2025-02-15
 - [x] feat: create grub-retroboot package ✅ 2025-02-16
 - [x] feat: custom sources now part of hydenix nixpkgs via overlay ✅ 2025-02-17
+- [x] ci: ci shouldn't run on draft prs ✅ 2025-02-18
 
 
 ## Sprint 2: Modules
@@ -29,6 +30,8 @@ kanban-plugin: board
 	  - [ ] check .cache
 	  - [ ] revise homefile.md
 	  - [ ] organize into module structure from pkgs
+	  - [ ] system modules (eg sddm, hyprland, polkit, etc)
+	  - [ ] home-manager modules (eg hyde, wallbash, etc)
 - [ ] feat: created audio module
 - [ ] feat: created default module
 - [ ] feat: created dolphin module
