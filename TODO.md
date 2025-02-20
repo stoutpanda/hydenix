@@ -1,6 +1,6 @@
 ---
 
-kanban-plugin: board
+kanban-plugin: list
 
 ---
 
@@ -21,122 +21,71 @@ kanban-plugin: board
 - [x] feat: custom sources now part of hydenix nixpkgs via overlay ✅ 2025-02-17
 - [x] ci: ci shouldn't run on draft prs ✅ 2025-02-18
 
-
 ## Sprint 2: Modules
 
-- [ ] organize module structure from pkgs and xdg files
-	  - [ ] check .config
-	  - [ ] check .local
-	  - [ ] check .cache
-	  - [ ] revise homefile.md
-	  - [ ] organize into module structure from pkgs
-	  - [ ] system modules (eg sddm, hyprland, polkit, etc)
-	  - [ ] home-manager modules (eg hyde, wallbash, etc)
-- [ ] feat: created audio module
-- [ ] feat: created default module
-- [ ] feat: created dolphin module
-- [ ] feat: created editors module
-- [ ] feat: created fastfetch module
-- [ ] feat: created firefox module
-- [ ] feat: created gaming module
-- [ ] feat: created gtk module
-- [ ] feat: created hardware module
-- [ ] feat: created hyde module
-	  - [ ] feat: created wallbash module
-- [ ] feat: created hyprland module
-	  - [ ] feat: created hypridle module
-- [ ] feat: created network module
-- [ ] feat: created notifications module
-- [ ] feat: created qt module
-- [ ] feat: created runners module
-- [ ] feat: created screenshots module
-- [ ] feat: created shell module
-- [ ] feat: created spotify module
-	  - needs declarative flatpak for spicetify
-	  - spictify module
-- [ ] feat: created system module
-- [ ] feat: created terminals module
-- [ ] feat: created veskop module
-- [ ] feat: created wallpapers module
-- [ ] feat: created waybar module
-- [ ] feat: created wlogout module
-- [ ] feat: created hyprlock module
-- [ ] feat: created grim module
-- [ ] feat: created satty module
-- [ ] feat: created hyprsunset module
-- [ ] feat: created noto-fonts-emoji module
-- [ ] feat: created unzip module
-- [ ] feat: created nwg-displays module
-- [ ] feat: created pokego module
-- [ ] feat: created starship module
-- [ ] feat: created fish module
-- [ ] feat: created hypridle module
-- [ ] feat: created wttrbar module
-- [ ] feat: created python-requests module
-- [ ] feat: created ddccui module
-- [ ] feat: created hyprgui-bin module
-	  - [ ] feat: hyde.conf settings
-	  - [ ] feat: config.toml options
-	  - [ ] feat: change defaults
-	  - [ ] feat: override psv
-	  - [ ] feat: hyde-shell
-- [ ] perf: Optimize mutable.nix performance
-
-
-## Sprint 3: Theming System
-
-- [ ] refactor: Remove arcStore dependency
-- [ ] feat: Implement individual theme builds
-- [ ] refactor: Rename theme-name to theme-arcs
-- [ ] feat: Add SHA256 hash management
-- [ ] feat: Improve theme extensibility
-- [ ] feat: Add user-defined theme-arcs support
-- [ ] feat: Add mkTheme to hydenix library
-- [ ] feat: Add mkFont to hydenix library
-- [ ] docs: Document nix and non-nix theming approaches
-- [ ] docs: Add custom theme folder documentation
-
+- [ ] system modules
+  - [ ] feat: created audio module
+  - [ ] feat: created boot module
+  - [ ] feat: created hardware module
+  - [ ] feat: created network module
+  - [ ] feat: created nix module
+  - [ ] feat: created sddm module
+  - [ ] feat: created system module
+  - [ ] feat: created default module
+- [ ] home-manager modules
+  - [ ] feat: created comma module
+  - [ ] feat: created dolphin module
+  - [ ] feat: created editors module
+  - [ ] feat: created fastfetch module
+  - [ ] feat: created firefox module
+  - [ ] feat: created gaming module
+  - [ ] feat: created git module
+  - [ ] feat: created gtk module
+  - [ ] feat: created hyde module
+  - [ ] feat: created hyprland module
+  - [ ] feat: created lockscreen module
+  - [ ] feat: created mutable module
+  - [ ] feat: created notifications module
+  - [ ] feat: created qt module
+  - [ ] feat: created rofi module
+  - [ ] feat: created screenshots module
+  - [ ] feat: created shell module
+  - [ ] feat: created social module
+  - [ ] feat: created spotify module
+  - [ ] feat: created swww module
+  - [ ] feat: created terminals module
+  - [ ] feat: created theme module
+  - [ ] feat: created waybar module
+  - [ ] feat: created wlogout module
+  - [ ] feat: created xdg module
+  - [ ] feat: created default module
 
 ## Sprint 4: Configuration Updates
 
-- [ ] refactor: remove swaylock
-- [ ] refactor: remove pokemon-colorscripts
-- [ ] refactor: Migrate config.nix to module system
-- [ ] feat: Add hydenix.enable option
-- [ ] refactor: Update template file structure
-- [ ] feat: Implement user ownership of mkConfig
-- [ ] feat: Update hydenix host builds ownership
-
+- [ ] feat: updated default build to use new hydenix
+- [ ] feat: updated template to use new hydenix
+- [ ] docs: updated readme for new hydenix api
+- [ ] docs: updated template documentation for new hydenix api
 
 ## Future Enhancements
 
-- [ ] feat: Add spicetify support
-- [ ] feat: Complete hyde-gallery themes
-- [ ] fix: Downgrade dolphin to qt5 for icon support
-- [ ] feat: Create sddm-hyprland
-- [ ] feat: Develop hyprpanel
-- [ ] feat: Integrate hydepanel from rubin
-- [ ] feat: Add telegram theme support
-- [ ] feat: Add zed theme support
-- [ ] feat: Add obsidian theme support
-- [ ] feat: Add terminal-emulators support
-- [ ] feat: Add code-wallbash nix support
 - [ ] feat: Complete iso builder
-- [ ] docs: Update readme
-- [ ] docs: Create full hyde-site documentation
-- [ ] feat: Implement wallbash/swwwallcache in nix build
-- [ ] feat: Add waybar configuration option
+- [ ] Ecosystem
+  - [ ] feat: Add spicetify support
+  - [ ] feat: Create sddm-hyprland
+  - [ ] feat: Develop hyprpanel
+  - [ ] feat: Integrate hydepanel from rubin
+  - [ ] feat: Add telegram theme support
+  - [ ] feat: Add zed theme support
+  - [ ] feat: Add obsidian theme support
+  - [ ] feat: Add terminal-emulators support
+  - [ ] feat: Add updated HyDE/code-wallbash nix support
 - [ ] feat: Set NIX-PATH to template flake location
-- [ ] refactor: Improve host modularity
-- [ ] feat: Add home-manager only host
+- [ ] feat: Add home-manager only configuration with nixGL
 - [ ] chore: Review non-nix VM support
-- [ ] refactor: Deprecate unnecessary home.file calls
-
-
-
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","list-collapse":[null,null,false],"show-checkboxes":true,"lane-width":300}
+{"kanban-plugin":"list","list-collapse":[true,false,false,false,true,false],"show-checkboxes":true,"lane-width":600,"full-list-lane-width":true}
 ```
 %%
