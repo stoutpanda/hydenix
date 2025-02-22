@@ -12,10 +12,10 @@ buildGoModule rec {
     owner = "rubiin";
     repo = "pokego";
     rev = "v${version}";
-    hash = "sha256-SKIP"; # Replace with actual hash after first build attempt
+    hash = "sha256-cFpEi8wBdCzAl9dputoCwy8LeGyK3UF2vyylft7/1wY=";
   };
 
-  vendorHash = null; # Will be updated on first build
+  vendorHash = "sha256-7SoKHH+tDJKhUQDoVwAzVZXoPuKNJEHDEyQ77BPEDQ0=";
 
   # Install shell completions
   postInstall = ''
