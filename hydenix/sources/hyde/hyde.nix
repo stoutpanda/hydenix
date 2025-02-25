@@ -9,6 +9,9 @@ pkgs.stdenv.mkDerivation {
   };
 
   buildPhase = ''
+    # remove assets folder
+    rm -rf Source/assets
+
     # Update waybar killall command in all HyDE files
     find . -type f -print0 | xargs -0 sed -i 's/killall waybar/killall .waybar-wrapped/g'
 
@@ -17,6 +20,7 @@ pkgs.stdenv.mkDerivation {
 
     # update kitty
     find . -type f -print0 | xargs -0 sed -i 's/killall kitty/killall .kitty-wrapped/g'
+    find . -type f -print0 | xargs -0 sed -i 's/killall -SIGUSR1 kitty/killall -SIGUSR1 .kitty-wrapped/g'
 
     # fix find commands for symlinks
     find . -type f -executable -print0 | xargs -0 sed -i 's/find "/find -L "/g'
@@ -24,7 +28,7 @@ pkgs.stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    mkdir -p $out/share/hyde/hyde-modified
-    cp -r . $out/share/hyde/hyde-modified
+    mkdir -p $out
+    cp -r . $out
   '';
 }
