@@ -8,7 +8,7 @@ pkgs.vscode-utils.buildVscodeExtension {
 
   src = pkgs.fetchurl {
     url = "https://github.com/HyDE-Project/HyDE/raw/${commit}/Source/arcs/Code_Wallbash.vsix";
-    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    sha256 = "sha256-ZBYLtnpgG5WqOQXol1nG2DVSxXtKDbQzfdIA/LTU5Y0=";
   };
 
   nativeBuildInputs = [ pkgs.unzip ];

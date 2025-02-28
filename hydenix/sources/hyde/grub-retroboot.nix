@@ -8,7 +8,7 @@ pkgs.stdenv.mkDerivation {
 
   src = pkgs.fetchzip {
     url = "https://github.com/HyDE-Project/HyDE/raw/${commit}/Source/arcs/Grub_Retroboot.tar.gz";
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Replace with actual hash
+    hash = "sha256-85NTz6588zfHOvZPg69kF5/8f00pNmkpZloJSg6pEQk="; # Replace with actual hash
   };
 
   installPhase = ''

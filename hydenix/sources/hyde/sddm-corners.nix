@@ -4,11 +4,12 @@
 }:
 pkgs.stdenv.mkDerivation {
   pname = "sddm-corners-theme";
+  name = "Corners";
   version = "1.0.0";
 
   src = pkgs.fetchzip {
     url = "https://github.com/HyDE-Project/HyDE/raw/${commit}/Source/arcs/Sddm_Corners.tar.gz";
-    hash = "sha256-vpHsLcGKtlZQHMI2cc76aRycpaYxig2u0zDd3EmbnVk=";
+    hash = "sha256-5f3M4tLkSnFU69C+wSH3y4ssqFconQu47A+7XP7ZbH4=";
   };
 
   installPhase = ''
