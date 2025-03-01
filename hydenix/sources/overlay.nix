@@ -1,7 +1,7 @@
 final: prev:
 let
   # Import the hyde commit from hyde/default.nix
-  commit = "e0e90ea3830b8c222f13a969fe5e0c4688953448";
+  commit = "2689df9882b5ac501d6d66a0118561041e311ae3";
 
   # Helper function to import a package
   callPackage = prev.lib.callPackageWith (prev // packages);
@@ -16,13 +16,15 @@ let
     pokego = callPackage ./pokego.nix { };
     pokemon-colorscripts = callPackage ./pokemon-colorscripts.nix { };
     python-pyamdgpuinfo = callPackage ./python-pyamdgpuinfo.nix { };
-    hyde = {
+    Tela-circle-dracula = callPackage ./Tela-circle-dracula.nix { };
+    Bibata-Modern-Ice = callPackage ./Bibata-Modern-Ice.nix { };
+    hydenix = {
       hyde = callPackage ./hyde/hyde.nix { inherit commit; };
 
       # Hyde themes and assets
       hyde-fonts = callPackage ./hyde/hyde-fonts.nix { inherit commit; };
 
-      # hyde-firefox = callPackage ./hyde/hyde-firefox.nix { inherit commit; };
+      hyde-firefox = callPackage ./hyde/hyde-firefox.nix { inherit commit; };
 
       wallbash-gtk = callPackage ./hyde/wallbash-gtk.nix { inherit commit; };
       wallbash-icons = callPackage ./hyde/icons-wallbash.nix { inherit commit; };
@@ -36,7 +38,7 @@ let
       grub-retroboot = callPackage ./hyde/grub-retroboot.nix { inherit commit; };
 
       # VSCode extensions
-      vscode-wallbash = callPackage ./hyde/code-wallbash.nix { inherit commit; };
+      code-wallbash = callPackage ./hyde/code-wallbash.nix { inherit commit; };
 
       # Spicetify themes
       spicetify-sleek = callPackage ./hyde/spicetify-sleek.nix { inherit commit; };
