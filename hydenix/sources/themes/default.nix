@@ -41,4 +41,11 @@ in
   "Tokyo Night" = callTheme ./Tokyo-Night.nix;
   "Vanta Black" = callTheme ./Vanta-Black.nix;
   "Windows 11" = callTheme ./Windows-11.nix;
+  "Another World" = callTheme ./Another-World.nix;
+  "BlueSky" = callTheme ./BlueSky.nix;
+  "Cosmic Blue" = callTheme ./Cosmic-Blue.nix;
+  "DoomBringers" = callTheme ./DoomBringers.nix;
+  "Eternal Artic" = callTheme ./Eternal-Artic.nix;
+  "Ever Blushing" = callTheme ./Ever-Blushing.nix;
+  "Moonlight" = callTheme ./Moonlight.nix;
 }

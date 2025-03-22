@@ -45,6 +45,14 @@
         "Vanta Black"
         "Windows 11"
 
+        "Another World"
+        "BlueSky"
+        "Cosmic Blue"
+        "DoomBringers"
+        "Eternal Arctic"
+        "Ever Blushing"
+        "Moonlight"
+
         # Testing that we can add a new string and it won't fail
         "Some Theme"
       ];
