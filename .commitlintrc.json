@@ -54,5 +54,11 @@
       "always",
       72
     ]
+  },
+  "parserPreset": {
+    "parserOpts": {
+      "headerPattern": "^(\\w*)(?:\\(([\\w$.*-]*)\\))?(!)?:\\s(.*)$",
+      "breakingHeaderPattern": "^(\\w*)(?:\\(([\\w$.*-]*)\\))?!:\\s(.*)$"
+    }
   }
 }
