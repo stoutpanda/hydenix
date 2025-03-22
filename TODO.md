@@ -72,9 +72,8 @@ kanban-plugin: list
 ## Sprint 4: Configuration Updates
 
 - [x] feat: updated default build to use new hydenix
-- [ ] feat: updated template to use new hydenix
-- [ ] docs: updated readme for new hydenix api
-- [ ] docs: updated template documentation for new hydenix api
+- [x] feat: updated template to use new hydenix
+- [x] docs: updated readme for new hydenix api
 
 ## Future Enhancements
 
