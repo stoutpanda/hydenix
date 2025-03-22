@@ -84,7 +84,7 @@
         nixos-vm = vmConfig.config.system.build.vm;
 
         # ISO configuration
-        iso = isoConfig.iso;
+        iso = isoConfig.build-iso;
 
         # Add the burn-iso script as a package
         burn-iso = isoConfig.burn-iso;

@@ -190,16 +190,53 @@ let
   };
 in
 {
-  # Updated ISO builder
-  iso =
-    hydenix-pkgs.runCommand "hydenix-iso"
-      {
-        nativeBuildInputs = [ hydenix-pkgs.coreutils ];
-      }
-      ''
-        mkdir -p $out
-        cp -r ${isoSystem.config.system.build.isoImage}/iso/* $out/
-      '';
+
+  # Add a build-iso script that can be run with 'nix run'
+  build-iso = hydenix-pkgs.writeScriptBin "build-iso" ''
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    # Colors for output
+    GREEN='\033[0;32m'
+    BLUE='\033[0;34m'
+    NC='\033[0m' # No Color
+
+    # Get the actual ISO path
+    ISO_DIR="${isoSystem.config.system.build.isoImage}"
+
+    echo -e "''${BLUE}Building HydeNix ISO...''${NC}"
+    echo -e "''${BLUE}This may take a while depending on your system.''${NC}"
+
+    # Create the output directory if it doesn't exist
+    mkdir -p ./result
+
+    # Find the ISO file
+    if [ -d "$ISO_DIR/iso" ]; then
+      ISO_PATH=$(find "$ISO_DIR/iso" -name "*.iso" -type f)
+    else
+      ISO_PATH=$(find "$ISO_DIR" -name "*.iso" -type f)
+    fi
+
+    if [ -z "$ISO_PATH" ]; then
+      echo -e "''${RED}Error: Could not find ISO file in $ISO_DIR''${NC}"
+      echo "Directory contents:"
+      find "$ISO_DIR" -type f | sort
+      exit 1
+    fi
+
+    # Copy the ISO to the current directory
+    echo -e "''${BLUE}Copying ISO to ./result directory...''${NC}"
+    cp -v "$ISO_PATH" ./result/
+
+    ISO_FILENAME=$(basename "$ISO_PATH")
+
+    echo -e "''${GREEN}ISO built successfully!''${NC}"
+    echo -e "''${BLUE}Your ISO is available at:''${NC} ./result/$ISO_FILENAME"
+    echo
+    echo -e "''${BLUE}To burn this ISO to a USB drive, you can use:''${NC}"
+    echo "nix run .#burn-iso -- ./result/$ISO_FILENAME /dev/sdX"
+    echo -e "''${BLUE}(Replace /dev/sdX with your USB device)''${NC}"
+  '';
 
   burn-iso = hydenix-pkgs.writeScriptBin "burn-iso" ''
     #!/usr/bin/env bash
