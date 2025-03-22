@@ -23,7 +23,7 @@ let
     (mkFontDerivation {
       name = "cascadia-code";
       url = "https://github.com/HyDE-Project/HyDE/raw/${commit}/Source/arcs/Font_CascadiaCove.tar.gz";
-      sha256 = "sha256-xtQJ++bi2eY/G62lLw7J3VGQvFpV33ijA98tyv782m0=";
+      sha256 = "sha256-q6/aDRPTjFpZlK0Ol9TX7J3etQeP/JJbRYebjdaFwss=";
     })
     (mkFontDerivation {
       name = "jetbrains-mono";
