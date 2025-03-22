@@ -40,46 +40,32 @@ diff README.md new-flake/README.md
 
 then make changes as needed, `rm -rf new-flake` when done
 
-## Hydenix Documentation - Customization and Common Issues
+## Hydenix FAQ
 
-When adding custom modules, use the `config.nix` file to import them. 
-Be warned it is very easy to override hydenix defaults this way, here are some tips to prevent breakage:
+### Boot option / GRUB or systemd-boot
 
-### Boot option
+`configuration.nix`/`modules/system`
 
-Boot option is systemd by default, rebuilds will only *effect the boot option selected* so you need to change boot in Bios to use grub if you have systemd and vice versa.
-
-`config.nix` - `nixModules`
 ```nix
-{...}:
-{
-# default option, disable if switching to grub
-boot.loader.systemd-boot.enable = true;
-  #! Enable grub below, note you will have to change to the new bios boot option for settings to apply
-  # boot = {
-  #   loader = {
-  #     efi = {
-  #       canTouchEfiVariables = true;
-  #       efiSysMountPoint = "/boot/efi";
-  #     };
-  #     grub = {
-  #       enable = true;
-  #       devices = [ "nodev" ];
-  #       efiSupport = true;
-  #       useOSProber = true;
-  #     };
-  #   };
-  # };
-}
+# Boot options
+hydenix.boot = {
+  enable = true; # default is hydenix.enable
+  useSystemdBoot = true; # default true, false for GRUB
+  grubTheme = pkgs.hydenix.grub-retroboot; # default grub-retroboot, can use grub-pochita
+  grubExtraConfig = ""; # additional GRUB configuration
+  kernelPackages = pkgs.linuxPackages_zen; # default zen kernel
+};
 ```
+
+Make sure you change the boot option in your BIOS to use the GRUB option you selected.
 
 ### Home.activation
 
-For [`home.activation`](https://github.com/richen604/hydenix/blob/main/hydenix/hm/home-activation.nix), make sure the scripts run after `setTheme`
+For any `home.activation` scripts, make sure the scripts run after `mutableGeneration`
 
 ```nix
 home.activation = {
-    example = lib.hm.dag.entryAfter [ "setTheme" ] ''
+    example = lib.hm.dag.entryAfter [ "mutableGeneration" ] ''
         $DRY_RUN_CMD echo "example"
     '';
 }
