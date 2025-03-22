@@ -8,6 +8,10 @@ pkgs.stdenv.mkDerivation {
     sha256 = "sha256-+aRFVAptu+v2xOUjq7D0LC1a+jwXJCEVFC6SP9rQkrs=";
   };
 
+  nativeBuildInputs = with pkgs; [
+    gnutar
+  ];
+
   buildPhase = ''
     # remove assets folder
     rm -rf Source/assets
@@ -25,6 +29,14 @@ pkgs.stdenv.mkDerivation {
     # fix find commands for symlinks
     find . -type f -executable -print0 | xargs -0 sed -i 's/find "/find -L "/g'
     find . -type f -name "*.sh" -print0 | xargs -0 sed -i 's/find "/find -L "/g'
+
+    # Extract font archives
+    mkdir -p $out/share/fonts/truetype
+    for fontarchive in ./Source/arcs/Font_*.tar.gz; do
+      if [ -f "$fontarchive" ]; then
+        tar xzf "$fontarchive" -C $out/share/fonts/truetype/
+      fi
+    done
   '';
 
   installPhase = ''

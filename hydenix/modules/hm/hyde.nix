@@ -23,9 +23,9 @@ in
     home.packages = with pkgs; [
       hydenix.wallbash-gtk
       hydenix.wallbash-icons
-      hydenix.hyde-fonts
       Bibata-Modern-Ice
       Tela-circle-dracula
+      hydenix.hyde
     ];
 
     fonts.fontconfig.enable = true;

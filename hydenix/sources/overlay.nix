@@ -21,9 +21,6 @@ let
     hydenix = {
       hyde = callPackage ./hyde/hyde.nix { inherit commit; };
 
-      # Hyde themes and assets
-      hyde-fonts = callPackage ./hyde/hyde-fonts.nix { inherit commit; };
-
       hyde-firefox = callPackage ./hyde/hyde-firefox.nix { inherit commit; };
 
       wallbash-gtk = callPackage ./hyde/wallbash-gtk.nix { inherit commit; };
