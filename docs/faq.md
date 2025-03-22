@@ -76,7 +76,14 @@ NixOS hydenix options:
 ```nix
 {
   hydenix = {
+
+    #! Important options
     enable = true; # enable hydenix - required, default false
+    hostname = "hydenix"; # hostname
+    timezone = "America/Vancouver"; # timezone
+    locale = "en_CA.UTF-8"; # locale
+
+    #! Below are defaults
     audio.enable = true; # enable audio module
     boot = {
       enable = true; # enable boot module
@@ -93,7 +100,6 @@ NixOS hydenix options:
       theme = pkgs.hydenix.sddm-candy; # or pkgs.hydenix.sddm-corners
     };
     system.enable = true; # enable system module
-    user.enable = true; # enable user module
   };
 }
 ```
@@ -106,9 +112,12 @@ NixOS hydenix options:
 ```nix
 {
   hydenix.hm = {
+
+    #! Important options
     enable = true;
 
-      comma.enable = true; # useful nix tool to run software without installing it first
+    #! Below are defaults
+    comma.enable = true; # useful nix tool to run software without installing it first
       dolphin.enable = true; # file manager
       editors = {
         enable = true; # enable editors module

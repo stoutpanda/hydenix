@@ -89,22 +89,22 @@ in
       Optionally edit the below values, or leave to use hydenix defaults
       visit ./modules/hm/default.nix for more options
 
-      audio.enable = true;
+      audio.enable = true; # enable audio module
       boot = {
-        enable = true;
-        useSystemdBoot = true; - false for GRUB
-        grubTheme = pkgs.hydenix.grub-retroboot; - or pkgs.hydenix.grub-pochita
-        grubExtraConfig = "";
-        kernelPackages = pkgs.linuxPackages_zen;
+        enable = true; # enable boot module
+        useSystemdBoot = true; # disable for GRUB
+        grubTheme = pkgs.hydenix.grub-retroboot; # or pkgs.hydenix.grub-pochita
+        grubExtraConfig = ""; # additional GRUB configuration
+        kernelPackages = pkgs.linuxPackages_zen; # default zen kernel
       };
-      hardware.enable = true;
-      network.enable = true;
-      nix.enable = true;
+      hardware.enable = true; # enable hardware module
+      network.enable = true; # enable network module
+      nix.enable = true; # enable nix module
       sddm = {
-        enable = true;
+        enable = true; # enable sddm module
         theme = pkgs.hydenix.sddm-candy; # or pkgs.hydenix.sddm-corners
       };
-      system.enable = true;
+      system.enable = true; # enable system module
     */
   };
 
