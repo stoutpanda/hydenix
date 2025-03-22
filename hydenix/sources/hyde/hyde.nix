@@ -5,7 +5,7 @@ pkgs.stdenv.mkDerivation {
     owner = "HyDE-Project";
     repo = "HyDE";
     rev = commit;
-    sha256 = "sha256-tx6bgjp42c1MPoigoylNEtLDYOn4vNi0IkN1HvBO12A=";
+    sha256 = "sha256-+aRFVAptu+v2xOUjq7D0LC1a+jwXJCEVFC6SP9rQkrs=";
   };
 
   buildPhase = ''

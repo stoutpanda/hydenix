@@ -2,11 +2,11 @@
 mkTheme rec {
   name = "Material Sakura";
   src = pkgs.fetchFromGitHub {
-    owner = "HydeProject";
+    owner = "HyDE-Project";
     repo = "hyde-themes";
     rev = "Material-Sakura";
     name = name;
-    sha256 = "sha256-3tM422nWdWPEm7KY7Wh7fQ2KbzzZhBM6Zj8/z1aTVVo=";
+    sha256 = "sha256-tdH7ok9dEmhx/SE01DeJdiLia4ulCxeSzRwU7tByL9M=";
   };
 
   arcs = {
@@ -16,7 +16,7 @@ mkTheme rec {
 
   meta = {
     description = "HyDE Theme: Material Sakura";
-    homepage = "https://github.com/prasanthrangan/hyde-themes/tree/Material-Sakura";
+    homepage = "https://github.com/HyDE-Project/hyde-themes/tree/Material-Sakura";
     priority = 100;
   };
 }

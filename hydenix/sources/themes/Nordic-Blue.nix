@@ -2,11 +2,11 @@
 mkTheme rec {
   name = "Nordic Blue";
   src = pkgs.fetchFromGitHub {
-    owner = "HydeProject";
+    owner = "HyDE-Project";
     repo = "hyde-themes";
     rev = "Nordic-Blue";
     name = name;
-    sha256 = "sha256-YyuwnWvd8hMOetFsGpEvk5uiny55mMpSKqhhWzUTwL8=";
+    sha256 = "sha256-kf1jFKVgx+7wOBTOH4iJNzQgOTGq8VK7SwWjDZHhjuo=";
   };
 
   arcs = {
@@ -16,7 +16,7 @@ mkTheme rec {
 
   meta = {
     description = "HyDE Theme: Nordic Blue";
-    homepage = "https://github.com/prasanthrangan/hyde-themes/tree/Nordic-Blue";
+    homepage = "https://github.com/HyDE-Project/hyde-themes/tree/Nordic-Blue";
     priority = 100;
   };
 }

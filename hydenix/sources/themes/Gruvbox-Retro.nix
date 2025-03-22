@@ -2,11 +2,11 @@
 mkTheme rec {
   name = "Gruvbox Retro";
   src = pkgs.fetchFromGitHub {
-    owner = "HydeProject";
+    owner = "HyDE-Project";
     repo = "hyde-themes";
     rev = "Gruvbox-Retro";
     name = name;
-    sha256 = "sha256-/6CZmFjmUOIw5qCQSURcjsHL6vsA1b5yIfzKi3fd88k=";
+    sha256 = "sha256-zbY//EeJb9QelM+NNtzH58QcD8LGmgxmwQUvQ4eb554=";
   };
 
   arcs = {
@@ -17,7 +17,7 @@ mkTheme rec {
 
   meta = {
     description = "HyDE Theme: Gruvbox Retro";
-    homepage = "https://github.com/prasanthrangan/hyde-themes/tree/Gruvbox-Retro";
+    homepage = "https://github.com/HyDE-Project/hyde-themes/tree/Gruvbox-Retro";
     priority = 100;
   };
 }

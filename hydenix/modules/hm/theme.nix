@@ -9,9 +9,7 @@ let
   cfg = config.hydenix.hm.theme;
 
   # Helper function to find a theme package by name, returns null if not found
-  findThemeByName =
-    themeName:
-    lib.findFirst (p: (p.pname or p.name) == themeName) null (lib.attrValues pkgs.hydenix.themes);
+  findThemeByName = themeName: pkgs.hydenix.themes.${themeName} or null;
 
   # Filter out themes that don't have corresponding packages
   availableThemes = lib.filter (themeName: findThemeByName themeName != null) cfg.themes;
@@ -99,8 +97,8 @@ in
       echo "Setting theme to ${cfg.active}..." | tee -a "$LOG_FILE"
 
       # Run the theme switch commands with the custom runtime dir
+      $HOME/.local/lib/hyde/swwwallcache.sh -t "${cfg.active}" >> "$LOG_FILE" 2>&1
       $HOME/.local/lib/hyde/themeswitch.sh -q -s "${cfg.active}" >> "$LOG_FILE" 2>&1
-      $HOME/.local/bin/hyde-shell reload >> "$LOG_FILE" 2>&1
 
       echo "Theme switch completed. Log saved to $LOG_FILE" | tee -a "$LOG_FILE"
     '';

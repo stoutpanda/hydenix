@@ -2,11 +2,11 @@
 mkTheme rec {
   name = "Decay Green";
   src = pkgs.fetchFromGitHub {
-    owner = "HydeProject";
+    owner = "HyDE-Project";
     repo = "hyde-themes";
     rev = "Decay-Green";
     name = name;
-    sha256 = "sha256-/jApdX6ADJOHU9iSCTpGMmL3phNSDHxsrKXX5sBLRGQ=";
+    sha256 = "sha256-Vg9WsRPrkpkQMtOT+8rjf7CKiCvTQ12XZYX6hfUU0h0=";
   };
 
   arcs = {
@@ -16,7 +16,7 @@ mkTheme rec {
 
   meta = {
     description = "HyDE Theme: Decay Green";
-    homepage = "https://github.com/prasanthrangan/hyde-themes/tree/Decay-Green";
+    homepage = "https://github.com/HyDE-Project/hyde-themes/tree/Decay-Green";
     priority = 100;
   };
 }

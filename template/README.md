@@ -14,7 +14,8 @@ If you just templated this flake, you can follow these steps to get started:
 4. run any of the packages in your new `flake.nix`
     - for rebuild, use `sudo nixos-rebuild switch --flake .`
 5. DON'T FORGET: change your password for all users with `passwd` from initialPassword set in `configuration.nix`
-6. NOTE: After rebuild, the first boot may take a while depending on how many `hydenix.hm.themes` are enabled, as the system generates cache.
+
+NOTE: After launching hydenix, you can run `hyde-shell reload` to generate cache for remaining themes if you want.
 
 All module options are documented [here](https://github.com/richen604/hydenix/blob/main/docs/faq.md#What-are-the-module-options).
 

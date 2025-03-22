@@ -6,9 +6,9 @@
 
     theme = {
       enable = true;
-      active = "Catppuccin-Mocha";
+      active = "Abyssal-Wave";
       themes = [
-        "Abyssal Wave"
+        "Abyssal-Wave"
         "AbyssGreen"
         "Bad Blood"
         "Cat Latte"
@@ -44,6 +44,9 @@
         "Tokyo Night"
         "Vanta Black"
         "Windows 11"
+
+        # Testing that we can add a new string and it won't fail
+        "Some Theme"
       ];
     };
   };

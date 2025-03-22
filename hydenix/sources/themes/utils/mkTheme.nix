@@ -72,6 +72,10 @@ let
             for icon_archive in ./Source/Icon_*.tar*; do
               if [ -f "$icon_archive" ]; then
                 tar -xf "$icon_archive" --strip-components=1 --skip-old-files -C $out/share/icons/"${iconName}"
+                
+                # Fix broken symlinks by removing them
+                find $out/share/icons/"${iconName}" -type l -exec sh -c 'test -e "$0" || rm "$0"' {} \;
+                
                 jdupes --recurse $out/share/icons/"${iconName}"
                 break
               fi
@@ -92,6 +96,10 @@ let
             for cursor_archive in ./Source/Cursor_*.tar*; do
               if [ -f "$cursor_archive" ]; then
                 tar -xf "$cursor_archive" -C $out/share/icons/"${cursorName}"
+                
+                # Fix broken symlinks by removing them
+                find $out/share/icons/"${cursorName}" -type l -exec sh -c 'test -e "$0" || rm "$0"' {} \;
+                
                 jdupes --recurse $out/share/icons/"${cursorName}"
                 break
               fi

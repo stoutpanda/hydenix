@@ -2,11 +2,11 @@
 mkTheme rec {
   name = "Rosé Pine";
   src = pkgs.fetchFromGitHub {
-    owner = "prasanthrangan";
+    owner = "HyDE-Project";
     repo = "hyde-themes";
-    rev = "b009a30d15c994fcbfa30f8a3fc5d1b0670d9653";
+    rev = "Rose-Pine";
     name = name;
-    sha256 = "sha256-hvTqM45cw580OXK95a09PxSCidFt7T4bVNjizhsb7IQ=";
+    sha256 = "sha256-C/DA1z8MHoeEa3REmYwTrKrueZp91A+siYMCorKaExE=";
   };
 
   arcs = {
@@ -16,7 +16,7 @@ mkTheme rec {
 
   meta = {
     description = "HyDE Theme: Rosé Pine";
-    homepage = "https://github.com/prasanthrangan/hyde-themes/tree/Rose-Pine";
+    homepage = "https://github.com/HyDE-Project/hyde-themes/tree/Rose-Pine";
     priority = 100;
   };
 }

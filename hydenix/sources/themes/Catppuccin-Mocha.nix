@@ -2,11 +2,11 @@
 mkTheme rec {
   name = "Catppuccin Mocha";
   src = pkgs.fetchFromGitHub {
-    owner = "HydeProject";
+    owner = "HyDE-Project";
     repo = "hyde-themes";
     rev = "Catppuccin-Mocha";
     name = name;
-    sha256 = "sha256-YbT1Rm49igI3H1wH21V5f+npjgbj0ya0Dfh9tM62nVI=";
+    sha256 = "sha256-F4ounl97JN8AuIo4ikO/hF/Zsrq7I1hGc9ZzobFiVPA=";
   };
 
   arcs = {
@@ -16,7 +16,7 @@ mkTheme rec {
 
   meta = {
     description = "HyDE Theme: Catppuccin Mocha";
-    homepage = "https://github.com/prasanthrangan/hyde-themes/tree/Catppuccin-Mocha";
+    homepage = "https://github.com/HyDE-Project/hyde-themes/tree/Catppuccin-Mocha";
     priority = 100;
   };
 }

@@ -11,8 +11,8 @@
     - [What are the module options?](#what-are-the-module-options)
     - [What if I want to customize hydenix?](#what-if-i-want-to-customize-hydenix)
     - [How do I persist changes on reboot/rebuild/etc?](#how-do-i-persist-changes-on-rebootrebuildetc)
+    - [How do I add a new theme?](#how-do-i-add-a-new-theme)
     - [What is mutable.nix?](#what-is-mutablenix)
-    - [Why does rebooting take a long time the first time?](#why-does-rebooting-take-a-long-time-the-first-time)
     - [Why do themes still show after I remove them from `hydenix.hm.theme.themes`?](#why-do-themes-still-show-after-i-remove-them-from-hydenixhmthemethemes)
     - [Requesting features](#requesting-features)
   - [Other FAQ](#other-faq)
@@ -257,13 +257,17 @@ home-managers `home.file` allows you to do this
 }
 ```
 
-The mutable part is important as it allows the file to copy at the right time.
+The [mutable](#what-is-mutablenix) part is important as it allows the file to copy at the right time.
 
 <div align="right">
   <a href="#faq">
     <img src="https://img.shields.io/badge/Back_to_Top-↑-blue" alt="Back to Top" />
   </a>
 </div>
+
+### How do I add a new theme?
+
+<!-- TODO: docs: Add a guide on how to add a new theme -->
 
 ### What is mutable.nix?
 
@@ -289,16 +293,6 @@ home.activation = {
 ```
 
 credit to @piousdeer for the [implementation](https://gist.github.com/piousdeer/b29c272eaeba398b864da6abf6cb5daa)
-
-<div align="right">
-  <a href="#faq">
-    <img src="https://img.shields.io/badge/Back_to_Top-↑-blue" alt="Back to Top" />
-  </a>
-</div>
-
-### Why does rebooting take a long time the first time?
-
-The first boot may take a while depending on how many `hydenix.hm.themes` are enabled, as the system generates cache.
 
 <div align="right">
   <a href="#faq">

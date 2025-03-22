@@ -2,7 +2,7 @@
 mkTheme rec {
   name = "Synth Wave";
   src = pkgs.fetchFromGitHub {
-    owner = "prasanthrangan";
+    owner = "HyDE-Project";
     repo = "hyde-themes";
     rev = "61c389a0ba3c0858e000436a359385389cda7f44";
     name = name;
@@ -16,7 +16,7 @@ mkTheme rec {
 
   meta = {
     description = "HyDE Theme: Synth Wave";
-    homepage = "https://github.com/prasanthrangan/hyde-themes/tree/Synth-Wave";
+    homepage = "https://github.com/HyDE-Project/hyde-themes/tree/Synth-Wave";
     priority = 100;
   };
 }

@@ -108,7 +108,8 @@ Why Nix?:
 5. run any of the packages in your new `flake.nix`
     - for rebuild, use `sudo nixos-rebuild switch --flake .`
 6. DON'T FORGET: change your password for all users with `passwd` from initialPassword set in `configuration.nix`
-7. NOTE: After rebuild, the first boot may take a while depending on how many `hydenix.hm.themes` are enabled, as the system generates cache.
+
+NOTE: After launching hydenix, you can run `hyde-shell reload` to generate cache for remaining themes if you want.
 
 ### 2. Trying Out Hydenix with a VM
 
