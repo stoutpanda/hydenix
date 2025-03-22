@@ -58,7 +58,12 @@
   "parserPreset": {
     "parserOpts": {
       "headerPattern": "^(\\w*)(?:\\(([\\w$.*-]*)\\))?(!)?:\\s(.*)$",
-      "breakingHeaderPattern": "^(\\w*)(?:\\(([\\w$.*-]*)\\))?!:\\s(.*)$"
+      "headerCorrespondence": [
+        "type",
+        "scope",
+        "breaking",
+        "subject"
+      ]
     }
   }
 }
