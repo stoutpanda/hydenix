@@ -1,0 +1,7 @@
+{ ... }:
+{
+
+  hydenix.hm = {
+    enable = true;
+  };
+}
