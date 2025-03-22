@@ -18,7 +18,7 @@ in
 
     theme = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.hydenix.sddm-candy;
+      default = pkgs.hydenix.sddm-candy; # or pkgs.hydenix.sddm-corners
       description = "SDDM theme package to use";
     };
   };
@@ -28,6 +28,12 @@ in
       cfg.theme
       pkgs.Bibata-Modern-Ice
     ];
+
+    # Add this section to ensure cursor theme is properly loaded
+    environment.sessionVariables = {
+      XCURSOR_THEME = "Bibata-Modern-Ice";
+      XCURSOR_SIZE = "24";
+    };
 
     services.displayManager.sddm = {
       enable = true;
@@ -60,17 +66,7 @@ in
           DefaultSession = "hyprland.desktop";
         };
         Wayland = {
-          # Hide uwsm from the session list
-          SessionDir = "/run/current-system/sw/share/wayland-sessions";
-          SessionFilter = "hyprland.desktop";
           EnableHiDPI = true;
-          # Ensure cursor is visible
-          CursorTheme = "Bibata-Modern-Ice";
-        };
-        X11 = {
-          # Hide uwsm from the session list
-          SessionDir = "/run/current-system/sw/share/xsessions";
-          SessionFilter = "hyprland.desktop;";
         };
       };
     };
