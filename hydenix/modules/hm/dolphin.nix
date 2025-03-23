@@ -33,6 +33,15 @@ in
       kwayland # KDE Wayland integration
     ];
 
+    xdg.mimeApps = {
+      defaultApplications = {
+        "inode/directory" = [ "org.kde.dolphin.desktop" ];
+        "x-scheme-handler/file" = [ "org.kde.dolphin.desktop" ];
+        "x-scheme-handler/about" = [ "org.kde.dolphin.desktop" ];
+
+      };
+    };
+
     home.file = lib.mkMerge [
       {
         ".config/dolphinrc" = {
