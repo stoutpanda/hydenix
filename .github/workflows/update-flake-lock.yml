@@ -24,7 +24,15 @@ jobs:
       - name: Update flake.nix with new rev
         run: |
           NEW_REV=$(jq -r '.nodes."hydenix-nixpkgs".locked.rev' flake.lock)
-          sed -i "s|hydenix-nixpkgs.url = \"github:nixos/nixpkgs/.*\"|hydenix-nixpkgs.url = \"github:nixos/nixpkgs/$NEW_REV\"|" flake.nix
+          if [ -n "$NEW_REV" ] && [ "$NEW_REV" != "null" ]; then
+            sed -i 's|hydenix-nixpkgs.url = "github:nixos/nixpkgs/[^"]*"|hydenix-nixpkgs.url = "github:nixos/nixpkgs/'$NEW_REV'"|' flake.nix
+          else
+            echo "Failed to extract revision from flake.lock"
+            exit 1
+          fi
+      - name: Verify flake.nix
+        run: |
+          grep -q "hydenix-nixpkgs.url" flake.nix || (echo "Failed to update flake.nix" && exit 1)
       - name: Check flake
         id: check
         continue-on-error: true

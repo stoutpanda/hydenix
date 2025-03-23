@@ -62,32 +62,28 @@ in
       )) # gui text editor
     ];
 
-    home.file = lib.mkMerge [
-      {
-        # Editor flags
-        ".config/code-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/code-flags.conf";
-        ".config/vscodium-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/vscodium-flags.conf";
-      }
+    home.file = lib.mkIf cfg.vscode.enable {
+      # Editor flags
+      ".config/code-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/code-flags.conf";
+      ".config/vscodium-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/vscodium-flags.conf";
 
       # VS Code settings
-      (lib.mkAfter {
-        ".config/Code - OSS/User/settings.json" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/Code - OSS/User/settings.json";
-          force = true;
-          mutable = true;
-        };
-        ".config/Code/User/settings.json" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/Code/User/settings.json";
-          force = true;
-          mutable = true;
-        };
-        ".config/VSCodium/User/settings.json" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/VSCodium/User/settings.json";
-          force = true;
-          mutable = true;
-        };
-      })
-    ];
+      ".config/Code - OSS/User/settings.json" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/Code - OSS/User/settings.json";
+        force = true;
+        mutable = true;
+      };
+      ".config/Code/User/settings.json" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/Code/User/settings.json";
+        force = true;
+        mutable = true;
+      };
+      ".config/VSCodium/User/settings.json" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/VSCodium/User/settings.json";
+        force = true;
+        mutable = true;
+      };
+    };
 
     home.sessionVariables = {
       EDITOR = cfg.default;
