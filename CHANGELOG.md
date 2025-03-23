@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/richen604/hydenix/compare/v2.0.0...v2.0.1) (2025-03-23)
+
+
+### Bug Fixes
+
+* wrapped vscode home.file calls with mkif vscode.enable [#70](https://github.com/richen604/hydenix/issues/70) ([b4c9ba6](https://github.com/richen604/hydenix/commit/b4c9ba6f40da37172da303c8715378b87f9374bc))
+
 # [2.0.0](https://github.com/richen604/hydenix/compare/v1.3.2...v2.0.0) (2025-03-22)
 
 
