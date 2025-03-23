@@ -1,3 +1,11 @@
+## [2.0.2](https://github.com/richen604/hydenix/compare/v2.0.1...v2.0.2) (2025-03-23)
+
+
+### Bug Fixes
+
+* added dolphin to mimetypes, fixes keybind ([fa67c75](https://github.com/richen604/hydenix/commit/fa67c75d501f152397f3f9cd5b4779d7f6e6b15f))
+* added more mimetypes, actually fixes meta e keybind now ([7c6e729](https://github.com/richen604/hydenix/commit/7c6e7291842a72e108fa4c2c9d9b3a28a8c1ff0a))
+
 ## [2.0.1](https://github.com/richen604/hydenix/compare/v2.0.0...v2.0.1) (2025-03-23)
 
 
