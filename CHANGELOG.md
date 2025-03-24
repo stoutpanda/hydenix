@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/richen604/hydenix/compare/v2.0.2...v2.0.3) (2025-03-24)
+
+
+### Bug Fixes
+
+* reconcile hydenix hm settings with default template settings ([b8d047d](https://github.com/richen604/hydenix/commit/b8d047dbde38acadb505566047f06a3d4a9b8d23))
+
 ## [2.0.2](https://github.com/richen604/hydenix/compare/v2.0.1...v2.0.2) (2025-03-23)
 
 
