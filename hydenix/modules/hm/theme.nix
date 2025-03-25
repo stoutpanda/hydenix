@@ -57,6 +57,7 @@ in
         map (theme: {
           ".config/hyde/themes/${theme.name}" = {
             source = "${theme.pkg}/share/hyde/themes/${theme.name}";
+            force = true;
             recursive = true;
           };
         }) themesList
@@ -83,12 +84,10 @@ in
             imagemagick
             hydenix.hyde
             which
-            bash-completion
             util-linux
           ]
         )
       }:$PATH"
-
 
       # Set up logging
       LOG_FILE="$HOME/.local/state/hyde/theme-switch.log"
@@ -98,7 +97,7 @@ in
 
       # Run the theme switch commands with the custom runtime dir
       $HOME/.local/lib/hyde/swwwallcache.sh -t "${cfg.active}" >> "$LOG_FILE" 2>&1
-      $HOME/.local/lib/hyde/themeswitch.sh -q -s "${cfg.active}" >> "$LOG_FILE" 2>&1
+      $HOME/.local/lib/hyde/theme.switch.sh -s "${cfg.active}" >> "$LOG_FILE" 2>&1
 
       echo "Theme switch completed. Log saved to $LOG_FILE" | tee -a "$LOG_FILE"
     '';

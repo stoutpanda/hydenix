@@ -42,26 +42,24 @@ in
       };
     };
 
-    home.file = lib.mkMerge [
-      {
-        ".config/dolphinrc" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/dolphinrc";
-        };
-        ".config/baloofilerc" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/baloofilerc";
-        };
-        ".config/menus/applications.menu" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/menus/applications.menu";
-        };
-      }
+    home.file = {
+      ".config/dolphinrc" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/dolphinrc";
+      };
+      ".config/baloofilerc" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/baloofilerc";
+      };
+      ".config/menus/applications.menu" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/menus/applications.menu";
+      };
+
       # stateful file for themes
-      (lib.mkAfter {
-        ".config/kdeglobals" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/kdeglobals";
-          force = true;
-          mutable = true;
-        };
-      })
-    ];
+
+      ".config/kdeglobals" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/kdeglobals";
+        force = true;
+        mutable = true;
+      };
+    };
   };
 }
