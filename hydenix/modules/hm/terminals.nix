@@ -39,13 +39,15 @@ in
       ".config/kitty/hyde.conf" = {
         source = "${pkgs.hydenix.hyde}/Configs/.config/kitty/hyde.conf";
       };
-      ".config/kitty/kitty.conf" = lib.mkDefault {
+      ".config/kitty/kitty.conf" = {
         text = ''
           include hyde.conf
 
           # Add your custom configurations here
           ${cfg.kitty.configText}
         '';
+        force = true;
+        mutable = true;
       };
 
       # Kitty
