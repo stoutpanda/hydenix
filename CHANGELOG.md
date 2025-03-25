@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/richen604/hydenix/compare/v2.0.3...v2.0.4) (2025-03-25)
+
+
+### Bug Fixes
+
+* home-manager service complaining about files [#74](https://github.com/richen604/hydenix/issues/74) ([ee898d1](https://github.com/richen604/hydenix/commit/ee898d166f0f01323c44fbde02c83e64edcc7498))
+
 ## [2.0.3](https://github.com/richen604/hydenix/compare/v2.0.2...v2.0.3) (2025-03-24)
 
 
