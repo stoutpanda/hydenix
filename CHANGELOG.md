@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/richen604/hydenix/compare/v2.0.4...v2.1.0) (2025-03-26)
+
+
+### Features
+
+* mktheme improvements ([ead6f6c](https://github.com/richen604/hydenix/commit/ead6f6c2d7b9f2f7416638072f40f7bc9ec46e1e))
+
 ## [2.0.4](https://github.com/richen604/hydenix/compare/v2.0.3...v2.0.4) (2025-03-25)
 
 
