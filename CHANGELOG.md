@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/richen604/hydenix/compare/v2.2.0...v2.2.1) (2025-03-30)
+
+
+### Bug Fixes
+
+* iso builder should handle nvme drives ([8fa2928](https://github.com/richen604/hydenix/commit/8fa2928e43d7f8784f191911572ed16c601648c6))
+
 # [2.2.0](https://github.com/richen604/hydenix/compare/v2.1.0...v2.2.0) (2025-03-30)
 
 
