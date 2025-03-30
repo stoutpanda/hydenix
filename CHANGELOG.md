@@ -1,3 +1,15 @@
+# [2.2.0](https://github.com/richen604/hydenix/compare/v2.1.0...v2.2.0) (2025-03-30)
+
+
+### Bug Fixes
+
+* fix example for userpkgs, should use overlays ([4488eaa](https://github.com/richen604/hydenix/commit/4488eaad07a1db3d4f96a95793d921d1ee775164))
+
+
+### Features
+
+* iso builder allows for flakepath ([668ef18](https://github.com/richen604/hydenix/commit/668ef18bc1ee5af5751e957d5d130f15c0c38a5e))
+
 # [2.1.0](https://github.com/richen604/hydenix/compare/v2.0.4...v2.1.0) (2025-03-26)
 
 
