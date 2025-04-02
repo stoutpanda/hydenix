@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/richen604/hydenix/compare/v2.2.3...v2.3.0) (2025-04-02)
+
+
+### Features
+
+* theme init and rebuild updates ([39c0307](https://github.com/richen604/hydenix/commit/39c0307521f7a1d20cccd0985f63a4049815729c))
+
 ## [2.2.3](https://github.com/richen604/hydenix/compare/v2.2.2...v2.2.3) (2025-04-02)
 
 
