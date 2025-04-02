@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/richen604/hydenix/compare/v2.3.0...v2.3.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* fixed code_wallbash extension add requiring pname ([c7896cd](https://github.com/richen604/hydenix/commit/c7896cd482b90e5ad005a8822beb2f07c03d0ad8))
+
 # [2.3.0](https://github.com/richen604/hydenix/compare/v2.2.3...v2.3.0) (2025-04-02)
 
 
