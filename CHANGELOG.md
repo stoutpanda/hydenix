@@ -1,3 +1,13 @@
+## [2.2.2](https://github.com/richen604/hydenix/compare/v2.2.1...v2.2.2) (2025-04-02)
+
+
+### Bug Fixes
+
+* added back mkdefault, related [#74](https://github.com/richen604/hydenix/issues/74) ([abed385](https://github.com/richen604/hydenix/commit/abed385451afe461d4a6b8204a5ba9b839a37a03))
+* gaming module error ([81deaf1](https://github.com/richen604/hydenix/commit/81deaf167944757ce115f30b519c015951e3c844))
+* moved gaming module to system, also fix steam for [#83](https://github.com/richen604/hydenix/issues/83) ([261d87c](https://github.com/richen604/hydenix/commit/261d87c169b7125f47104189a180a8aef1560d82))
+* userpkgs error, solves [#84](https://github.com/richen604/hydenix/issues/84) ([143b7c0](https://github.com/richen604/hydenix/commit/143b7c097f60e8ac8bc71bf47f39a622b27609d9))
+
 ## [2.2.1](https://github.com/richen604/hydenix/compare/v2.2.0...v2.2.1) (2025-03-30)
 
 
