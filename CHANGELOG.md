@@ -1,3 +1,11 @@
+## [2.2.3](https://github.com/richen604/hydenix/compare/v2.2.2...v2.2.3) (2025-04-02)
+
+
+### Bug Fixes
+
+* dolphin qt6 ([c94b8c7](https://github.com/richen604/hydenix/commit/c94b8c7a60246302b8019eacf10af6e0e7acd841))
+* zsh configs regressed from adding lib.mkdefault ([75c1ae9](https://github.com/richen604/hydenix/commit/75c1ae96ca98b59a820c24da23cebed6f3fae9aa))
+
 ## [2.2.2](https://github.com/richen604/hydenix/compare/v2.2.1...v2.2.2) (2025-04-02)
 
 
