@@ -1,3 +1,23 @@
+# [3.0.0](https://github.com/richen604/hydenix/compare/v2.3.1...v3.0.0) (2025-04-07)
+
+
+### Bug Fixes
+
+* init cava for theming ([663433b](https://github.com/richen604/hydenix/commit/663433b2082833cd8af1d00f3fcff2c5f0ddc7fd))
+* reverted lib.mkdefault, causes too many issues ([7608811](https://github.com/richen604/hydenix/commit/760881129393048ef1a71f16dd294f8e6c29aa84))
+
+
+### Features
+
+* added nix-index db for full comma support ([12f4354](https://github.com/richen604/hydenix/commit/12f43546b29b9808f46211f8f4f9a8936b812bed))
+* demo and iso vm, state version addition ([aeb97a5](https://github.com/richen604/hydenix/commit/aeb97a58f9df1113cee662afd052b8a2b442d733))
+
+
+### BREAKING CHANGES
+
+* template flake requires new nix-index db
+import
+
 ## [2.3.1](https://github.com/richen604/hydenix/compare/v2.3.0...v2.3.1) (2025-04-02)
 
 
