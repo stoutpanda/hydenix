@@ -23,13 +23,13 @@
       dolphin.enable = true; # file manager
       editors = {
         enable = true; # enable editors module
-        neovim.enable = true; # enable neovim module
+        neovim = true; # enable neovim module
         vscode = {
           enable = true; # enable vscode module
           wallbash = true; # enable wallbash extension for vscode
         };
-        vim.enable = true; # enable vim module
-        default = "vim"; # default text editor
+        vim = true; # enable vim module
+        default = "code"; # default text editor
       };
       fastfetch.enable = true; # fastfetch configuration
       firefox = {
