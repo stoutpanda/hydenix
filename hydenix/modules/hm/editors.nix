@@ -44,7 +44,7 @@ in
 
     default = lib.mkOption {
       type = lib.types.str;
-      default = "vim";
+      default = "code";
       description = "Default text editor";
     };
   };
@@ -53,14 +53,16 @@ in
     home.packages = with pkgs; [
       (lib.mkIf cfg.vim vim) # terminal text editor
       (lib.mkIf cfg.neovim neovim) # terminal text editor
-      (lib.mkIf cfg.vscode.enable (
-        vscode-with-extensions.override {
-          vscodeExtensions = [
-            # Use a conditional list instead of mkIf inside the list
-          ] ++ lib.optionals cfg.vscode.wallbash [ pkgs.hydenix.code-wallbash ];
-        }
-      )) # gui text editor
     ];
+
+    programs.vscode = lib.mkIf cfg.vscode.enable {
+      enable = true;
+      package = pkgs.vscode.fhs;
+      extensions = [
+        pkgs.hydenix.code-wallbash
+      ];
+      mutableExtensionsDir = true;
+    };
 
     home.file = lib.mkIf cfg.vscode.enable {
       # Editor flags
