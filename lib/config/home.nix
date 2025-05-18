@@ -14,6 +14,7 @@
         "Cat Latte"
         "Catppuccin Latte"
         "Catppuccin Mocha"
+        "Code Garden"
         "Crimson Blade"
         "Decay Green"
         "Dracula"
