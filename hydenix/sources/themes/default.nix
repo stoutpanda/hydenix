@@ -31,6 +31,7 @@ in
   "Monokai" = callTheme ./Monokai.nix;
   "Monterey Frost" = callTheme ./Monterey-Frost.nix;
   "Nordic Blue" = callTheme ./Nordic-Blue.nix;
+  "Nightbrew" = callTheme ./Nightbrew.nix;
   "Obsidian-Purple" = callTheme ./Obsidian-Purple.nix;
   "One Dark" = callTheme ./One-Dark.nix;
   "Oxo Carbon" = callTheme ./Oxo-Carbon.nix;
