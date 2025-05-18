@@ -58,7 +58,7 @@ in
     programs.vscode = lib.mkIf cfg.vscode.enable {
       enable = true;
       package = pkgs.vscode.fhs;
-      extensions = [
+      profiles.default.extensions = [
         pkgs.hydenix.code-wallbash
       ];
       mutableExtensionsDir = true;

@@ -3,12 +3,18 @@
 
 ## priority
 
-- [ ] docs: review default options match real options (editors)
+- [ ] feat: add Code Garden theme
+- [ ] feat: add Crimson Blue
+- [ ] feat: add Electra
+- [ ] feat: add Grukai
+- [ ] feat: add Piece of Mind
+- [ ] feat: add Obsidian Purple
+- [ ] feat: add Nightbrew
+- [ ] feat: add Amethyst-Aura
 - [ ] fix: vscode wallbash
 - [ ] fix: boot module grub is not working?
 - [ ] feat: spicetify theme support with declarative flatpak
 - [ ] fix: waybar crashes on rebuild
-- [ ] feat: add Code Garden theme
 - [ ] chore: review bug template
 - [ ] docs: better documented drivers in template flake, plus nvidia default settings
 - [ ] feat: hyprland via home-manager
