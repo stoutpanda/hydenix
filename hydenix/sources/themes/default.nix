@@ -31,10 +31,12 @@ in
   "Monokai" = callTheme ./Monokai.nix;
   "Monterey Frost" = callTheme ./Monterey-Frost.nix;
   "Nordic Blue" = callTheme ./Nordic-Blue.nix;
+  "Obsidian-Purple" = callTheme ./Obsidian-Purple.nix;
   "One Dark" = callTheme ./One-Dark.nix;
   "Oxo Carbon" = callTheme ./Oxo-Carbon.nix;
   "Paranoid Sweet" = callTheme ./Paranoid-Sweet.nix;
   "Pixel Dream" = callTheme ./Pixel-Dream.nix;
+  "Piece Of Mind" = callTheme ./Piece-Of-Mind.nix;
   "Rain Dark" = callTheme ./Rain-Dark.nix;
   "Red Stone" = callTheme ./Red-Stone.nix;
   "Rosé Pine" = callTheme ./Rose-Pine.nix;
