@@ -23,6 +23,7 @@ in
   "Green Lush" = callTheme ./Green-Lush.nix;
   "Greenify" = callTheme ./Greenify.nix;
   "Gruvbox Retro" = callTheme ./Gruvbox-Retro.nix;
+  "Grukai" = callTheme ./Grukai.nix;
   "Hack the Box" = callTheme ./Hack-the-Box.nix;
   "Ice Age" = callTheme ./Ice-Age.nix;
   "Mac OS" = callTheme ./Mac-OS.nix;
