@@ -20,6 +20,7 @@
         "Decay Green"
         "Dracula"
         "Edge Runner"
+        "Electra"
         "Frosted Glass"
         "Graphite Mono"
         "Green Lush"
