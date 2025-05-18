@@ -17,6 +17,7 @@ in
   "Decay Green" = callTheme ./Decay-Green.nix;
   "Dracula" = callTheme ./Dracula.nix;
   "Edge Runner" = callTheme ./Edge-Runner.nix;
+  "Electra" = callTheme ./Electra.nix;
   "Frosted Glass" = callTheme ./Frosted-Glass.nix;
   "Graphite Mono" = callTheme ./Graphite-Mono.nix;
   "Green Lush" = callTheme ./Green-Lush.nix;
