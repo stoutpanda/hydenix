@@ -7,8 +7,8 @@
 - [x] feat: add crimson-blue
 - [x] feat: add electra
 - [x] feat: add grukai
-- [ ] feat: add piece of mind
-- [ ] feat: add obsidian purple
+- [x] feat: add piece of mind
+- [x] feat: add obsidian purple
 - [ ] feat: add nightbrew
 - [ ] feat: add amethyst-aura
 - [ ] fix: vscode wallbash
@@ -85,6 +85,16 @@ nixGL wrapping for all prorgrams, well documented in the configuration as users 
 
 ## Hyde repo
 
+- [ ] theme makers should be able to precache walls before patching
+  - [ ] requires arch vm (w/ commit hash param and snapshot functionality)
+  - [ ] hyde-theme-starter to implement /lib with swwwallcache and wallbash
+    - whatever generates dcols and wallcaches
+  - [ ] hyde repo themepatcher implement reading for .cache in theme to cp cache and skip
+  - [ ] validation
+    - [ ] themepatcher should still generate on missing cache per wall
+  - [ ] PR's for all themes to bring cache
+  - [ ] hydenix implementation (just home.file mutable)
+  - [ ] FUTURE: wallbash should be a seperate lib
 - [ ] hyde-shell reload requires display, unable to run in activation scripts
 - [ ] caffiene mode resets on hyde-shell reload
 - [ ] some yubikey touch detection for hyprlock and waybar <https://github.com/maximbaz/yubikey-touch-detector>
