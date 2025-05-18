@@ -11,6 +11,7 @@ in
   "Cat Latte" = callTheme ./Cat-Latte.nix;
   "Catppuccin Latte" = callTheme ./Catppuccin-Latte.nix;
   "Catppuccin Mocha" = callTheme ./Catppuccin-Mocha.nix;
+  "Code Garden" = callTheme ./Code-Garden.nix;
   "Crimson Blade" = callTheme ./Crimson-Blade.nix;
   "Decay Green" = callTheme ./Decay-Green.nix;
   "Dracula" = callTheme ./Dracula.nix;
