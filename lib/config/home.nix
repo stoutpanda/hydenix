@@ -34,6 +34,7 @@
         "Monokai"
         "Monterey Frost"
         "Nordic Blue"
+        "Nightbrew"
         "Obsidian-Purple"
         "One Dark"
         "Oxo Carbon"

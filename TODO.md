@@ -9,7 +9,7 @@
 - [x] feat: add grukai
 - [x] feat: add piece of mind
 - [x] feat: add obsidian purple
-- [ ] feat: add nightbrew
+- [x] feat: add nightbrew
 - [ ] feat: add amethyst-aura
 - [ ] fix: vscode wallbash
 - [ ] fix: boot module grub is not working?
