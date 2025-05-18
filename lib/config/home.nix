@@ -16,6 +16,7 @@
         "Catppuccin Mocha"
         "Code Garden"
         "Crimson Blade"
+        "Crimson-Blue"
         "Decay Green"
         "Dracula"
         "Edge Runner"

@@ -3,17 +3,19 @@
 
 ## priority
 
-- [ ] feat: add Code Garden theme
-- [ ] feat: add Crimson Blue
-- [ ] feat: add Electra
-- [ ] feat: add Grukai
-- [ ] feat: add Piece of Mind
-- [ ] feat: add Obsidian Purple
-- [ ] feat: add Nightbrew
-- [ ] feat: add Amethyst-Aura
+- [x] feat: added code garden
+- [x] feat: add crimson-blue
+- [ ] feat: add electra
+- [ ] feat: add grukai
+- [ ] feat: add piece of mind
+- [ ] feat: add obsidian purple
+- [ ] feat: add nightbrew
+- [ ] feat: add amethyst-aura
 - [ ] fix: vscode wallbash
 - [ ] fix: boot module grub is not working?
 - [ ] feat: spicetify theme support with declarative flatpak
+- [ ] feat: update hyde
+- [ ] fix: wall.set in themes doesn't work correctly
 - [ ] fix: waybar crashes on rebuild
 - [ ] chore: review bug template
 - [ ] docs: better documented drivers in template flake, plus nvidia default settings

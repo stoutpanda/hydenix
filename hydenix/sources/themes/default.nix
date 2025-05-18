@@ -13,6 +13,7 @@ in
   "Catppuccin Mocha" = callTheme ./Catppuccin-Mocha.nix;
   "Code Garden" = callTheme ./Code-Garden.nix;
   "Crimson Blade" = callTheme ./Crimson-Blade.nix;
+  "Crimson-Blue" = callTheme ./Crimson-Blue.nix;
   "Decay Green" = callTheme ./Decay-Green.nix;
   "Dracula" = callTheme ./Dracula.nix;
   "Edge Runner" = callTheme ./Edge-Runner.nix;
