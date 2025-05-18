@@ -6,7 +6,7 @@
 - [x] feat: added code garden
 - [x] feat: add crimson-blue
 - [x] feat: add electra
-- [ ] feat: add grukai
+- [x] feat: add grukai
 - [ ] feat: add piece of mind
 - [ ] feat: add obsidian purple
 - [ ] feat: add nightbrew

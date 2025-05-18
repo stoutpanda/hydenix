@@ -26,6 +26,7 @@
         "Green Lush"
         "Greenify"
         "Gruvbox Retro"
+        "Grukai"
         "Hack the Box"
         "Ice Age"
         "Mac OS"
