@@ -10,11 +10,13 @@
 - [x] feat: add piece of mind
 - [x] feat: add obsidian purple
 - [x] feat: add nightbrew
-- [ ] feat: add amethyst-aura
+- [x] feat: add amethyst-aura
 - [ ] fix: vscode wallbash
 - [ ] fix: boot module grub is not working?
 - [ ] feat: spicetify theme support with declarative flatpak
 - [ ] feat: update hyde
+- [ ] fix: xdg theme inconsistency
+  - check xdgportalfix.sh or whatever its called 
 - [ ] fix: wall.set in themes doesn't work correctly
 - [ ] fix: waybar crashes on rebuild
 - [ ] chore: review bug template

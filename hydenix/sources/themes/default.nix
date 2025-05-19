@@ -7,6 +7,7 @@ in
 {
   Abyssal-Wave = callTheme ./Abyssal-Wave.nix;
   AbyssGreen = callTheme ./AbyssGreen.nix;
+  "Amethyst-Aura" = callTheme ./Amethyst-Aura.nix;
   "Bad Blood" = callTheme ./Bad-Blood.nix;
   "Cat Latte" = callTheme ./Cat-Latte.nix;
   "Catppuccin Latte" = callTheme ./Catppuccin-Latte.nix;
