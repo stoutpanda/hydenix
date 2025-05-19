@@ -10,6 +10,7 @@
       themes = [
         "Abyssal-Wave"
         "AbyssGreen"
+        "Amethyst-Aura"
         "Bad Blood"
         "Cat Latte"
         "Catppuccin Latte"
