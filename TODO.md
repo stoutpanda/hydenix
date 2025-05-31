@@ -1,22 +1,24 @@
 
 # todo / roadmap
 
+## now / notes
+
+- [ ] feat: easier commit parity with hyde
+
+- [ ] hyde package should have one build script, combine .sh
+- [ ] hyde flake input
+- [ ] hyde update diff
+  - [ ] take hyde derv, one override rev with master
+  - [ ] diff fullpaths of ./Configs recursively to .txt with main
+  - [ ] diff of restore.psv and other psv/lst files
+
 ## priority
 
-- [x] feat: added code garden
-- [x] feat: add crimson-blue
-- [x] feat: add electra
-- [x] feat: add grukai
-- [x] feat: add piece of mind
-- [x] feat: add obsidian purple
-- [x] feat: add nightbrew
-- [x] feat: add amethyst-aura
 - [ ] fix: vscode wallbash
 - [ ] fix: boot module grub is not working?
-- [ ] feat: spicetify theme support with declarative flatpak
-- [ ] feat: update hyde
+- [ ] feat: spicetify theme support? flatpak?
 - [ ] fix: xdg theme inconsistency
-  - check xdgportalfix.sh or whatever its called 
+  - check xdgportalfix.sh or whatever its called
 - [ ] fix: wall.set in themes doesn't work correctly
 - [ ] fix: waybar crashes on rebuild
 - [ ] chore: review bug template
@@ -25,6 +27,7 @@
   - support plugins
   - use hyprland flake package
   - nixGL
+- [ ] binary cache
 
 ## iso builder
 
@@ -81,7 +84,7 @@
 
 ## Non-NixOS
 
-https://github.com/jpikl/pm for non-nixos packages
+<https://github.com/jpikl/pm> for non-nixos packages
 specific scripts for each non-nixos distro options, ideally one script for all packages using pm
 nixGL wrapping for all prorgrams, well documented in the configuration as users will need to edit it. combine with any driver setup
 
