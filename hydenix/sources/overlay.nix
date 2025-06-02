@@ -25,10 +25,6 @@ let
       sddm-candy = callPackage ./hyde/sddm-candy.nix { };
       sddm-corners = callPackage ./hyde/sddm-corners.nix { };
 
-      # GRUB themes
-      grub-pochita = callPackage ./hyde/grub-pochita.nix { };
-      grub-retroboot = callPackage ./hyde/grub-retroboot.nix { };
-
       # Spicetify themes
       spicetify-sleek = callPackage ./hyde/spicetify-sleek.nix { };
 

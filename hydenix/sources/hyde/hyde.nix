@@ -44,6 +44,11 @@ pkgs.stdenv.mkDerivation {
     unzip ./Source/arcs/Code_Wallbash.vsix -d $out/share/vscode/extensions/prasanthrangan.wallbash
     # Ensure extension is readable and executable
     chmod -R a+rX $out/share/vscode/extensions/prasanthrangan.wallbash
+
+    # BUILD GRUB THEMES
+    mkdir -p $out/share/grub/themes
+    tar xzf ./Source/arcs/Grub_Retroboot.tar.gz -C $out/share/grub/themes
+    tar xzf ./Source/arcs/Grub_Pochita.tar.gz -C $out/share/grub/themes
   '';
 
   installPhase = ''

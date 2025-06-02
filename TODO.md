@@ -7,6 +7,7 @@
 
 - [ ] hyde package should have one build script, combine .sh
   - [x] combined code-wallbash to hyde drv
+  - [x] combined grub themes with hyde drv
 - [ ] hyde flake input
 - [ ] hyde update diff
   - [ ] take hyde derv, one override rev with master
