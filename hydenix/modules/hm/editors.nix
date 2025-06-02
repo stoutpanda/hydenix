@@ -58,34 +58,45 @@ in
     programs.vscode = lib.mkIf cfg.vscode.enable {
       enable = true;
       package = pkgs.vscode.fhs;
-      profiles.default.extensions = [
-        pkgs.hydenix.code-wallbash
-      ];
       mutableExtensionsDir = true;
     };
 
-    home.file = lib.mkIf cfg.vscode.enable {
-      # Editor flags
-      ".config/code-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/code-flags.conf";
-      ".config/vscodium-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/vscodium-flags.conf";
+    home.file = lib.mkIf cfg.vscode.enable (
+      lib.mergeAttrs
+        {
+          # Editor flags
+          ".config/code-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/code-flags.conf";
+          ".config/vscodium-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/vscodium-flags.conf";
 
-      # VS Code settings
-      ".config/Code - OSS/User/settings.json" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/Code - OSS/User/settings.json";
-        force = true;
-        mutable = true;
-      };
-      ".config/Code/User/settings.json" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/Code/User/settings.json";
-        force = true;
-        mutable = true;
-      };
-      ".config/VSCodium/User/settings.json" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/VSCodium/User/settings.json";
-        force = true;
-        mutable = true;
-      };
-    };
+          # VS Code settings
+          ".config/Code - OSS/User/settings.json" = {
+            source = "${pkgs.hydenix.hyde}/Configs/.config/Code - OSS/User/settings.json";
+            force = true;
+            mutable = true;
+          };
+          ".config/Code/User/settings.json" = {
+            source = "${pkgs.hydenix.hyde}/Configs/.config/Code/User/settings.json";
+            force = true;
+            mutable = true;
+          };
+          ".config/VSCodium/User/settings.json" = {
+            source = "${pkgs.hydenix.hyde}/Configs/.config/VSCodium/User/settings.json";
+            force = true;
+            mutable = true;
+          };
+        }
+        (
+          lib.mkIf cfg.vscode.wallbash {
+            # Link the wallbash extension from hyde package
+            ".vscode/extensions/prasanthrangan.wallbash" = {
+              source = "${pkgs.hydenix.hyde}/share/vscode/extensions/prasanthrangan.wallbash";
+              recursive = true;
+              mutable = true;
+              force = true;
+            };
+          }
+        )
+    );
 
     home.sessionVariables = {
       EDITOR = cfg.default;

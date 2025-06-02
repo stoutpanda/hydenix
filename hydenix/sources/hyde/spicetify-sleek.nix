@@ -1,8 +1,8 @@
-{ pkgs, commit }:
+{ pkgs }:
 pkgs.stdenv.mkDerivation rec {
   name = "Spicetify-Sleek";
   src = pkgs.fetchzip {
-    url = "https://github.com/HyDE-Project/HyDE/raw/${commit}/Source/arcs/Spotify_Sleek.tar.gz";
+    url = "https://github.com/HyDE-Project/HyDE/raw/refs/heads/master/Source/arcs/Spotify_Sleek.tar.gz";
     sha256 = "sha256-kGdCHGht3ij3n118+x76SR3cAeIpjPHjq0Ow0YRW21I=";
   };
 

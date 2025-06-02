@@ -1,13 +1,12 @@
 {
   pkgs,
-  commit,
 }:
 pkgs.stdenv.mkDerivation {
   pname = "grub-pochita-theme";
   version = "1.0.0";
 
   src = pkgs.fetchzip {
-    url = "https://github.com/HyDE-Project/HyDE/raw/${commit}/Source/arcs/Grub_Pochita.tar.gz";
+    url = "https://github.com/HyDE-Project/HyDE/raw/refs/heads/master/Source/arcs/Grub_Pochita.tar.gz";
     hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Replace with actual hash
   };
 

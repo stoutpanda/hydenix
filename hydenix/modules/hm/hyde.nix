@@ -43,6 +43,8 @@ in
       ".config/hyde/wallbash" = {
         source = "${pkgs.hydenix.hyde}/Configs/.config/hyde/wallbash";
         recursive = true;
+        force = true;
+        mutable = true;
       };
 
       ".local/bin/hyde-shell" = {

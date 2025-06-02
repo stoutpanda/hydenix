@@ -6,6 +6,7 @@
 - [ ] feat: easier commit parity with hyde
 
 - [ ] hyde package should have one build script, combine .sh
+  - [x] combined code-wallbash to hyde drv
 - [ ] hyde flake input
 - [ ] hyde update diff
   - [ ] take hyde derv, one override rev with master
@@ -14,7 +15,6 @@
 
 ## priority
 
-- [ ] fix: vscode wallbash
 - [ ] fix: boot module grub is not working?
 - [ ] feat: spicetify theme support? flatpak?
 - [ ] fix: xdg theme inconsistency

@@ -1,15 +1,16 @@
-{ pkgs, commit }:
+{ pkgs }:
 pkgs.stdenv.mkDerivation {
   name = "hyde-modified";
   src = pkgs.fetchFromGitHub {
     owner = "HyDE-Project";
     repo = "HyDE";
-    rev = commit;
+    rev = "87217f9126f1cda44d5df6b6371a92f974f299a2";
     sha256 = "sha256-iD4DPfXb2Hkk2CqqRe9kB22WZQEEFafjCelbI7xRkiQ=";
   };
 
   nativeBuildInputs = with pkgs; [
     gnutar
+    unzip
   ];
 
   buildPhase = ''
@@ -30,13 +31,19 @@ pkgs.stdenv.mkDerivation {
     find . -type f -executable -print0 | xargs -0 sed -i 's/find "/find -L "/g'
     find . -type f -name "*.sh" -print0 | xargs -0 sed -i 's/find "/find -L "/g'
 
-    # Extract font archives
+    # BUILD FONTS
     mkdir -p $out/share/fonts/truetype
     for fontarchive in ./Source/arcs/Font_*.tar.gz; do
       if [ -f "$fontarchive" ]; then
         tar xzf "$fontarchive" -C $out/share/fonts/truetype/
       fi
     done
+
+    # BUILD VSCODE EXTENSION
+    mkdir -p $out/share/vscode/extensions/prasanthrangan.wallbash
+    unzip ./Source/arcs/Code_Wallbash.vsix -d $out/share/vscode/extensions/prasanthrangan.wallbash
+    # Ensure extension is readable and executable
+    chmod -R a+rX $out/share/vscode/extensions/prasanthrangan.wallbash
   '';
 
   installPhase = ''

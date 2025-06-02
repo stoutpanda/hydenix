@@ -1,14 +1,13 @@
 {
   pkgs,
-  commit,
 }:
 pkgs.stdenv.mkDerivation {
   pname = "grub-retroboot-theme";
   version = "1.0.0";
 
   src = pkgs.fetchzip {
-    url = "https://github.com/HyDE-Project/HyDE/raw/${commit}/Source/arcs/Grub_Retroboot.tar.gz";
-    hash = "sha256-85NTz6588zfHOvZPg69kF5/8f00pNmkpZloJSg6pEQk="; # Replace with actual hash
+    url = "https://github.com/HyDE-Project/HyDE/raw/refs/heads/master/Source/arcs/Grub_Retroboot.tar.gz";
+    hash = "sha256-85NTz6588zfHOvZPg69kF5/8f00pNmkpZloJSg6pEQk=";
   };
 
   installPhase = ''

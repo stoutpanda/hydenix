@@ -1,8 +1,5 @@
 final: prev:
 let
-  # Import the hyde commit from hyde/default.nix
-  commit = "87217f9126f1cda44d5df6b6371a92f974f299a2";
-
   # Helper function to import a package
   callPackage = prev.lib.callPackageWith (prev // packages);
 
@@ -19,24 +16,21 @@ let
     Tela-circle-dracula = callPackage ./Tela-circle-dracula.nix { };
     Bibata-Modern-Ice = callPackage ./Bibata-Modern-Ice.nix { };
     hydenix = {
-      hyde = callPackage ./hyde/hyde.nix { inherit commit; };
+      hyde = callPackage ./hyde/hyde.nix { };
 
-      wallbash-gtk = callPackage ./hyde/wallbash-gtk.nix { inherit commit; };
-      wallbash-icons = callPackage ./hyde/icons-wallbash.nix { inherit commit; };
+      wallbash-gtk = callPackage ./hyde/wallbash-gtk.nix { };
+      wallbash-icons = callPackage ./hyde/icons-wallbash.nix { };
 
       # SDDM themes
-      sddm-candy = callPackage ./hyde/sddm-candy.nix { inherit commit; };
-      sddm-corners = callPackage ./hyde/sddm-corners.nix { inherit commit; };
+      sddm-candy = callPackage ./hyde/sddm-candy.nix { };
+      sddm-corners = callPackage ./hyde/sddm-corners.nix { };
 
       # GRUB themes
-      grub-pochita = callPackage ./hyde/grub-pochita.nix { inherit commit; };
-      grub-retroboot = callPackage ./hyde/grub-retroboot.nix { inherit commit; };
-
-      # VSCode extensions
-      code-wallbash = callPackage ./hyde/code-wallbash.nix { inherit commit; };
+      grub-pochita = callPackage ./hyde/grub-pochita.nix { };
+      grub-retroboot = callPackage ./hyde/grub-retroboot.nix { };
 
       # Spicetify themes
-      spicetify-sleek = callPackage ./hyde/spicetify-sleek.nix { inherit commit; };
+      spicetify-sleek = callPackage ./hyde/spicetify-sleek.nix { };
 
       # Theme packages from the themes directory
       themes = callPackage ./themes/default.nix { };
