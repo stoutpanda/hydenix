@@ -1,7 +1,7 @@
-final: prev:
+inputs: final: prev:
 let
   # Helper function to import a package
-  callPackage = prev.lib.callPackageWith (prev // packages);
+  callPackage = prev.lib.callPackageWith (prev // packages // inputs);
 
   # Define all packages
   packages = {

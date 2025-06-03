@@ -5,18 +5,18 @@
 
 - [ ] feat: easier commit parity with hyde
 
-- [ ] hyde package should have one build script, combine .sh
+- [x] hyde package should have one build script, combine .sh
   - [x] combined code-wallbash to hyde drv
   - [x] combined grub themes with hyde drv
   - [x] combined icons and gtk with hyde drv
   - [x] combine sddm themes with hyde drv
   - [x] remove spicetify sleek drv
   - [x] refactored hyde drv location
-- [ ] hyde flake input
-- [ ] hyde update diff
-  - [ ] take hyde derv, one override rev with master
-  - [ ] diff fullpaths of ./Configs recursively to .txt with main
-  - [ ] diff of restore.psv and other psv/lst files
+- [x] hyde flake input
+- [x] hyde update diff
+  - [x] take hyde derv, one override rev with master
+  - [x] diff fullpaths of ./Configs recursively to .txt with main
+  - [x] diff of restore.psv and other psv/lst files
 
 ## priority
 

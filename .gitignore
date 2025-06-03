@@ -7,3 +7,4 @@ result
 output-*
 .direnv
 .git-hooks
+.hyde-cache

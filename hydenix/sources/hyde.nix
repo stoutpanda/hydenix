@@ -1,12 +1,7 @@
-{ pkgs }:
+{ pkgs, inputs }:
 pkgs.stdenv.mkDerivation {
   name = "hyde-modified";
-  src = pkgs.fetchFromGitHub {
-    owner = "HyDE-Project";
-    repo = "HyDE";
-    rev = "87217f9126f1cda44d5df6b6371a92f974f299a2";
-    sha256 = "sha256-iD4DPfXb2Hkk2CqqRe9kB22WZQEEFafjCelbI7xRkiQ=";
-  };
+  src = inputs.hyde;
 
   nativeBuildInputs = with pkgs; [
     gnutar

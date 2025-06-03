@@ -16,6 +16,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "hydenix-nixpkgs";
     };
+
+    hyde = {
+      url = "github:HyDE-Project/HyDE/87217f9126f1cda44d5df6b6371a92f974f299a2";
+      flake = false;
+    };
   };
 
   outputs =
@@ -29,7 +34,7 @@
           inherit system;
         };
         lib = {
-          overlays = import ./hydenix/sources/overlay.nix;
+          overlays = import ./hydenix/sources/overlay.nix { inputs = hydenix-pre-inputs; };
           nixOsModules = import ./hydenix/modules/system;
           homeModules = import ./hydenix/modules/hm;
           iso = import ./lib/iso/default.nix;
@@ -109,6 +114,9 @@
 
         # Add the burn-iso script as a package
         burn-iso = isoConfig.burn-iso;
+
+        # Add hyde-update package
+        hyde-update = import ./lib/hyde-update { inherit hydenix-inputs; };
       };
 
       devShells.${system}.default = import ./lib/dev-shell.nix { inherit hydenix-inputs; };
