@@ -23,17 +23,17 @@
     "hyde": {
       "flake": false,
       "locked": {
-        "lastModified": 1744003067,
-        "narHash": "sha256-iD4DPfXb2Hkk2CqqRe9kB22WZQEEFafjCelbI7xRkiQ=",
+        "lastModified": 1748791025,
+        "narHash": "sha256-yvpKzj1HQsCVMxf9E6dKuDqjF4SprBTBjlSGs6xLAl8=",
         "owner": "HyDE-Project",
         "repo": "HyDE",
-        "rev": "87217f9126f1cda44d5df6b6371a92f974f299a2",
+        "rev": "de63a60e4a6b87dfc69a4a4b179ff3d5f7e70c48",
         "type": "github"
       },
       "original": {
         "owner": "HyDE-Project",
         "repo": "HyDE",
-        "rev": "87217f9126f1cda44d5df6b6371a92f974f299a2",
+        "rev": "de63a60e4a6b87dfc69a4a4b179ff3d5f7e70c48",
         "type": "github"
       }
     },
