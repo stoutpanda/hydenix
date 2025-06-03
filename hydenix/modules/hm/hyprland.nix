@@ -16,6 +16,12 @@ in
       default = config.hydenix.hm.enable;
       description = "Enable hyprland module";
     };
+
+    extraConfig = lib.mkOption {
+      type = lib.types.lines;
+      default = "";
+      description = "Extra config for hyprland";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -52,7 +58,12 @@ in
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/keybindings.conf";
       ".config/hypr/monitors.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/monitors.conf";
       ".config/hypr/nvidia.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/nvidia.conf";
-      ".config/hypr/userprefs.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/userprefs.conf";
+      ".config/hypr/userprefs.conf" = {
+        text = ''
+          ${cfg.extraConfig}
+        '';
+        force = true;
+      };
       ".config/hypr/windowrules.conf".source =
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/windowrules.conf";
       ".config/hypr/animations.conf" = {

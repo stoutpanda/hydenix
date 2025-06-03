@@ -37,7 +37,10 @@
         email = null; # git user email eg "john.doe@example.com"
       };
       hyde.enable = true; # enable hyde module
-      hyprland.enable = true; # enable hyprland module
+      hyprland = {
+        enable = true; # enable hyprland module
+        extraConfig = ""; # extra hyprland config text
+      };
       lockscreen = {
         enable = true; # enable lockscreen module
         hyprlock = true; # enable hyprlock lockscreen
@@ -55,11 +58,14 @@
       };
       shell = {
         enable = true; # enable shell module
-        zsh.enable = true; # enable zsh shell
-        zsh.configText = ""; # zsh config text
+        zsh = {
+          enable = true; # enable zsh shell
+          configText = ""; # zsh config text
+        };
         bash.enable = false; # enable bash shell
         fish.enable = false; # enable fish shell
         pokego.enable = false; # enable Pokemon ASCII art scripts
+        starship.enable = false; # enable starship shell
       };
       social = {
         enable = true; # enable social module
