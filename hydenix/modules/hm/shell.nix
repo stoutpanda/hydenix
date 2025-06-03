@@ -152,6 +152,14 @@ in
       (lib.mkIf cfg.fish.enable {
         # Fish configs
         ".config/fish/config.fish".source = "${pkgs.hydenix.hyde}/Configs/.config/fish/config.fish";
+        ".config/fish/functions/df.fish".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/df.fish";
+        ".config/fish/functions/ffcd.fish".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/ffcd.fish";
+        ".config/fish/functions/ffec.fish".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/ffec.fish";
+        ".config/fish/functions/ffe.fish".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/ffe.fish";
       })
 
       # LSD configs - these are always included
