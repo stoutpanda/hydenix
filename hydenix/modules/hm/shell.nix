@@ -15,7 +15,6 @@ in
       default = config.hydenix.hm.enable;
       description = "Enable shell module";
     };
-
     zsh = {
       enable = lib.mkOption {
         type = lib.types.bool;
@@ -44,6 +43,15 @@ in
         description = "Enable fish shell";
       };
     };
+
+    starship = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Enable starship shell";
+      };
+    };
+
     pokego = {
       enable = lib.mkOption {
         type = lib.types.bool;
@@ -168,6 +176,13 @@ in
         ".config/lsd/icons.yaml".source = "${pkgs.hydenix.hyde}/Configs/.config/lsd/icons.yaml";
         ".config/lsd/colors.yaml".source = "${pkgs.hydenix.hyde}/Configs/.config/lsd/colors.yaml";
       }
+
+      (lib.mkIf cfg.starship.enable {
+        ".config/starship/powerline.toml".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/starship/powerline.toml";
+        ".config/starship/starship.toml".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/starship/starship.toml";
+      })
     ];
   };
 }

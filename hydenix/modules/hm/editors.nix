@@ -66,7 +66,6 @@ in
         {
           # Editor flags
           ".config/code-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/code-flags.conf";
-          ".config/vscodium-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/vscodium-flags.conf";
           ".config/codium-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/codium-flags.conf";
 
           # VS Code settings
