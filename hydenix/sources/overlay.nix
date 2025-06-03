@@ -16,11 +16,7 @@ let
     Tela-circle-dracula = callPackage ./Tela-circle-dracula.nix { };
     Bibata-Modern-Ice = callPackage ./Bibata-Modern-Ice.nix { };
     hydenix = {
-      hyde = callPackage ./hyde/hyde.nix { };
-
-      # Spicetify themes
-      spicetify-sleek = callPackage ./hyde/spicetify-sleek.nix { };
-
+      hyde = callPackage ./hyde.nix { };
       # Theme packages from the themes directory
       themes = callPackage ./themes/default.nix { };
     };
