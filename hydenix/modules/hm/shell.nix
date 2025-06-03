@@ -121,8 +121,6 @@ in
         # Shell configs
         ".zshrc".text = ''
           ${cfg.zsh.configText}
-
-          export EDITOR=${config.hydenix.hm.editors.default}
         '';
 
         # we are writing our own .zshenv/hyde.zshrc file to ensure that its properly sourcing nix paths, and removes all the arch nonsense

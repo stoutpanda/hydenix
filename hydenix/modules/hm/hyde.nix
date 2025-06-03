@@ -24,7 +24,8 @@ in
       hydenix.hyde
       Bibata-Modern-Ice
       Tela-circle-dracula
-      kdePackages.kconfig # needed for toml_write in hyde
+      kdePackages.kconfig # TODO: not sure if this is still needed
+      wf-recorder # screen recorder for wlroots-based compositors such as sway
     ];
 
     fonts.fontconfig.enable = true;
@@ -45,8 +46,20 @@ in
         mutable = true;
       };
 
-      ".local/bin/hyde-shell" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hyde-shell";
+      ".config/systemd/user/hyde-config.service" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/systemd/user/hyde-config.service";
+      };
+      ".config/systemd/user/hyde-ipc.service" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/systemd/user/hyde-ipc.service";
+      };
+
+      ".local/bin/hydectl" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hydectl";
+        executable = true;
+      };
+
+      ".local/bin/hyde-ipc" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hyde-ipc";
         executable = true;
       };
 
