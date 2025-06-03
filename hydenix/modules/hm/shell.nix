@@ -75,10 +75,15 @@ in
         zsh-powerlevel10k
         zsh-autosuggestions
         zsh-syntax-highlighting
+        duf
       ]
       ++ lib.optionals cfg.bash.enable [ bash ]
-      ++ lib.optionals cfg.fish.enable [ fish ]
-      ++ lib.optionals cfg.pokego.enable [ pokego ];
+      ++ lib.optionals cfg.fish.enable [
+        fish
+        duf
+      ]
+      ++ lib.optionals cfg.pokego.enable [ pokego ]
+      ++ lib.optionals cfg.starship.enable [ starship ];
 
     programs.zsh = lib.mkIf cfg.zsh.enable {
       enable = true;
@@ -106,14 +111,21 @@ in
       '';
     };
 
+    programs.starship = lib.mkIf cfg.starship.enable {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     home.file = lib.mkMerge [
       (lib.mkIf cfg.zsh.enable {
         # Shell configs
         ".zshrc".text = ''
           ${cfg.zsh.configText}
+
+          export EDITOR=${config.hydenix.hm.editors.default}
         '';
 
-        # we are writing our own .zshenv file to ensure that its properly sourcing nix paths, and removes all the arch nonsense
+        # we are writing our own .zshenv/hyde.zshrc file to ensure that its properly sourcing nix paths, and removes all the arch nonsense
         ".zshenv".text = ''
           #!/usr/bin/env zsh
           function no_such_file_or_directory_handler {
@@ -152,6 +164,10 @@ in
                   .4='cd ../../../..' \
                   .5='cd ../../../../..' \
                   mkdir='mkdir -p' # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+                  ffec='_fuzzy_edit_search_file_content' \
+                  ffcd='_fuzzy_change_directory' \
+                  ffe='_fuzzy_edit_search_file' \
+                  df='_df'
           fi
         '';
         ".p10k.zsh".source = "${pkgs.hydenix.hyde}/Configs/.p10k.zsh";
