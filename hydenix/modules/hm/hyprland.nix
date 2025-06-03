@@ -55,7 +55,11 @@ in
       ".config/hypr/userprefs.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/userprefs.conf";
       ".config/hypr/windowrules.conf".source =
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/windowrules.conf";
-      ".config/hypr/animations.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/animations.conf";
+      ".config/hypr/animations.conf" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/animations.conf";
+        force = true;
+        mutable = true;
+      };
       ".config/hypr/animations/classic.conf".source =
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/animations/classic.conf";
       ".config/hypr/animations/diablo-1.conf".source =
@@ -97,9 +101,16 @@ in
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders/blue-light-filter.frag";
       ".config/hypr/shaders/color-vision.frag".source =
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders/color-vision.frag";
-      ".config/hypr/shaders/.compiled.cache.glsl".source =
-        "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders/.compiled.cache.glsl";
-      ".config/hypr/shaders.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders.conf";
+      ".config/hypr/shaders/.compiled.cache.glsl" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders/.compiled.cache.glsl";
+        force = true;
+        mutable = true;
+      };
+      ".config/hypr/shaders.conf" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders.conf";
+        force = true;
+        mutable = true;
+      };
       ".config/hypr/shaders/custom.frag".source =
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders/custom.frag";
       ".config/hypr/shaders/disable.frag".source =
@@ -122,7 +133,11 @@ in
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/shaders/wallbash.inc";
 
       # Workflows
-      ".config/hypr/workflows.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/workflows.conf";
+      ".config/hypr/workflows.conf" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/workflows.conf";
+        force = true;
+        mutable = true;
+      };
       ".config/hypr/workflows/default.conf".source =
         "${pkgs.hydenix.hyde}/Configs/.config/hypr/workflows/default.conf";
       ".config/hypr/workflows/editing.conf".source =

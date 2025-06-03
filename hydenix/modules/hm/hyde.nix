@@ -53,6 +53,12 @@ in
         source = "${pkgs.hydenix.hyde}/Configs/.config/systemd/user/hyde-ipc.service";
       };
 
+      ".local/bin/hyde-shell" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hyde-shell";
+        executable = true;
+      };
+
+      # TODO: requires nix-ld
       ".local/bin/hydectl" = {
         source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hydectl";
         executable = true;
@@ -66,6 +72,8 @@ in
       ".local/lib/hyde" = {
         source = "${pkgs.hydenix.hyde}/Configs/.local/lib/hyde";
         recursive = true;
+        force = true;
+        mutable = true;
         executable = true;
       };
 

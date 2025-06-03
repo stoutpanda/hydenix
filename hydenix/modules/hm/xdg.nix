@@ -25,14 +25,14 @@ in
       portal = {
         enable = true;
         extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
           xdg-desktop-portal-hyprland
+          xdg-desktop-portal-gtk
           xdg-desktop-portal
         ];
         xdgOpenUsePortal = true;
         configPackages = with pkgs; [
-          xdg-desktop-portal-gtk
           xdg-desktop-portal-hyprland
+          xdg-desktop-portal-gtk
           xdg-desktop-portal
         ];
       };
@@ -68,7 +68,6 @@ in
       # Base XDG directories
       XDG_CACHE_HOME = config.xdg.cacheHome;
       XDG_CONFIG_HOME = config.xdg.configHome;
-      XDG_CONFIG_DIR = config.xdg.configHome;
       XDG_DATA_HOME = config.xdg.dataHome;
       XDG_STATE_HOME = config.xdg.stateHome;
       XDG_RUNTIME_DIR = "/run/user/$(id -u)";
