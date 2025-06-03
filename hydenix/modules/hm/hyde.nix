@@ -22,7 +22,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       hydenix.wallbash-gtk
-      hydenix.wallbash-icons
+      hydenix.hyde
       Bibata-Modern-Ice
       Tela-circle-dracula
       hydenix.hyde
@@ -89,7 +89,7 @@ in
       };
 
       ".local/share/icons/Wallbash-Icon" = {
-        source = "${pkgs.hydenix.wallbash-icons}/Wallbash-Icon";
+        source = "${pkgs.hydenix.hyde}/share/icons/wallbash";
         force = true;
         recursive = true;
         mutable = true;

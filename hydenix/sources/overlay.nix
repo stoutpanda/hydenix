@@ -19,7 +19,6 @@ let
       hyde = callPackage ./hyde/hyde.nix { };
 
       wallbash-gtk = callPackage ./hyde/wallbash-gtk.nix { };
-      wallbash-icons = callPackage ./hyde/icons-wallbash.nix { };
 
       # SDDM themes
       sddm-candy = callPackage ./hyde/sddm-candy.nix { };

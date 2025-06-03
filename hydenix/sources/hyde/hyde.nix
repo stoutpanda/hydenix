@@ -49,6 +49,10 @@ pkgs.stdenv.mkDerivation {
     mkdir -p $out/share/grub/themes
     tar xzf ./Source/arcs/Grub_Retroboot.tar.gz -C $out/share/grub/themes
     tar xzf ./Source/arcs/Grub_Pochita.tar.gz -C $out/share/grub/themes
+
+    # BUILD ICONS
+    mkdir -p $out/share/icons/wallbash
+    tar xzf ./Source/arcs/Icon_Wallbash.tar.gz -C $out/share/icons/wallbash
   '';
 
   installPhase = ''

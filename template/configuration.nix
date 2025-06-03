@@ -93,7 +93,7 @@ in
       boot = {
         enable = true; # enable boot module
         useSystemdBoot = true; # disable for GRUB
-        grubTheme = pkgs.hydenix.grub-retroboot; # or pkgs.hydenix.grub-pochita
+        grubTheme = "retroboot"; # or "pochita"
         grubExtraConfig = ""; # additional GRUB configuration
         kernelPackages = pkgs.linuxPackages_zen; # default zen kernel
       };
