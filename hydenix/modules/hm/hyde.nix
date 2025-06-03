@@ -21,11 +21,9 @@ in
   # TODO: review stateful files in hyde module
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      hydenix.wallbash-gtk
       hydenix.hyde
       Bibata-Modern-Ice
       Tela-circle-dracula
-      hydenix.hyde
       kdePackages.kconfig # needed for toml_write in hyde
     ];
 
@@ -112,7 +110,7 @@ in
         mutable = true;
       };
       ".local/share/themes/Wallbash-Gtk" = {
-        source = "${pkgs.hydenix.wallbash-gtk}/share/themes/Wallbash-Gtk";
+        source = "${pkgs.hydenix.hyde}/share/themes/Wallbash-Gtk";
         recursive = true;
         force = true;
         mutable = true;

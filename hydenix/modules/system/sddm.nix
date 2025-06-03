@@ -17,15 +17,18 @@ in
     };
 
     theme = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.hydenix.sddm-candy; # or pkgs.hydenix.sddm-corners
+      type = lib.types.enum [
+        "Candy"
+        "Corners"
+      ];
+      default = "Candy";
       description = "SDDM theme package to use";
     };
   };
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
-      cfg.theme
+      pkgs.hydenix.hyde
       pkgs.Bibata-Modern-Ice
     ];
 
@@ -38,7 +41,7 @@ in
     services.displayManager.sddm = {
       enable = true;
       package = pkgs.libsForQt5.sddm;
-      theme = cfg.theme.name;
+      theme = pkgs.hydenix.hyde + "/share/sddm/themes/" + cfg.theme;
       wayland = {
         enable = true;
       };
@@ -52,7 +55,7 @@ in
         libsForQt5.qtgraphicaleffects
         libsForQt5.layer-shell-qt
         libsForQt5.qt5.qtwayland
-        cfg.theme
+        hydenix.hyde
         Bibata-Modern-Ice
       ];
       settings = {

@@ -15,10 +15,8 @@
   hydenix.hm = {
     #! Important options
     enable = true;
-
     /*
       ! Below are defaults
-
       comma.enable = true; # useful nix tool to run software without installing it first
       dolphin.enable = true; # file manager
       editors = {
@@ -32,13 +30,7 @@
         default = "code"; # default text editor
       };
       fastfetch.enable = true; # fastfetch configuration
-      firefox = {
-        enable = true; # enable firefox module
-        useHydeConfig = false; # use hyde firefox configuration and extensions
-        useUserChrome = true; # if useHydeConfig is true, apply hyde userChrome CSS customizations
-        useUserJs = true; # if useHydeConfig is true, apply hyde user.js preferences
-        useExtensions = true; # if useHydeConfig is true, install hyde firefox extensions
-      };
+      firefox.enable = true; # enable firefox module
       git = {
         enable = true; # enable git module
         name = null; # git user name eg "John Doe"

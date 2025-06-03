@@ -8,6 +8,10 @@
 - [ ] hyde package should have one build script, combine .sh
   - [x] combined code-wallbash to hyde drv
   - [x] combined grub themes with hyde drv
+  - [x] combined icons and gtk with hyde drv
+  - [ ] combine sddm themes with hyde drv
+  - [ ] remove spicetify sleek drv
+  - [ ] refactored hyde drv location
 - [ ] hyde flake input
 - [ ] hyde update diff
   - [ ] take hyde derv, one override rev with master

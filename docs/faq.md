@@ -152,7 +152,7 @@ NixOS hydenix options:
     nix.enable = true; # enable nix module
     sddm = {
       enable = true; # enable sddm module
-      theme = pkgs.hydenix.sddm-candy; # or pkgs.hydenix.sddm-corners
+      theme = "Candy" # or "Corners"
     };
     system.enable = true; # enable system module
   };

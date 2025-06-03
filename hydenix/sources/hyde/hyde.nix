@@ -53,6 +53,15 @@ pkgs.stdenv.mkDerivation {
     # BUILD ICONS
     mkdir -p $out/share/icons/wallbash
     tar xzf ./Source/arcs/Icon_Wallbash.tar.gz -C $out/share/icons/wallbash
+
+    # BUILD GTK THEME
+    mkdir -p $out/share/themes
+    tar xzf ./Source/arcs/Gtk_Wallbash.tar.gz -C $out/share/themes
+
+    # BUILD SDDM THEME
+    mkdir -p $out/share/sddm/themes
+    tar xzf ./Source/arcs/Sddm_Candy.tar.gz -C $out/share/sddm/themes
+    tar xzf ./Source/arcs/Sddm_Corners.tar.gz -C $out/share/sddm/themes
   '';
 
   installPhase = ''

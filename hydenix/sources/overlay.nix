@@ -18,12 +18,6 @@ let
     hydenix = {
       hyde = callPackage ./hyde/hyde.nix { };
 
-      wallbash-gtk = callPackage ./hyde/wallbash-gtk.nix { };
-
-      # SDDM themes
-      sddm-candy = callPackage ./hyde/sddm-candy.nix { };
-      sddm-corners = callPackage ./hyde/sddm-corners.nix { };
-
       # Spicetify themes
       spicetify-sleek = callPackage ./hyde/spicetify-sleek.nix { };
 
