@@ -72,7 +72,15 @@ in
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Enable Pokemon ASCII art scripts";
+        description = "Enable Pokemon ASCII art scripts on shell startup";
+      };
+    };
+
+    fastfetch = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Enable fastfetch on shell startup";
       };
     };
   };
@@ -127,6 +135,9 @@ in
              source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
            fi
            source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        ''}
+        ${lib.optionalString cfg.fastfetch.enable ''
+          fastfetch --logo-type kitty
         ''}
       '';
     };
