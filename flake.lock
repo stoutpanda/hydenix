@@ -20,6 +20,23 @@
         "type": "github"
       }
     },
+    "hyde": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748791025,
+        "narHash": "sha256-yvpKzj1HQsCVMxf9E6dKuDqjF4SprBTBjlSGs6xLAl8=",
+        "owner": "HyDE-Project",
+        "repo": "HyDE",
+        "rev": "de63a60e4a6b87dfc69a4a4b179ff3d5f7e70c48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "HyDE-Project",
+        "repo": "HyDE",
+        "rev": "de63a60e4a6b87dfc69a4a4b179ff3d5f7e70c48",
+        "type": "github"
+      }
+    },
     "hydenix-nixpkgs": {
       "locked": {
         "lastModified": 1747426788,
@@ -75,6 +92,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "hyde": "hyde",
         "hydenix-nixpkgs": "hydenix-nixpkgs",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware"

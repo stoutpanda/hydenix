@@ -15,14 +15,13 @@
   hydenix.hm = {
     #! Important options
     enable = true;
-
     /*
       ! Below are defaults
-
       comma.enable = true; # useful nix tool to run software without installing it first
       dolphin.enable = true; # file manager
       editors = {
         enable = true; # enable editors module
+        neovim = true; # enable neovim module
         neovim = true; # enable neovim module
         vscode = {
           enable = true; # enable vscode module
@@ -30,22 +29,21 @@
         };
         vim = true; # enable vim module
         default = "code"; # default text editor
+        vim = true; # enable vim module
+        default = "code"; # default text editor
       };
       fastfetch.enable = true; # fastfetch configuration
-      firefox = {
-        enable = true; # enable firefox module
-        useHydeConfig = false; # use hyde firefox configuration and extensions
-        useUserChrome = true; # if useHydeConfig is true, apply hyde userChrome CSS customizations
-        useUserJs = true; # if useHydeConfig is true, apply hyde user.js preferences
-        useExtensions = true; # if useHydeConfig is true, install hyde firefox extensions
-      };
+      firefox.enable = true; # enable firefox module
       git = {
         enable = true; # enable git module
         name = null; # git user name eg "John Doe"
         email = null; # git user email eg "john.doe@example.com"
       };
       hyde.enable = true; # enable hyde module
-      hyprland.enable = true; # enable hyprland module
+      hyprland = {
+        enable = true; # enable hyprland module
+        extraConfig = ""; # extra hyprland config text
+      };
       lockscreen = {
         enable = true; # enable lockscreen module
         hyprlock = true; # enable hyprlock lockscreen
@@ -58,16 +56,21 @@
         enable = true; # enable screenshots module
         grim.enable = true; # enable grim screenshot tool
         slurp.enable = true; # enable slurp region selection tool
-        satty.enable = true; # enable satty screenshot annotation tool
-        swappy.enable = false; # enable swappy screenshot editor
+        satty.enable = false; # enable satty screenshot annotation tool
+        swappy.enable = true; # enable swappy screenshot editor
       };
       shell = {
         enable = true; # enable shell module
-        zsh.enable = true; # enable zsh shell
-        zsh.configText = ""; # zsh config text
+        zsh = {
+          enable = true; # enable zsh shell
+          plugins = [ "sudo" ]; # zsh plugins
+          configText = ""; # zsh config text
+        };
         bash.enable = false; # enable bash shell
         fish.enable = false; # enable fish shell
         pokego.enable = false; # enable Pokemon ASCII art scripts
+        p10k.enable = false; # enable p10k prompt
+        starship.enable = true; # enable starship prompt
       };
       social = {
         enable = true; # enable social module

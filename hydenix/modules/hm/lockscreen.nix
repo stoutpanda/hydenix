@@ -35,33 +35,35 @@ in
       (lib.mkIf cfg.swaylock swaylock)
     ];
 
-    home.file = {
+    home.file = lib.mkMerge [
       # Hyprlock configs
-      ".config/hypr/hyprlock.conf" = lib.mkIf cfg.hyprlock ({
-        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock.conf";
-        force = true;
-      });
-      ".config/hypr/hyprlock/Anurati.conf" = lib.mkIf cfg.hyprlock ({
-        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/Anurati.conf";
-      });
-      ".config/hypr/hyprlock/Arfan on Clouds.conf" = lib.mkIf cfg.hyprlock ({
-        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/Arfan on Clouds.conf";
-      });
-      ".config/hypr/hyprlock/IBM Plex.conf" = lib.mkIf cfg.hyprlock ({
-        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/IBM Plex.conf";
-      });
-      ".config/hypr/hyprlock/SF Pro.conf" = lib.mkIf cfg.hyprlock ({
-        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/SF Pro.conf";
-      });
-      ".config/hypr/hyprlock/theme.conf" = lib.mkIf cfg.hyprlock ({
-        source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/theme.conf";
-        force = true;
-      });
+      (lib.mkIf cfg.hyprlock {
+        ".config/hypr/hyprlock.conf" = {
+          source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock.conf";
+          force = true;
+        };
+        ".config/hypr/hyprlock/theme.conf" = {
+          source = "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/theme.conf";
+          force = true;
+        };
+        ".config.hypr.hyprlock.Anurati.conf".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/Anurati.conf";
+        ".config.hypr.hyprlock.Arfan on Clouds.conf".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/Arfan on Clouds.conf";
+        ".config.hypr.hyprlock.IBM Plex.conf".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/IBM Plex.conf";
+        ".config.hypr.hyprlock.SF Pro.conf".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/SF Pro.conf";
+        ".config/hypr/hyprlock/IMB Xtented.conf".source =
+          "${pkgs.hydenix.hyde}/Configs/.config/hypr/hyprlock/IMB Xtented.conf";
+      })
 
       # Swaylock config
-      ".config/swaylock/config" = lib.mkIf cfg.swaylock ({
-        source = "${pkgs.hydenix.hyde}/Configs/.config/swaylock/config";
-      });
-    };
+      (lib.mkIf cfg.swaylock {
+        ".config/swaylock/config" = {
+          source = "${pkgs.hydenix.hyde}/Configs/.config/swaylock/config";
+        };
+      })
+    ];
   };
 }

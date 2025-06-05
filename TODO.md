@@ -1,30 +1,19 @@
 
 # todo / roadmap
 
+## now / notes
+
 ## priority
 
-- [x] feat: added code garden
-- [x] feat: add crimson-blue
-- [x] feat: add electra
-- [x] feat: add grukai
-- [x] feat: add piece of mind
-- [x] feat: add obsidian purple
-- [x] feat: add nightbrew
-- [x] feat: add amethyst-aura
-- [ ] fix: vscode wallbash
-- [ ] fix: boot module grub is not working?
-- [ ] feat: spicetify theme support with declarative flatpak
-- [ ] feat: update hyde
-- [ ] fix: xdg theme inconsistency
-  - check xdgportalfix.sh or whatever its called 
+- [ ] feat: spicetify theme support? flatpak?
 - [ ] fix: wall.set in themes doesn't work correctly
-- [ ] fix: waybar crashes on rebuild
 - [ ] chore: review bug template
 - [ ] docs: better documented drivers in template flake, plus nvidia default settings
 - [ ] feat: hyprland via home-manager
   - support plugins
   - use hyprland flake package
   - nixGL
+- [ ] binary cache
 
 ## iso builder
 
@@ -81,12 +70,22 @@
 
 ## Non-NixOS
 
-https://github.com/jpikl/pm for non-nixos packages
+<https://github.com/jpikl/pm> for non-nixos packages
 specific scripts for each non-nixos distro options, ideally one script for all packages using pm
 nixGL wrapping for all prorgrams, well documented in the configuration as users will need to edit it. combine with any driver setup
 
 ## Hyde repo
 
+- [ ] theme makers should be able to precache walls before patching
+  - [ ] requires arch vm (w/ commit hash param and snapshot functionality)
+  - [ ] hyde-theme-starter to implement /lib with swwwallcache and wallbash
+    - whatever generates dcols and wallcaches
+  - [ ] hyde repo themepatcher implement reading for .cache in theme to cp cache and skip
+  - [ ] validation
+    - [ ] themepatcher should still generate on missing cache per wall
+  - [ ] PR's for all themes to bring cache
+  - [ ] hydenix implementation (just home.file mutable)
+  - [ ] FUTURE: wallbash should be a seperate lib
 - [ ] theme makers should be able to precache walls before patching
   - [ ] requires arch vm (w/ commit hash param and snapshot functionality)
   - [ ] hyde-theme-starter to implement /lib with swwwallcache and wallbash

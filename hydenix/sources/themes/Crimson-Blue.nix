@@ -6,7 +6,7 @@ mkTheme rec {
     repo = "Crimson-Blue";
     rev = "main";
     name = name;
-    sha256 = "sha256-6OdX0/fYOjCutmz0qhEbikLra2yT7h/PFmAxTCyLc0I=";
+    sha256 = "sha256-gURSyEzmVodJMV/xwNKj+gVIeXm+JUwT7LwFdFjDcAQ=";
   };
   meta = {
     name = name;

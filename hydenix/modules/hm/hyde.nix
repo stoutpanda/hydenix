@@ -21,12 +21,11 @@ in
   # TODO: review stateful files in hyde module
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      hydenix.wallbash-gtk
-      hydenix.wallbash-icons
+      hydenix.hyde
       Bibata-Modern-Ice
       Tela-circle-dracula
-      hydenix.hyde
-      kdePackages.kconfig # needed for toml_write in hyde
+      kdePackages.kconfig # TODO: not sure if this is still needed
+      wf-recorder # screen recorder for wlroots-based compositors such as sway
     ];
 
     fonts.fontconfig.enable = true;
@@ -43,6 +42,15 @@ in
       ".config/hyde/wallbash" = {
         source = "${pkgs.hydenix.hyde}/Configs/.config/hyde/wallbash";
         recursive = true;
+        force = true;
+        mutable = true;
+      };
+
+      ".config/systemd/user/hyde-config.service" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/systemd/user/hyde-config.service";
+      };
+      ".config/systemd/user/hyde-ipc.service" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/systemd/user/hyde-ipc.service";
       };
 
       ".local/bin/hyde-shell" = {
@@ -50,9 +58,22 @@ in
         executable = true;
       };
 
+      # TODO: requires nix-ld
+      ".local/bin/hydectl" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hydectl";
+        executable = true;
+      };
+
+      ".local/bin/hyde-ipc" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hyde-ipc";
+        executable = true;
+      };
+
       ".local/lib/hyde" = {
         source = "${pkgs.hydenix.hyde}/Configs/.local/lib/hyde";
         recursive = true;
+        force = true;
+        mutable = true;
         executable = true;
       };
 
@@ -87,7 +108,7 @@ in
       };
 
       ".local/share/icons/Wallbash-Icon" = {
-        source = "${pkgs.hydenix.wallbash-icons}/Wallbash-Icon";
+        source = "${pkgs.hydenix.hyde}/share/icons/wallbash";
         force = true;
         recursive = true;
         mutable = true;
@@ -110,7 +131,7 @@ in
         mutable = true;
       };
       ".local/share/themes/Wallbash-Gtk" = {
-        source = "${pkgs.hydenix.wallbash-gtk}/share/themes/Wallbash-Gtk";
+        source = "${pkgs.hydenix.hyde}/share/themes/Wallbash-Gtk";
         recursive = true;
         force = true;
         mutable = true;

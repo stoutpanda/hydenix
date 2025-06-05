@@ -22,7 +22,7 @@ nixosConfiguration.extendModules {
             diskSize = 20480;
             qemu = {
               options = [
-                "-device virtio-vga-gl"
+                "-device virtio-vga-gl,xres=1920,yres=1080"
                 "-display gtk,gl=on,grab-on-hover=on"
                 "-usb -device usb-tablet"
                 "-cpu host"
@@ -31,7 +31,6 @@ nixosConfiguration.extendModules {
                 "-device intel-iommu"
                 "-device ich9-intel-hda"
                 "-device hda-output"
-                "-vga none"
               ];
             };
           };
@@ -70,6 +69,11 @@ nixosConfiguration.extendModules {
           enable = true;
         };
         hardware.graphics.enable = true;
+
+        boot.kernelParams = [
+          # "nomodeset"
+          "vga=0x0340"
+        ];
 
         # Enable verbose logging for home-manager
         # home-manager.verbose = true;

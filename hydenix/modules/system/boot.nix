@@ -25,9 +25,12 @@ in
     };
 
     grubTheme = mkOption {
-      type = types.package;
-      default = pkgs.hydenix.grub-retroboot;
-      description = "GRUB theme package to use, use either grub-retroboot or grub-pochita";
+      type = types.enum [
+        "Retroboot"
+        "Pochita"
+      ];
+      default = "Retroboot";
+      description = "GRUB theme to use, use either `Retroboot` or `Pochita`";
     };
 
     grubExtraConfig = mkOption {
@@ -65,7 +68,10 @@ in
               efiSupport = true;
               device = "nodev";
               useOSProber = true;
-              theme = cfg.grubTheme;
+              theme =
+                pkgs.hydenix.hyde
+                + "/share/grub/themes/"
+                + (if cfg.grubTheme == "Pochita" then "Pochita" else "Retroboot");
               extraConfig = cfg.grubExtraConfig;
             };
             efi.canTouchEfiVariables = true;

@@ -10,6 +10,7 @@
       themes = [
         "Abyssal-Wave"
         "AbyssGreen"
+        "AncientAliens"
         "Amethyst-Aura"
         "Bad Blood"
         "Cat Latte"
@@ -30,6 +31,7 @@
         "Grukai"
         "Hack the Box"
         "Ice Age"
+        "LimeFrenzy"
         "Mac OS"
         "Material Sakura"
         "Monokai"
@@ -49,6 +51,7 @@
         "Sci-fi"
         "Solarized Dark"
         "Synth Wave"
+        "Tundra"
         "Tokyo Night"
         "Vanta Black"
         "Windows 11"

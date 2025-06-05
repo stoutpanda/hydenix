@@ -93,7 +93,7 @@ in
       boot = {
         enable = true; # enable boot module
         useSystemdBoot = true; # disable for GRUB
-        grubTheme = pkgs.hydenix.grub-retroboot; # or pkgs.hydenix.grub-pochita
+        grubTheme = "Retroboot"; # or "Pochita"
         grubExtraConfig = ""; # additional GRUB configuration
         kernelPackages = pkgs.linuxPackages_zen; # default zen kernel
       };
@@ -103,7 +103,7 @@ in
       nix.enable = true; # enable nix module
       sddm = {
         enable = true; # enable sddm module
-        theme = pkgs.hydenix.sddm-candy; # or pkgs.hydenix.sddm-corners
+        theme = "Candy"; # or "Corners"
       };
       system.enable = true; # enable system module
     */

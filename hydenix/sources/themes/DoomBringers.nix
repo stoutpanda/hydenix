@@ -6,7 +6,7 @@ mkTheme rec {
     repo = "DoomBringers";
     rev = "main";
     name = name;
-    sha256 = "sha256-bFho7wqsjqAeybSJKGoka9ritWEtoNIvDQV2N2ml7b8=";
+    sha256 = "sha256-bxV7YSdI1BM63eSV5nkkfvMmqgtWaKo9Xp2JKCpukvM=";
   };
   meta = {
     description = "HyDE Theme: DoomBringers";

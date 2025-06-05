@@ -32,10 +32,11 @@ in
       };
     };
 
+    # TODO: satty should be default, get a screenshot error
     satty = {
       enable = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
         description = "Enable satty screenshot annotation tool";
       };
     };
@@ -43,7 +44,7 @@ in
     swappy = {
       enable = lib.mkOption {
         type = lib.types.bool;
-        default = false;
+        default = true;
         description = "Enable swappy screenshot editor";
       };
     };

@@ -63,6 +63,8 @@ in
       withUWSM = false;
     };
 
+    programs.nix-ld.enable = true;
+
     environment.pathsToLink = [
       "/share/icons"
       "/share/themes"

@@ -1,15 +1,11 @@
-{ pkgs, commit }:
+{ pkgs, inputs }:
 pkgs.stdenv.mkDerivation {
   name = "hyde-modified";
-  src = pkgs.fetchFromGitHub {
-    owner = "HyDE-Project";
-    repo = "HyDE";
-    rev = commit;
-    sha256 = "sha256-iD4DPfXb2Hkk2CqqRe9kB22WZQEEFafjCelbI7xRkiQ=";
-  };
+  src = inputs.hyde;
 
   nativeBuildInputs = with pkgs; [
     gnutar
+    unzip
   ];
 
   buildPhase = ''
@@ -30,13 +26,37 @@ pkgs.stdenv.mkDerivation {
     find . -type f -executable -print0 | xargs -0 sed -i 's/find "/find -L "/g'
     find . -type f -name "*.sh" -print0 | xargs -0 sed -i 's/find "/find -L "/g'
 
-    # Extract font archives
+    # BUILD FONTS
     mkdir -p $out/share/fonts/truetype
     for fontarchive in ./Source/arcs/Font_*.tar.gz; do
       if [ -f "$fontarchive" ]; then
         tar xzf "$fontarchive" -C $out/share/fonts/truetype/
       fi
     done
+
+    # BUILD VSCODE EXTENSION
+    mkdir -p $out/share/vscode/extensions/prasanthrangan.wallbash
+    unzip ./Source/arcs/Code_Wallbash.vsix -d $out/share/vscode/extensions/prasanthrangan.wallbash
+    # Ensure extension is readable and executable
+    chmod -R a+rX $out/share/vscode/extensions/prasanthrangan.wallbash
+
+    # BUILD GRUB THEMES
+    mkdir -p $out/share/grub/themes
+    tar xzf ./Source/arcs/Grub_Retroboot.tar.gz -C $out/share/grub/themes
+    tar xzf ./Source/arcs/Grub_Pochita.tar.gz -C $out/share/grub/themes
+
+    # BUILD ICONS
+    mkdir -p $out/share/icons/wallbash
+    tar xzf ./Source/arcs/Icon_Wallbash.tar.gz -C $out/share/icons/wallbash
+
+    # BUILD GTK THEME
+    mkdir -p $out/share/themes
+    tar xzf ./Source/arcs/Gtk_Wallbash.tar.gz -C $out/share/themes
+
+    # BUILD SDDM THEME
+    mkdir -p $out/share/sddm/themes
+    tar xzf ./Source/arcs/Sddm_Candy.tar.gz -C $out/share/sddm/themes
+    tar xzf ./Source/arcs/Sddm_Corners.tar.gz -C $out/share/sddm/themes
   '';
 
   installPhase = ''
