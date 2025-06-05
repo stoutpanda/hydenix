@@ -22,10 +22,13 @@
       editors = {
         enable = true; # enable editors module
         neovim = true; # enable neovim module
+        neovim = true; # enable neovim module
         vscode = {
           enable = true; # enable vscode module
           wallbash = true; # enable wallbash extension for vscode
         };
+        vim = true; # enable vim module
+        default = "code"; # default text editor
         vim = true; # enable vim module
         default = "code"; # default text editor
       };

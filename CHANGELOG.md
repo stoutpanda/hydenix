@@ -1,3 +1,22 @@
+# [3.1.0](https://github.com/richen604/hydenix/compare/v3.0.0...v3.1.0) (2025-05-19)
+
+
+### Bug Fixes
+
+* vscode default, used hm programs ([eaf0d81](https://github.com/richen604/hydenix/commit/eaf0d81090fd14ec09a8315b2fc8d1566dd99c55))
+* zsh option changes ([73646a6](https://github.com/richen604/hydenix/commit/73646a6e84cb460f387311aa98cda331730212df))
+
+
+### Features
+
+* add crimson-blue ([f2bc3fa](https://github.com/richen604/hydenix/commit/f2bc3fad5c9ca2691627d2cd33845342eab1a583))
+* add electra ([442b670](https://github.com/richen604/hydenix/commit/442b670cda19437dbb53e58c8afad87ccce59454))
+* add grukai ([2aa3080](https://github.com/richen604/hydenix/commit/2aa30803b103f7b4492aa676e03713196724d926))
+* added amethyst aura ([84fa67f](https://github.com/richen604/hydenix/commit/84fa67f4f227bd241462ca57522c0955585fb86a))
+* added code garden ([f869848](https://github.com/richen604/hydenix/commit/f8698483141e57d5ca46f2fe3a9100c1024bf8eb))
+* added nightbrew ([ac1b3ca](https://github.com/richen604/hydenix/commit/ac1b3caf4b99404221c383879fbca361281f092d))
+* added piece of mind and obsidian purple ([f5ee114](https://github.com/richen604/hydenix/commit/f5ee1148f40779379403063599f5fd590dcc1da6))
+
 # [3.0.0](https://github.com/richen604/hydenix/compare/v2.3.1...v3.0.0) (2025-04-07)
 
 
