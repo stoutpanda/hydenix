@@ -22,6 +22,13 @@ in
         default = true;
         description = "Enable zsh shell";
       };
+      plugins = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [
+          "sudo"
+        ];
+        description = "Zsh plugins to enable";
+      };
       configText = lib.mkOption {
         type = lib.types.lines;
         default = "";
@@ -101,9 +108,7 @@ in
       syntaxHighlighting.enable = true;
       oh-my-zsh = {
         enable = true;
-        plugins = [
-          "sudo"
-        ];
+        plugins = cfg.zsh.plugins;
       };
       initContent = ''
         ${lib.optionalString cfg.pokego.enable ''

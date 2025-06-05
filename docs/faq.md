@@ -209,20 +209,22 @@ NixOS hydenix options:
       enable = true; # enable screenshots module
       grim.enable = true; # enable grim screenshot tool
       slurp.enable = true; # enable slurp region selection tool
-      satty.enable = true; # enable satty screenshot annotation tool
-      swappy.enable = false; # enable swappy screenshot editor
+      satty.enable = false; # enable satty screenshot annotation tool
+      swappy.enable = true; # enable swappy screenshot editor
     };
     wallpapers.enable = true; # enable wallpapers module
     shell = {
       enable = true; # enable shell module
       zsh = {
         enable = true; # enable zsh shell
+        plugins = [ "sudo" ]; # zsh plugins
         configText = ""; # zsh config text
       };
       bash.enable = false; # enable bash shell
       fish.enable = false; # enable fish shell
       pokego.enable = false; # enable Pokemon ASCII art scripts
-      starship.enable = false; # enable starship
+      p10k.enable = false; # enable p10k prompt
+      starship.enable = true; # enable starship prompt
     };
     social = {
       enable = true; # enable social module
