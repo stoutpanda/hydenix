@@ -3,12 +3,30 @@
 
 ## now / notes
 
+- [ ] finish demo-vm for video
+
+## next api update
+
+- [ ] hydenix nixOsModules to nixosModules
+
 ## priority
 
+- [ ] docs: better documented first edits
+  - [ ] add steps for what to edit first
+  - [ ] add more detailed driver
+
+- [ ] feat: theme switch on first runtime
+  - [ ] review first install of hyde
+  - [ ] review graphical nature of theme switch script
+  - [ ] add systemd to run a shell script on first install to 
+    - [ ] display first install message
+    - [ ] theme patch first theme
+    - [ ] select first theme
+
 - [ ] feat: spicetify theme support? flatpak?
-- [ ] fix: wall.set in themes doesn't work correctly
+
 - [ ] chore: review bug template
-- [ ] docs: better documented drivers in template flake, plus nvidia default settings
+
 - [ ] feat: hyprland via home-manager
   - support plugins
   - use hyprland flake package
@@ -39,7 +57,6 @@
 ## hypridle
 
 - [ ] feat: hypridle module and options
-- [ ] feat: use dpms-off instead of hyprctl dispatch dpms off in hypridle
 
 ## hyprlock
 
@@ -47,8 +64,6 @@
 
 ## uncategorized
 
-- [ ] feat: is code the default EDITOR? change editors.nix
-   yes, code-oss though, not code
 - [ ] feat: cleanupOnDisable activation script and option
 
 ## CI
@@ -64,7 +79,6 @@
   - [ ] feat: Add zed theme support
   - [ ] feat: Add obsidian theme support
   - [ ] feat: Add terminal-emulators support
-  - [ ] feat: Add updated HyDE/code-wallbash nix support
 - [ ] feat: full nixos config & full home-manager config
 - [ ] feat: Set NIX-PATH to template flake location
 
@@ -86,20 +100,7 @@ nixGL wrapping for all prorgrams, well documented in the configuration as users 
   - [ ] PR's for all themes to bring cache
   - [ ] hydenix implementation (just home.file mutable)
   - [ ] FUTURE: wallbash should be a seperate lib
-- [ ] theme makers should be able to precache walls before patching
-  - [ ] requires arch vm (w/ commit hash param and snapshot functionality)
-  - [ ] hyde-theme-starter to implement /lib with swwwallcache and wallbash
-    - whatever generates dcols and wallcaches
-  - [ ] hyde repo themepatcher implement reading for .cache in theme to cp cache and skip
-  - [ ] validation
-    - [ ] themepatcher should still generate on missing cache per wall
-  - [ ] PR's for all themes to bring cache
-  - [ ] hydenix implementation (just home.file mutable)
-  - [ ] FUTURE: wallbash should be a seperate lib
+  
 - [ ] hyde-shell reload requires display, unable to run in activation scripts
 - [ ] caffiene mode resets on hyde-shell reload
 - [ ] some yubikey touch detection for hyprlock and waybar <https://github.com/maximbaz/yubikey-touch-detector>
-
-- [ ] hyde themes should precache things, there is no reason each user should have to build cache
-This will heavily improve performance of first boot, as swwwallcache is not built
-This feature would be outside of hydenix, most likely a PR to both theme maintainers and hyde
