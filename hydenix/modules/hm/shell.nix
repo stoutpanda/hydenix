@@ -15,6 +15,7 @@ in
       default = config.hydenix.hm.enable;
       description = "Enable shell module";
     };
+
     zsh = {
       enable = lib.mkOption {
         type = lib.types.bool;
@@ -41,6 +42,14 @@ in
         type = lib.types.bool;
         default = false;
         description = "Enable fish shell";
+      };
+    };
+
+    p10k = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable p10k shell";
       };
     };
 
@@ -72,7 +81,6 @@ in
         zsh
         eza
         oh-my-zsh
-        zsh-powerlevel10k
         zsh-autosuggestions
         zsh-syntax-highlighting
         duf
@@ -83,7 +91,8 @@ in
         duf
       ]
       ++ lib.optionals cfg.pokego.enable [ pokego ]
-      ++ lib.optionals cfg.starship.enable [ starship ];
+      ++ lib.optionals cfg.starship.enable [ starship ]
+      ++ lib.optionals cfg.p10k.enable [ zsh-powerlevel10k ];
 
     programs.zsh = lib.mkIf cfg.zsh.enable {
       enable = true;
@@ -94,26 +103,27 @@ in
         enable = true;
         plugins = [
           "sudo"
-          "git"
         ];
       };
-      initContent = lib.mkBefore ''
+      initContent = ''
         ${lib.optionalString cfg.pokego.enable ''
           pokego --no-title -r 1,3,6
         ''}
-         # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-         # Initialization code that may require console input (password prompts, [y/n]
-         # confirmations, etc.) must go above this block; everything else may go below.
-         if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-         fi
-         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        ${lib.optionalString cfg.starship.enable ''
+          eval "$(${pkgs.starship}/bin/starship init zsh)"
+          export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
+          export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+        ''}
+        ${lib.optionalString cfg.p10k.enable ''
+          # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+           # Initialization code that may require console input (password prompts, [y/n]
+           # confirmations, etc.) must go above this block; everything else may go below.
+           if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+             source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+           fi
+           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        ''}
       '';
-    };
-
-    programs.starship = lib.mkIf cfg.starship.enable {
-      enable = true;
-      enableZshIntegration = true;
     };
 
     home.file = lib.mkMerge [
@@ -125,33 +135,87 @@ in
 
         # we are writing our own .zshenv/hyde.zshrc file to ensure that its properly sourcing nix paths, and removes all the arch nonsense
         ".zshenv".text = ''
-          #!/usr/bin/env zsh
-          function no_such_file_or_directory_handler {
-              local red='\e[1;31m' reset='\e[0m'
-              printf "''${red}zsh: no such file or directory: %s''${reset}\n" "$1"
-              return 127
+              #!/usr/bin/env zsh
+              function no_such_file_or_directory_handler {
+                  local red='\e[1;31m' reset='\e[0m'
+                  printf "''${red}zsh: no such file or directory: %s''${reset}\n" "$1"
+                  return 127
+              }
+
+                    # best fzf aliases ever
+                    _fuzzy_change_directory() {
+              local initial_query="$1"
+              local selected_dir
+              local fzf_options=('--preview=ls -p {}' '--preview-window=right:60%')
+              fzf_options+=(--height "80%" --layout=reverse --preview-window right:60% --cycle)
+              local max_depth=7
+
+              if [[ -n "$initial_query" ]]; then
+                  fzf_options+=("--query=$initial_query")
+              fi
+
+              #type -d
+              selected_dir=$(find . -maxdepth $max_depth \( -name .git -o -name node_modules -o -name .venv -o -name target -o -name .cache \) -prune -o -type d -print 2>/dev/null | fzf "''${fzf_options[@]}")
+
+              if [[ -n "$selected_dir" && -d "$selected_dir" ]]; then
+                  cd "$selected_dir" || return 1
+              else
+                  return 1
+              fi
           }
 
-          if [ -t 1 ];then
-              # We are loading the prompt on start so users can see the prompt immediately
-              # Powerlevel10k theme path
-              P10k_THEME=''${P10k_THEME:-${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme}
-              [[ -r $P10k_THEME ]] && source $P10k_THEME
+            _fuzzy_edit_search_file_content() {
+                # [f]uzzy [e]dit  [s]earch [f]ile [c]ontent
+                local selected_file
+                selected_file=$(grep -irl "''${1:-}" ./ | fzf --height "80%" --layout=reverse --preview-window right:60% --cycle --preview 'cat {}' --preview-window right:60%)
 
-              # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
-              [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+                if [[ -n "$selected_file" ]]; then
+                    if command -v "$EDITOR" &>/dev/null; then
+                        "$EDITOR" "$selected_file"
+                    else
+                        echo "EDITOR is not specified. using vim.  (you can export EDITOR in ~/.zshrc)"
+                        vim "$selected_file"
+                    fi
 
-              # Optionally load user configuration // usefull for customizing the shell without modifying the main file
-              [[ -f ~/.hyde.zshrc ]] && source ~/.hyde.zshrc
+                else
+                    echo "No file selected or search returned no results."
+                fi
+            }
 
-              # Helpful aliases
-              if [[ -x "$(which eza)" ]]; then
-                  alias ls='eza' \
-                      l='eza -lh --icons=auto' \
-                      ll='eza -lha --icons=auto --sort=name --group-directories-first' \
-                      ld='eza -lhD --icons=auto' \
-                      lt='eza --icons=auto --tree'
-              fi
+            _fuzzy_edit_search_file() {
+                local initial_query="$1"
+                local selected_file
+                local fzf_options=()
+                fzf_options+=(--height "80%" --layout=reverse --preview-window right:60% --cycle)
+                local max_depth=5
+
+                if [[ -n "$initial_query" ]]; then
+                    fzf_options+=("--query=$initial_query")
+                fi
+
+                # -type f: only find files
+                selected_file=$(find . -maxdepth $max_depth -type f 2>/dev/null | fzf "''${fzf_options[@]}")
+
+                if [[ -n "$selected_file" && -f "$selected_file" ]]; then
+                    if command -v "$EDITOR" &>/dev/null; then
+                        "$EDITOR" "$selected_file"
+                    else
+                        echo "EDITOR is not specified. using vim.  (you can export EDITOR in ~/.zshrc)"
+                        vim "$selected_file"
+                    fi
+                else
+                    return 1
+                fi
+            }
+
+            _df() {
+                if [[ $# -ge 1 && -e "''${@: -1}" ]]; then
+                    duf "''${@: -1}"
+                else
+                    duf
+                fi
+            }
+
 
               alias c='clear' \
                   vc='code' \
@@ -161,14 +225,22 @@ in
                   .3='cd ../../..' \
                   .4='cd ../../../..' \
                   .5='cd ../../../../..' \
-                  mkdir='mkdir -p' # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+                  mkdir='mkdir -p' \
                   ffec='_fuzzy_edit_search_file_content' \
                   ffcd='_fuzzy_change_directory' \
                   ffe='_fuzzy_edit_search_file' \
                   df='_df'
-          fi
+
+              # Some binds won't work on first prompt when deferred
+              bindkey '\e[H' beginning-of-line
+              bindkey '\e[F' end-of-line
+
         '';
-        ".p10k.zsh".source = "${pkgs.hydenix.hyde}/Configs/.p10k.zsh";
+
+        ".p10k.zsh" = {
+          source = "${pkgs.hydenix.hyde}/Configs/.p10k.zsh";
+          enable = cfg.p10k.enable;
+        };
       })
 
       (lib.mkIf cfg.fish.enable {
