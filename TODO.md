@@ -3,18 +3,10 @@
 
 ## now / notes
 
-- [x] feat: easier commit parity with hyde
-  - [ ] rebase
-- [ ] update hyde to master
-
 ## priority
 
-- [ ] fix: boot module grub is not working?
 - [ ] feat: spicetify theme support? flatpak?
-- [ ] fix: xdg theme inconsistency
-  - check xdgportalfix.sh or whatever its called
 - [ ] fix: wall.set in themes doesn't work correctly
-- [ ] fix: waybar crashes on rebuild
 - [ ] chore: review bug template
 - [ ] docs: better documented drivers in template flake, plus nvidia default settings
 - [ ] feat: hyprland via home-manager
