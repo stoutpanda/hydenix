@@ -25,6 +25,7 @@ in
       libsForQt5.qtimageformats
       libsForQt5.qtsvg
       libsForQt5.qt5.qtwayland
+      kdePackages.qt6ct
       kdePackages.qtbase
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
