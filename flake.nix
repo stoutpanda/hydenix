@@ -65,6 +65,11 @@
         inherit hydenix-inputs;
       };
 
+      hydevm = import ./lib/vms/hydevm/default.nix {
+        pkgs = hydenix-inputs.pkgs;
+        lib = hydenix-inputs.pkgs.lib;
+      };
+
     in
     {
       lib = hydenix-inputs.lib;
@@ -117,6 +122,9 @@
 
         # Add hyde-update package
         hyde-update = import ./lib/hyde-update { inherit hydenix-inputs; };
+
+        # Add hydevm packages
+        hydevm = hydevm.defaultPackage;
       };
 
       devShells.${system}.default = import ./lib/dev-shell.nix { inherit hydenix-inputs; };
