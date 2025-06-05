@@ -5,8 +5,9 @@ let
   callTheme = file: import file { inherit pkgs mkTheme; };
 in
 {
-  Abyssal-Wave = callTheme ./Abyssal-Wave.nix;
-  AbyssGreen = callTheme ./AbyssGreen.nix;
+  "Abyssal-Wave" = callTheme ./Abyssal-Wave.nix;
+  "AbyssGreen" = callTheme ./AbyssGreen.nix;
+  "AncientAliens" = callTheme ./AncientAliens.nix;
   "Amethyst-Aura" = callTheme ./Amethyst-Aura.nix;
   "Bad Blood" = callTheme ./Bad-Blood.nix;
   "Cat Latte" = callTheme ./Cat-Latte.nix;
@@ -27,6 +28,7 @@ in
   "Grukai" = callTheme ./Grukai.nix;
   "Hack the Box" = callTheme ./Hack-the-Box.nix;
   "Ice Age" = callTheme ./Ice-Age.nix;
+  "LimeFrenzy" = callTheme ./LimeFrenzy.nix;
   "Mac OS" = callTheme ./Mac-OS.nix;
   "Material Sakura" = callTheme ./Material-Sakura.nix;
   "Monokai" = callTheme ./Monokai.nix;
@@ -47,6 +49,7 @@ in
   "Solarized Dark" = callTheme ./Solarized-Dark.nix;
   "Synth Wave" = callTheme ./Synth-Wave.nix;
   "Tokyo Night" = callTheme ./Tokyo-Night.nix;
+  "Tundra" = callTheme ./Tundra.nix;
   "Vanta Black" = callTheme ./Vanta-Black.nix;
   "Windows 11" = callTheme ./Windows-11.nix;
   "Another World" = callTheme ./Another-World.nix;
