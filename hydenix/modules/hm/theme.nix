@@ -86,6 +86,7 @@ in
             hydenix.hyde
             which
             util-linux
+            dconf
           ]
         )
       }:$PATH"
