@@ -1,3 +1,11 @@
+## [4.0.2](https://github.com/richen604/hydenix/compare/v4.0.1...v4.0.2) (2025-06-07)
+
+
+### Bug Fixes
+
+* dconf missing in settheme, fixes error in some rebuilds ([52777d2](https://github.com/richen604/hydenix/commit/52777d2e64c36e73fd2a8ea6e9439bc4a71bd771))
+* only one themeswitch call in settheme ([cd0dfde](https://github.com/richen604/hydenix/commit/cd0dfde6aa138fded3c92c8fa4a770785717dcd7))
+
 ## [4.0.1](https://github.com/richen604/hydenix/compare/v4.0.0...v4.0.1) (2025-06-07)
 
 
