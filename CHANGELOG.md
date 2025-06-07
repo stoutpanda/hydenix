@@ -1,3 +1,11 @@
+## [4.0.1](https://github.com/richen604/hydenix/compare/v4.0.0...v4.0.1) (2025-06-07)
+
+
+### Bug Fixes
+
+* bumped code garden hash [#115](https://github.com/richen604/hydenix/issues/115) ([a8d860f](https://github.com/richen604/hydenix/commit/a8d860f1631e1c3bb99a8a723d7f19c0fc637217))
+* removed onchange for waybar module ([08df345](https://github.com/richen604/hydenix/commit/08df34547e47d02aabe6f63f1bb26e63427fc135))
+
 # [4.0.0](https://github.com/richen604/hydenix/compare/v3.1.0...v4.0.0) (2025-06-05)
 
 
