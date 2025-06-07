@@ -104,7 +104,6 @@ in
 
       # Run the theme switch commands with the custom runtime dir
       $HOME/.local/lib/hyde/theme.switch.sh -s "${cfg.active}" >> "$LOG_FILE" 2>&1
-      $HOME/.local/lib/hyde/theme.switch.sh -s "${cfg.active}" >> "$LOG_FILE" 2>&1
 
       echo "Theme switch completed. Log saved to $LOG_FILE" | tee -a "$LOG_FILE"
     '';
