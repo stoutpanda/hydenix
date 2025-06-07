@@ -65,9 +65,6 @@ in
         source = "${pkgs.hydenix.hyde}/Configs/.config/waybar/modules/style.css";
         force = true;
         mutable = true;
-        onChange = ''
-          ${pkgs.psmisc}/bin/killall .waybar-wrapped || true
-        '';
       };
     };
   };
