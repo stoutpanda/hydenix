@@ -1,3 +1,15 @@
+# [4.1.0](https://github.com/richen604/hydenix/compare/v4.0.2...v4.1.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* invalid wallbash icons path ([8030aa4](https://github.com/richen604/hydenix/commit/8030aa4b70806162806d9b8aee77eefd889101d1))
+
+
+### Features
+
+* manual nixpkgs update ([15ab083](https://github.com/richen604/hydenix/commit/15ab083de3f72239ac042522617c4a231b1d6ecb))
+
 ## [4.0.2](https://github.com/richen604/hydenix/compare/v4.0.1...v4.0.2) (2025-06-07)
 
 
