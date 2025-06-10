@@ -46,8 +46,8 @@ pkgs.stdenv.mkDerivation {
     tar xzf ./Source/arcs/Grub_Pochita.tar.gz -C $out/share/grub/themes
 
     # BUILD ICONS
-    mkdir -p $out/share/icons/wallbash
-    tar xzf ./Source/arcs/Icon_Wallbash.tar.gz -C $out/share/icons/wallbash
+    mkdir -p $out/share/icons
+    tar xzf ./Source/arcs/Icon_Wallbash.tar.gz -C $out/share/icons
 
     # BUILD GTK THEME
     mkdir -p $out/share/themes

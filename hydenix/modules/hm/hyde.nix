@@ -108,7 +108,7 @@ in
       };
 
       ".local/share/icons/Wallbash-Icon" = {
-        source = "${pkgs.hydenix.hyde}/share/icons/wallbash";
+        source = "${pkgs.hydenix.hyde}/share/icons/Wallbash-Icon";
         force = true;
         recursive = true;
         mutable = true;
