@@ -1,3 +1,15 @@
+# [4.3.0](https://github.com/richen604/hydenix/compare/v4.2.0...v4.3.0) (2025-06-18)
+
+
+### Bug Fixes
+
+* missing waybar config.jsonc ([1f4a748](https://github.com/richen604/hydenix/commit/1f4a74829efd618d0251f51f845a1b70aeabb542))
+
+
+### Features
+
+* more visible home-manager errors ([cf2a212](https://github.com/richen604/hydenix/commit/cf2a212c19f84ae9187482dc7c3c4273c94d5932))
+
 # [4.2.0](https://github.com/richen604/hydenix/compare/v4.1.0...v4.2.0) (2025-06-18)
 
 
