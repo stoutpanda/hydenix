@@ -1,3 +1,17 @@
+# [4.2.0](https://github.com/richen604/hydenix/compare/v4.1.0...v4.2.0) (2025-06-18)
+
+
+### Bug Fixes
+
+* update theme hashes ([85ab117](https://github.com/richen604/hydenix/commit/85ab117e91818c469329f4be98fea6d793682c6f))
+
+
+### Features
+
+* good bluetooth default ([a719a48](https://github.com/richen604/hydenix/commit/a719a48761c0af9228da794a850c8a6de8017608))
+* updated hyde to master ([baf3f5e](https://github.com/richen604/hydenix/commit/baf3f5e3f3489d3d2d90af6fe5cb628af4b9643c))
+* updated nixpkgs ([f8f63f0](https://github.com/richen604/hydenix/commit/f8f63f0606423f6dd10df66de15057a937ebddeb))
+
 # [4.1.0](https://github.com/richen604/hydenix/compare/v4.0.2...v4.1.0) (2025-06-10)
 
 
