@@ -6,7 +6,7 @@ mkTheme rec {
     repo = "Another-World";
     rev = "main";
     name = name;
-    sha256 = "sha256-91g0u+oOBXL6PBV6q0DUA4HX8KMcSS47pLxqadaxb58=";
+    sha256 = "sha256-DLx+8kuW2DrTWFFrbB670iHKYqUfzNUvfQobKjUlVsY=";
   };
   meta = {
     description = "HyDE Theme: Another World";
