@@ -12,6 +12,7 @@
     - [How do I fix (Nix error / system error / bug / etc)?](#how-do-i-fix-nix-error--system-error--bug--etc)
     - [Common errors](#common-errors)
       - [`error: hash mismatch in fixed-output derivation`](#error-hash-mismatch-in-fixed-output-derivation)
+      - [`Existing file '...' is in the way of '...'`](#existing-file--is-in-the-way-of-)
     - [What are the module options?](#what-are-the-module-options)
     - [What if I want to customize hydenix?](#what-if-i-want-to-customize-hydenix)
     - [What are some example configurations?](#what-are-some-example-configurations)
@@ -160,6 +161,55 @@ overlays = [
   })
 ];
 ```
+
+#### `Existing file '...' is in the way of '...'`
+
+This error occurs when home-manager tries to manage a file that already exists and wasn't created by home-manager.
+
+Example:
+
+```bash
+Existing file '/home/user/.config/kitty/kitty.conf' is in the way of '/nix/store/...-home-manager-files/.config/kitty/kitty.conf'
+```
+
+**Solution 1: Remove existing files (recommended)**
+
+Remove the conflicting files and let home-manager recreate them:
+
+```bash
+# Remove the specific file
+rm ~/.config/kitty/kitty.conf
+
+# Or remove entire config directory if needed (careful not to delete important files)
+rm -rf ~/.config/kitty/
+```
+
+**Solution 2: Backup existing files**
+
+If you want to preserve your existing configuration:
+
+```bash
+# Create backup
+mv ~/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf.backup
+
+# Then rebuild to let home-manager create the new file
+sudo nixos-rebuild switch
+```
+
+**Solution 3: Force home-manager to backup automatically**
+
+Add this to your `configuration.nix` to automatically backup conflicting files:
+
+```nix
+{
+  home-manager.backupFileExtension = "backup";
+}
+```
+
+This will automatically rename existing files with a `.backup` extension when home-manager encounters conflicts, allowing the rebuild to proceed without manual intervention only once.
+
+> [!WARNING]
+> if there is a conflict again, home-manager will error for you to manually resolve it. I don't include this by default as automating backups may not be ideal for users and it does not really solve the issue with managing backups
 
 ### What are the module options?
 

@@ -13,8 +13,6 @@
 
 - [ ] refactor hydevm to arch compatible then bump to repo
 
-- [ ] experimental module exports #117
-
 - [ ] docs: better documented first edits
   - [ ] add steps for what to edit first
   - [ ] add more detailed driver
@@ -27,11 +25,12 @@
 
 - [ ] chore: review bug template
 
-- [ ] feat: hyprland via home-manager
+- [ ] feat: hyprland via home-manager only
   - support plugins
   - use hyprland flake package
   - nixGL
 - [ ] binary cache
+- [ ] feat: experimental module exports #117
 
 ## unorganized
 
