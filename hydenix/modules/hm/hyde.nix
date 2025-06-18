@@ -93,6 +93,28 @@ in
         force = true;
         mutable = true;
       };
+      ".local/share/waybar/includes" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/includes";
+        recursive = true;
+      };
+      ".local/share/waybar/layouts" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/layouts";
+        recursive = true;
+      };
+      ".local/share/waybar/menus" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/menus";
+        recursive = true;
+      };
+      ".local/share/waybar/modules" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/modules";
+        recursive = true;
+      };
+      ".local/share/waybar/styles" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/styles";
+        force = true;
+        mutable = true;
+        recursive = true;
+      };
       ".config/MangoHud/MangoHud.conf" = {
         source = "${pkgs.hydenix.hyde}/Configs/.config/MangoHud/MangoHud.conf";
       };

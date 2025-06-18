@@ -27,7 +27,7 @@ let
       owner = "HyDE-Project";
       repo = "HyDE";
       rev = "master";
-      sha256 = "sha256-yvpKzj1HQsCVMxf9E6dKuDqjF4SprBTBjlSGs6xLAl8";
+      sha256 = "sha256-rYlD979i1XUDZg+okpJZSC4piQKwJiIocfEYjxMyaz8=";
     }
   );
 in

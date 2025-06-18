@@ -7,21 +7,22 @@
 
 ## next api update
 
+- [ ] bump hyde, waybar update
 - [ ] hydenix nixOsModules to nixosModules
 
 ## priority
+
+- [ ] refactor hydevm to arch compatible then bump to repo
+
+- [ ] experimental module exports #117
 
 - [ ] docs: better documented first edits
   - [ ] add steps for what to edit first
   - [ ] add more detailed driver
 
-- [ ] feat: theme switch on first runtime
-  - [ ] review first install of hyde
-  - [ ] review graphical nature of theme switch script
-  - [ ] add systemd to run a shell script on first install to 
-    - [ ] display first install message
-    - [ ] theme patch first theme
-    - [ ] select first theme
+- [ ] feat: demo-vm
+  - [ ] video
+   - [ ]  
 
 - [ ] feat: spicetify theme support? flatpak?
 
@@ -32,6 +33,13 @@
   - use hyprland flake package
   - nixGL
 - [ ] binary cache
+
+## unorganized
+
+- [ ] BREAKING:make hydenix more extensible without losing the ability to upgrade hyde
+  - [ ] hyde CORE modules
+    - map a module hierachy, propose a revised api
+    - modules that are required for hyde must have assertions.
 
 ## iso builder
 
@@ -86,7 +94,7 @@
 
 <https://github.com/jpikl/pm> for non-nixos packages
 specific scripts for each non-nixos distro options, ideally one script for all packages using pm
-nixGL wrapping for all prorgrams, well documented in the configuration as users will need to edit it. combine with any driver setup
+nixGL wrapping for all programs, well documented in the configuration as users will need to edit it. combine with any driver setup
 
 ## Hyde repo
 
@@ -100,7 +108,3 @@ nixGL wrapping for all prorgrams, well documented in the configuration as users 
   - [ ] PR's for all themes to bring cache
   - [ ] hydenix implementation (just home.file mutable)
   - [ ] FUTURE: wallbash should be a seperate lib
-  
-- [ ] hyde-shell reload requires display, unable to run in activation scripts
-- [ ] caffiene mode resets on hyde-shell reload
-- [ ] some yubikey touch detection for hyprlock and waybar <https://github.com/maximbaz/yubikey-touch-detector>

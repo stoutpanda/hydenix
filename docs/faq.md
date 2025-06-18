@@ -10,6 +10,8 @@
     - [How do I upgrade Hydenix?](#how-do-i-upgrade-hydenix)
     - [When should I upgrade?](#when-should-i-upgrade)
     - [How do I fix (Nix error / system error / bug / etc)?](#how-do-i-fix-nix-error--system-error--bug--etc)
+    - [Common errors](#common-errors)
+      - [`error: hash mismatch in fixed-output derivation`](#error-hash-mismatch-in-fixed-output-derivation)
     - [What are the module options?](#what-are-the-module-options)
     - [What if I want to customize hydenix?](#what-if-i-want-to-customize-hydenix)
     - [What are some example configurations?](#what-are-some-example-configurations)
@@ -117,6 +119,47 @@ graph TD
 
 Please see the [troubleshooting](./troubleshooting.md) guide for more information on how to diagnose and fix issues.
 Or create an issue in the [Hydenix GitHub repository](https://github.com/richen604/hydenix/issues).
+
+### Common errors
+
+#### `error: hash mismatch in fixed-output derivation`
+
+This error occurs when Nix expects a specific hash for a downloaded file, but the actual file has a different hash due to upstream changes.
+
+These usually happen with themes as they are updated frequently.
+
+Example:
+
+```bash
+error: hash mismatch in fixed-output derivation '/nix/store/2s2n054di1wg8d3sw50wqhs10yg8svj0-Code-Garden.drv':
+         specified: sha256-ZAmxhz7MK24htAcPdnNMZF/K7Cw7vru80xZn+7yJgXQ=
+            got:    sha256-HHC15pPHJ+ylQ56yYysEoKjKYUAoye2WHmt4Q2vyffk=
+```
+
+**Solution: Override the package in configuration.nix**
+
+If I haven't updated this in the repo yet, add this overlay to your existing overlays in `configuration.nix` to fix the error:
+
+```nix
+overlays = [
+  inputs.hydenix.lib.overlays
+  # Fix hash mismatch errors for Catppuccin Mocha
+  (final: prev: {
+    # Replace 'hydenix.themes."Catppuccin Mocha"' with the actual failing package, for theme names check https://github.com/richen604/hydenix/blob/main/hydenix/sources/themes/default.nix
+    hydenix.themes."Catppuccin Mocha" = prev.hydenix.themes."Catppuccin Mocha".overrideAttrs (oldAttrs: {
+      src = prev.fetchFromGitHub {
+        # Use the hash from error message under "got:"
+        sha256 = "HHC15pPHJ+ylQ56yYysEoKjKYUAoye2WHmt4Q2vyffk=";
+      };
+    });
+  })
+  (final: prev: {
+    userPkgs = import inputs.nixpkgs {
+      config.allowUnfree = true;
+    };
+  })
+];
+```
 
 ### What are the module options?
 
