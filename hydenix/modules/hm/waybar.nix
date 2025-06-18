@@ -218,6 +218,11 @@ in
         force = true;
         mutable = true;
       };
+      ".config/waybar/config.jsonc" = {
+        source = "${pkgs.hydenix.hyde}/Configs/.config/waybar/config.jsonc";
+        force = true;
+        mutable = true;
+      };
     };
   };
 }
