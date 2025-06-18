@@ -7,7 +7,6 @@
 
 ## next api update
 
-- [ ] bump hyde, waybar update
 - [ ] hydenix nixOsModules to nixosModules
 
 ## priority
