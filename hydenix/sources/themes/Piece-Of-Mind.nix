@@ -6,7 +6,7 @@ mkTheme rec {
     repo = "Piece-Of-Mind";
     rev = "main";
     name = name;
-    sha256 = "sha256-0rfiJ2CQPsaNRr+C1RUsEKIIpu8Hre11UInlorScqfI=";
+    sha256 = "sha256-TKaA1nFB8w0QMQvUxVhzGGBAMHWCQoutH9gC8sIVTZk=";
   };
   meta = {
     name = name;
