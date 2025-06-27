@@ -16,7 +16,7 @@
     #! Important options
     enable = true;
     /*
-      ! Below are defaults
+      ! Below are defaults, no need to uncomment them all
       comma.enable = true; # useful nix tool to run software without installing it first
       dolphin.enable = true; # file manager
       editors = {
@@ -95,7 +95,10 @@
           "Catppuccin Latte"
         ]; # default enabled themes, full list in https://github.com/richen604/hydenix/tree/main/hydenix/sources/themes
       };
-      waybar.enable = true; # enable waybar module
+      waybar = {
+        enable = true; # enable waybar module
+        userStyle = ""; # custom waybar user-style.css
+      };
       wlogout.enable = true; # enable wlogout module
       xdg.enable = true; # enable xdg module
     */

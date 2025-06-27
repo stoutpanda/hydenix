@@ -23,6 +23,18 @@ in
         description = "Enable waybar";
       };
     };
+
+    userStyle = lib.mkOption {
+      type = lib.types.lines;
+      default = "";
+      example = ''
+        /* Custom waybar styles */
+        window#waybar {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+      '';
+      description = "Custom CSS styles for waybar user-style.css";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -185,7 +197,7 @@ in
         mutable = true;
       };
       ".config/waybar/user-style.css" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/waybar/user-style.css";
+        text = cfg.userStyle;
         force = true;
         mutable = true;
       };
