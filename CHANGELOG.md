@@ -1,3 +1,10 @@
+# [4.5.0](https://github.com/richen604/hydenix/compare/v4.4.0...v4.5.0) (2025-06-27)
+
+
+### Features
+
+* bumped nixpkgs ([1a90289](https://github.com/richen604/hydenix/commit/1a9028973ebcefae2a7b50b11ba41027867d2a98))
+
 # [4.4.0](https://github.com/richen604/hydenix/compare/v4.3.0...v4.4.0) (2025-06-27)
 
 
