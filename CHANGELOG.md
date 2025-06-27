@@ -1,3 +1,15 @@
+# [4.4.0](https://github.com/richen604/hydenix/compare/v4.3.0...v4.4.0) (2025-06-27)
+
+
+### Bug Fixes
+
+* bumped theme hash ([e92cb44](https://github.com/richen604/hydenix/commit/e92cb44493f5894b6cc8b852eb3abe1d29b10a93))
+
+
+### Features
+
+* waybar style option [#123](https://github.com/richen604/hydenix/issues/123) ([9cfc228](https://github.com/richen604/hydenix/commit/9cfc228e01d266ea11b5f9bbcb682c19a6f263e2))
+
 # [4.3.0](https://github.com/richen604/hydenix/compare/v4.2.0...v4.3.0) (2025-06-18)
 
 
