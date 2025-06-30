@@ -262,6 +262,7 @@ in
       (lib.mkIf cfg.fish.enable {
         # Fish configs
         ".config/fish/config.fish".source = "${pkgs.hydenix.hyde}/Configs/.config/fish/config.fish";
+        ".config/fish/hyde_config.fish".source = "${pkgs.hydenix.hyde}/Configs/.config/fish/hyde_config.fish";
         ".config/fish/functions/df.fish".source =
           "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/df.fish";
         ".config/fish/functions/ffcd.fish".source =
