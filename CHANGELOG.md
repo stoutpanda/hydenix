@@ -1,3 +1,10 @@
+## [4.5.1](https://github.com/richen604/hydenix/compare/v4.5.0...v4.5.1) (2025-06-30)
+
+
+### Bug Fixes
+
+* **shell:** add missing hyde_config.fish file to fish configuration ([0c1b1c6](https://github.com/richen604/hydenix/commit/0c1b1c60c0191e6c37b00d9f5e553b981e679849))
+
 # [4.5.0](https://github.com/richen604/hydenix/compare/v4.4.0...v4.5.0) (2025-06-27)
 
 
