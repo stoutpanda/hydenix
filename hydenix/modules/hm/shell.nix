@@ -142,6 +142,10 @@ in
       '';
     };
 
+    programs.fish = lib.mkIf cfg.fish.enable {
+      enable = true;
+    };
+
     home.file = lib.mkMerge [
       (lib.mkIf cfg.zsh.enable {
         # Shell configs
