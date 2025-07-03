@@ -156,6 +156,14 @@ in
         set fish_pager_color_prefix cyan
         set fish_color_autosuggestion brblack
       '';
+      shellAbbrs = {
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        ".3" = "cd ../../..";
+        ".4" = "cd ../../../..";
+        ".5" = "cd ../../../../..";
+        mkdir = "mkdir -p";
+      };
     };
 
     home.file = lib.mkMerge [
