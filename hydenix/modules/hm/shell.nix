@@ -145,6 +145,17 @@ in
       enable = true;
       #reimpementing the HyDE-Project config.fish using home.manager
       interactiveShellInit = ''
+        # Source Hyde configuration
+        source ${pkgs.hydenix.hyde}/Configs/.config/fish/hyde_config.fish
+        
+        ${lib.optionalString cfg.starship.enable ''
+          if type -q starship
+            starship init fish | source
+            set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
+            set -gx STARSHIP_CONFIG $XDG_CONFIG_HOME/starship/starship.toml
+          end
+        ''}
+        
         # fzf integration
         if type -q fzf
           fzf --fish | source
@@ -153,6 +164,14 @@ in
         # Color settings
         set fish_pager_color_prefix cyan
         set fish_color_autosuggestion brblack
+        
+        ${lib.optionalString cfg.pokego.enable ''
+          pokego --no-title -r 1,3,6
+        ''}
+        
+        ${lib.optionalString cfg.fastfetch.enable ''
+          fastfetch --logo-type kitty
+        ''}
       '';
       shellAliases = {
         l = "eza -lh --icons=auto";
