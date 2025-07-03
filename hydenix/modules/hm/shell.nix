@@ -92,21 +92,18 @@ in
       [
         fastfetch
       ]
+      ++ lib.optionals (cfg.zsh.enable || cfg.fish.enable) [
+         eza
+         duf
+      ]
       ++ lib.optionals cfg.zsh.enable [
         zsh
-        eza
         oh-my-zsh
         zsh-autosuggestions
         zsh-syntax-highlighting
-        duf
       ]
       ++ lib.optionals cfg.bash.enable [ bash ]
-      ++ lib.optionals cfg.fish.enable [
-        fish
-        duf
-        fzf
-        eza
-      ]
+      ++ lib.optionals cfg.fish.enable [ fish ]
       ++ lib.optionals cfg.pokego.enable [ pokego ]
       ++ lib.optionals cfg.starship.enable [ starship ]
       ++ lib.optionals cfg.p10k.enable [ zsh-powerlevel10k ];
@@ -146,6 +143,7 @@ in
 
     programs.fish = lib.mkIf cfg.fish.enable {
       enable = true;
+      #reimpementing the HyDE-Project config.fish using home.manager
       interactiveShellInit = ''
         # fzf integration
         if type -q fzf
