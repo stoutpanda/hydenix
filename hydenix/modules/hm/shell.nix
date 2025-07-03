@@ -104,6 +104,7 @@ in
       ++ lib.optionals cfg.fish.enable [
         fish
         duf
+        fzf
       ]
       ++ lib.optionals cfg.pokego.enable [ pokego ]
       ++ lib.optionals cfg.starship.enable [ starship ]
@@ -144,6 +145,16 @@ in
 
     programs.fish = lib.mkIf cfg.fish.enable {
       enable = true;
+      interactiveShellInit = ''
+        # fzf integration
+        if type -q fzf
+          fzf --fish | source
+        end
+        
+        # Color settings
+        set fish_pager_color_prefix cyan
+        set fish_color_autosuggestion brblack
+      '';
     };
 
     home.file = lib.mkMerge [
