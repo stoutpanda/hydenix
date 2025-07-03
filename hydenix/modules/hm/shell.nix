@@ -145,6 +145,9 @@ in
       enable = true;
       #reimpementing the HyDE-Project config.fish using home.manager
       interactiveShellInit = ''
+        # Disable greeting
+        set -g fish_greeting
+        
         # Source Hyde configuration
         source ${pkgs.hydenix.hyde}/Configs/.config/fish/hyde_config.fish
         
