@@ -105,6 +105,7 @@ in
         fish
         duf
         fzf
+        eza
       ]
       ++ lib.optionals cfg.pokego.enable [ pokego ]
       ++ lib.optionals cfg.starship.enable [ starship ]
