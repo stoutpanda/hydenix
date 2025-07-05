@@ -1,3 +1,21 @@
+# [4.6.0](https://github.com/richen604/hydenix/compare/v4.5.1...v4.6.0) (2025-07-05)
+
+
+### Bug Fixes
+
+* **fish:** remove conflicting config.fish direct copy ([28888dc](https://github.com/richen604/hydenix/commit/28888dc446954078f6288995632317beeafe28f2))
+* **shell:** set programs.fish.enable when cfg.fish.enable is true ([21c8104](https://github.com/richen604/hydenix/commit/21c8104c961bf17be6e05b688f8400f66e060014))
+
+
+### Features
+
+* **fish:** add shell aliases from hyde config ([301aa7d](https://github.com/richen604/hydenix/commit/301aa7d377b104ae99dbac9e360c7c5c8cf25264))
+* **fish:** add starship, pokego, and fastfetch integration ([94b09e1](https://github.com/richen604/hydenix/commit/94b09e16d2cf3d992b836ff81b77c10b7db43cd5))
+* **fish:** disable fish greeting message ([5381714](https://github.com/richen604/hydenix/commit/5381714a0fce21c71b1cf416331c21cd564a0975))
+* **shell:** add conditional fastfetch to fish init ([46a9f87](https://github.com/richen604/hydenix/commit/46a9f87539d96939a3d18a8439ffd4f27225d88e))
+* **shell:** add eza package to fish configuration ([22b9681](https://github.com/richen604/hydenix/commit/22b9681b94bd91a621ca47b9e65b4fa49456e6fe))
+* **shell:** migrate fish abbreviations to home manager ([0311d02](https://github.com/richen604/hydenix/commit/0311d0262b98039a63c49ca1c502c16a79a980ac))
+
 ## [4.5.1](https://github.com/richen604/hydenix/compare/v4.5.0...v4.5.1) (2025-06-30)
 
 
