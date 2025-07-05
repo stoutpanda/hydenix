@@ -92,19 +92,18 @@ in
       [
         fastfetch
       ]
+      ++ lib.optionals (cfg.zsh.enable || cfg.fish.enable) [
+         eza
+         duf
+      ]
       ++ lib.optionals cfg.zsh.enable [
         zsh
-        eza
         oh-my-zsh
         zsh-autosuggestions
         zsh-syntax-highlighting
-        duf
       ]
       ++ lib.optionals cfg.bash.enable [ bash ]
-      ++ lib.optionals cfg.fish.enable [
-        fish
-        duf
-      ]
+      ++ lib.optionals cfg.fish.enable [ fish ]
       ++ lib.optionals cfg.pokego.enable [ pokego ]
       ++ lib.optionals cfg.starship.enable [ starship ]
       ++ lib.optionals cfg.p10k.enable [ zsh-powerlevel10k ];
@@ -140,6 +139,59 @@ in
           fastfetch --logo-type kitty
         ''}
       '';
+    };
+
+    programs.fish = lib.mkIf cfg.fish.enable {
+      enable = true;
+      #reimpementing the HyDE-Project config.fish using home.manager
+      interactiveShellInit = ''
+        # Disable greeting
+        set -g fish_greeting
+        
+        # Source Hyde configuration
+        source ${pkgs.hydenix.hyde}/Configs/.config/fish/hyde_config.fish
+        
+        ${lib.optionalString cfg.starship.enable ''
+          if type -q starship
+            starship init fish | source
+            set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
+            set -gx STARSHIP_CONFIG $XDG_CONFIG_HOME/starship/starship.toml
+          end
+        ''}
+        
+        # fzf integration
+        if type -q fzf
+          fzf --fish | source
+        end
+        
+        # Color settings
+        set fish_pager_color_prefix cyan
+        set fish_color_autosuggestion brblack
+        
+        ${lib.optionalString cfg.pokego.enable ''
+          pokego --no-title -r 1,3,6
+        ''}
+        
+        ${lib.optionalString cfg.fastfetch.enable ''
+          fastfetch --logo-type kitty
+        ''}
+      '';
+      shellAliases = {
+        l = "eza -lh --icons=auto";
+        ls = "eza -1 --icons=auto";
+        ll = "eza -lha --icons=auto --sort=name --group-directories-first";
+        ld = "eza -lhD --icons=auto";
+        lt = "eza --icons=auto --tree";
+        vc = "code";
+      };
+      shellAbbrs = {
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        ".3" = "cd ../../..";
+        ".4" = "cd ../../../..";
+        ".5" = "cd ../../../../..";
+        mkdir = "mkdir -p";
+      };
     };
 
     home.file = lib.mkMerge [
@@ -261,7 +313,6 @@ in
 
       (lib.mkIf cfg.fish.enable {
         # Fish configs
-        ".config/fish/config.fish".source = "${pkgs.hydenix.hyde}/Configs/.config/fish/config.fish";
         ".config/fish/hyde_config.fish".source = "${pkgs.hydenix.hyde}/Configs/.config/fish/hyde_config.fish";
         ".config/fish/functions/df.fish".source =
           "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/df.fish";
